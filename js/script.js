@@ -11,6 +11,14 @@ menuToggle?.addEventListener('click',()=>{
   menuToggle.setAttribute('aria-expanded',isOpen);
 });
 
+// Close mobile menu when a link is clicked
+mainNav?.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    mainNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded','false');
+  });
+});
+
 // Terminal functionality
 const terminal = document.getElementById('terminal');
 const termToggle = document.getElementById('termToggle');

@@ -1524,16 +1524,13 @@ footer:before{
   display:inline-block;
 }
 .footer-link:before{
-  content:'→';position:absolute;left:-20px;
-  color:var(--accent);opacity:0;
-  transition:all .3s ease;
+  display:none;
 }
 .footer-link:hover,.footer-link:focus{
   color:var(--accent);outline:none;
-  transform:translateX(8px);
 }
 .footer-link:hover:before,.footer-link:focus:before{
-  opacity:1;left:-24px;
+  display:none;
 }
 
 .footer-socials{

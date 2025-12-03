@@ -1,0 +1,28 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node modules (if needed in future)
+node_modules/
+npm-debug.log
+
+# Python
+__pycache__/
+*.pyc
+.python-version
+.env
+venv/
+
+# Build files
+dist/
+build/
+
+# Logs
+*.log

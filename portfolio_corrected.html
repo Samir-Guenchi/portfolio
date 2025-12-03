@@ -238,79 +238,112 @@
 </section>
 <section class="highlights" id="highlights">
   <div class="highlights-container">
-    <!-- Section Header -->
-    <div style="text-align: center; margin-bottom: 56px;">
-      <div style="display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px; background: white; border: 2px solid var(--ink); border-radius: 30px; box-shadow: 3px 3px 0 var(--accent); margin-bottom: 16px;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="8" r="7"></circle>
-          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+    <!-- Section Header - Enhanced -->
+    <div style="text-align: center; margin-bottom: 72px;">
+      <!-- Badge -->
+      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border: 2px solid rgba(224, 122, 95, 0.3); border-radius: 30px; margin-bottom: 20px; font: 600 13px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
         </svg>
-        <span style="font: 600 16px Inter; color: var(--ink); text-transform: uppercase; letter-spacing: 1px;">Featured Work</span>
+        Featured Highlights
       </div>
-      <h2 style="font: 700 clamp(32px, 5vw, 48px)/1.2 'Caveat', cursive; color: var(--ink); margin-bottom: 12px;">
-        Projects That Made an Impact
+      
+      <!-- Main Title with gradient -->
+      <h2 style="font: 700 clamp(36px, 6vw, 56px)/1.15 'Caveat', cursive; color: var(--ink); margin-bottom: 16px; position: relative;">
+        Projects That Made an
+        <span style="background: linear-gradient(135deg, var(--accent), var(--highlight)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">Impact</span>
       </h2>
-      <p style="font-size: 17px; color: var(--pencil); max-width: 600px; margin: 0 auto;">
-        From AI systems to algorithm education, here's what I've been building and shipping
+      
+      <!-- Subtitle with better styling -->
+      <p style="font-size: 17px; color: var(--pencil); max-width: 650px; margin: 0 auto; line-height: 1.6;">
+        From cutting-edge AI systems to educational initiatives, here's what I've built that made a real difference
       </p>
+      
+      <!-- Decorative line -->
+      <div style="margin-top: 28px; display: flex; align-items: center; justify-content: center; gap: 16px;">
+        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent));"></div>
+        <span style="font-size: 20px;">✨</span>
+        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent);"></div>
+      </div>
     </div>
 
-    <!-- Top 3 Highlights - Feature Cards -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px;">
+    <!-- Top 3 Highlights - Feature Cards with enhanced styling -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-bottom: 80px;">
       <!-- Highlight 1 -->
-      <article style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.08), rgba(255, 199, 89, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--accent); box-shadow: 0 4px 12px rgba(224, 122, 95, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--highlight); border-radius: 50%; opacity: 0.15;"></div>
+      <article style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.08), rgba(255, 199, 89, 0.08)); padding: 32px; border-radius: 16px; border: 2px solid var(--accent); box-shadow: 0 8px 24px rgba(224, 122, 95, 0.12); position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 40px rgba(224, 122, 95, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(224, 122, 95, 0.12)'">
+        <div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; background: var(--highlight); border-radius: 50%; opacity: 0.1; transition: all 0.4s ease;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent); pointer-events: none;"></div>
         <div style="position: relative; z-index: 2;">
-          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.2), rgba(255, 199, 89, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(224, 122, 95, 0.15); border: 1.5px solid rgba(224, 122, 95, 0.3);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
               <path d="M12 18v-6"></path>
               <path d="M9 15h6"></path>
             </svg>
           </div>
-          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Ministry RAG System</h3>
-          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Built intelligent document retrieval system for Algerian Ministry of Higher Education laws</p>
-          <div style="display: inline-block; padding: 8px 16px; background: var(--success); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
-            92% Accuracy
+          <h3 style="font: 600 24px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Ministry RAG System</h3>
+          <p style="color: var(--pencil); margin-bottom: 20px; line-height: 1.7; font-size: 15px;">Built intelligent document retrieval system for Algerian Ministry of Higher Education laws with advanced Arabic NLP processing</p>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, var(--success), var(--accent)); color: white; border-radius: 20px; font: 700 14px 'JetBrains Mono', monospace; box-shadow: 0 4px 12px rgba(129, 178, 154, 0.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              92% Accuracy
+            </div>
+            <span style="font-size: 13px; color: var(--pencil); background: rgba(13, 27, 42, 0.05); padding: 6px 12px; border-radius: 16px;">500+ documents</span>
           </div>
         </div>
       </article>
 
       <!-- Highlight 2 -->
-      <article style="background: linear-gradient(135deg, rgba(129, 178, 154, 0.08), rgba(61, 90, 128, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--success); box-shadow: 0 4px 12px rgba(129, 178, 154, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--success); border-radius: 50%; opacity: 0.15;"></div>
+      <article style="background: linear-gradient(135deg, rgba(129, 178, 154, 0.08), rgba(61, 90, 128, 0.08)); padding: 32px; border-radius: 16px; border: 2px solid var(--success); box-shadow: 0 8px 24px rgba(129, 178, 154, 0.12); position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 40px rgba(129, 178, 154, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(129, 178, 154, 0.12)'">
+        <div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; background: var(--success); border-radius: 50%; opacity: 0.1; transition: all 0.4s ease;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent); pointer-events: none;"></div>
         <div style="position: relative; z-index: 2;">
-          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(129, 178, 154, 0.2), rgba(61, 90, 128, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(129, 178, 154, 0.15); border: 1.5px solid rgba(129, 178, 154, 0.3);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="2" y1="12" x2="22" y2="12"></line>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
           </div>
-          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Network Optimization</h3>
-          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Redesigned enterprise network topology and automated workflows at ENOF SPA</p>
-          <div style="display: inline-block; padding: 8px 16px; background: var(--success); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
-            40% Latency ↓
+          <h3 style="font: 600 24px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Network Optimization</h3>
+          <p style="color: var(--pencil); margin-bottom: 20px; line-height: 1.7; font-size: 15px;">Redesigned enterprise network topology and automated workflows at ENOF SPA, delivering significant performance improvements</p>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, var(--success), var(--accent)); color: white; border-radius: 20px; font: 700 14px 'JetBrains Mono', monospace; box-shadow: 0 4px 12px rgba(129, 178, 154, 0.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              40% Latency ↓
+            </div>
+            <span style="font-size: 13px; color: var(--pencil); background: rgba(13, 27, 42, 0.05); padding: 6px 12px; border-radius: 16px;">Enterprise scale</span>
           </div>
         </div>
       </article>
 
       <!-- Highlight 3 -->
-      <article style="background: linear-gradient(135deg, rgba(61, 90, 128, 0.08), rgba(224, 122, 95, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--link); box-shadow: 0 4px 12px rgba(61, 90, 128, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
-        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--link); border-radius: 50%; opacity: 0.15;"></div>
+      <article style="background: linear-gradient(135deg, rgba(61, 90, 128, 0.08), rgba(224, 122, 95, 0.08)); padding: 32px; border-radius: 16px; border: 2px solid var(--link); box-shadow: 0 8px 24px rgba(61, 90, 128, 0.12); position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 16px 40px rgba(61, 90, 128, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(61, 90, 128, 0.12)'">
+        <div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; background: var(--link); border-radius: 50%; opacity: 0.1; transition: all 0.4s ease;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent); pointer-events: none;"></div>
         <div style="position: relative; z-index: 2;">
-          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(61, 90, 128, 0.2), rgba(224, 122, 95, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(61, 90, 128, 0.15); border: 1.5px solid rgba(61, 90, 128, 0.3);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               <circle cx="12" cy="16" r="1"></circle>
             </svg>
           </div>
-          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">ML Security System</h3>
-          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Secure QR analyzer with TLS encryption and custom ML model for threat detection</p>
-          <div style="display: inline-block; padding: 8px 16px; background: var(--link); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
-            95% Detection
+          <h3 style="font: 600 24px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">ML Security System</h3>
+          <p style="color: var(--pencil); margin-bottom: 20px; line-height: 1.7; font-size: 15px;">Secure QR analyzer with TLS encryption and custom ML model for advanced threat detection and prevention</p>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, var(--link), var(--accent)); color: white; border-radius: 20px; font: 700 14px 'JetBrains Mono', monospace; box-shadow: 0 4px 12px rgba(61, 90, 128, 0.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              95% Detection
+            </div>
+            <span style="font-size: 13px; color: var(--pencil); background: rgba(13, 27, 42, 0.05); padding: 6px 12px; border-radius: 16px;">Real-time analysis</span>
           </div>
         </div>
       </article>

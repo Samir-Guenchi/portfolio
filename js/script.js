@@ -428,6 +428,129 @@ const FormHandler = {
 };
 
 // ============================================
+// MODULE: CERTIFICATE MANAGER
+// Single Responsibility: Load and display certificates
+// ============================================
+const CertificateManager = {
+  skillsCerts: [
+    { title: 'Data Science', image: './assetes/certificates/previews/eCertificate_Data_science.jpg.jpg' },
+    { title: 'Oracle Cloud Infrastructure', image: './assetes/certificates/previews/eCertificate_Oracle_Cloud_infra.jpg' },
+    { title: 'AI for Business', image: './assetes/certificates/previews/Ai_for_business_HP.jpg' }
+  ],
+  
+  attestations: [
+    { title: '3D Printing Attestation', image: './assetes/certificates/previews/attestation_3D_Printing.jpg' },
+    { title: 'Competitive Programming', image: './assetes/certificates/previews/attestation_competitive_programming.jpg' },
+    { title: 'Datathon Participation', image: './assetes/certificates/previews/attestation_datathon.jpg' },
+    { title: 'Ideathon Participation', image: './assetes/certificates/previews/attestation_ideathon.jpg' }
+  ],
+  
+  init() {
+    this.loadSkillsCertificates();
+    this.loadAttestations();
+  },
+  
+  loadSkillsCertificates() {
+    const skillsGrid = document.getElementById('skills-grid');
+    if (!skillsGrid) {
+      console.warn('Skills grid not found');
+      return;
+    }
+    
+    skillsGrid.innerHTML = '';
+    this.skillsCerts.forEach(cert => {
+      const card = this.createCertificateCard(cert);
+      skillsGrid.appendChild(card);
+    });
+  },
+  
+  loadAttestations() {
+    const attestationsGrid = document.getElementById('attestations-grid');
+    if (!attestationsGrid) {
+      console.warn('Attestations grid not found');
+      return;
+    }
+    
+    attestationsGrid.innerHTML = '';
+    this.attestations.forEach(cert => {
+      const card = this.createCertificateCard(cert);
+      attestationsGrid.appendChild(card);
+    });
+  },
+  
+  createCertificateCard(cert) {
+    const card = document.createElement('div');
+    card.style.cssText = `
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    `;
+    
+    card.innerHTML = `
+      <img src="${cert.image}" alt="${cert.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 6px; display: block;">
+      <p style="margin: 8px 0 0 0; font-size: 13px; font-weight: 500; color: var(--ink); text-align: center;">${cert.title}</p>
+    `;
+    
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-4px)';
+      card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.15)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0)';
+      card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+    });
+    
+    card.addEventListener('click', () => {
+      this.showCertificateModal(cert);
+    });
+    
+    return card;
+  },
+  
+  showCertificateModal(cert) {
+    let modal = document.getElementById('certModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'certModal';
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      `;
+      document.body.appendChild(modal);
+    }
+    
+    modal.innerHTML = `
+      <div style="background: white; border-radius: 12px; max-width: 90vw; max-height: 90vh; overflow: auto; position: relative;">
+        <button onclick="this.closest('#certModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; z-index: 10;">×</button>
+        <img src="${cert.image}" alt="${cert.title}" style="width: 100%; display: block; border-radius: 12px 12px 0 0;">
+        <div style="padding: 20px; text-align: center;">
+          <h3 style="margin: 0 0 10px 0; color: var(--ink);">${cert.title}</h3>
+        </div>
+      </div>
+    `;
+    
+    modal.style.display = 'flex';
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  }
+};
+
+// ============================================
 // MODULE: SCROLL BEHAVIOR MANAGER
 // Single Responsibility: Handle smooth scrolling
 // ============================================
@@ -465,6 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
   TerminalManager.init();
   ProjectFilterManager.init();
   FormHandler.init();
+  CertificateManager.init();
   ScrollBehaviorManager.init();
 
   console.log('✅ Application initialized successfully');

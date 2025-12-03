@@ -1,231 +1,170 @@
 # 🤖 Samir Guenchi's Portfolio
 
-> AI Engineering Student | Arabic NLP Researcher | Competitive Programming Coach
+Hey! Welcome to my portfolio. I'm an AI engineering student at ENSIA, currently diving deep into Arabic NLP and building intelligent systems for low-resource languages. I also coach competitive programming and love turning ideas into reality through code.
 
 ![GitHub Stars](https://img.shields.io/github/stars/Samir-Guenchi/portfolio?style=flat-square)
 ![GitHub Forks](https://img.shields.io/github/forks/Samir-Guenchi/portfolio?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
 
-**[🌐 View Live Site](https://samir-guenchi.netlify.app)** | **[📊 Repository](https://github.com/Samir-Guenchi/portfolio)**
+**[🌐 Check it out live](https://samir-guenchi.github.io/portfolio)** | **[📚 Source Code](https://github.com/Samir-Guenchi/portfolio)**
+
+## Quick Navigation
+
+- [About This Portfolio](#about-this-portfolio)
+- [What's Inside](#whats-inside)
+- [The Terminal](#the-terminal)
+- [How to Use This](#how-to-use-this)
+- [Tech Stack](#tech-stack)
+- [Get in Touch](#get-in-touch)
+
+## About This Portfolio
+
+This is a fully custom, no-framework portfolio built from scratch with vanilla HTML, CSS, and JavaScript. No Bootstrap, no React, no dependencies—just clean, performant code.
+
+Here's what you'll find:
+- A showcase of my AI/ML projects and research
+- My professional experience and journey
+- Certifications and credentials I've earned
+- An interactive terminal (because why not have fun? 😄)
+- A contact form to reach out
+- Full accessibility support so everyone can use it
+
+## What's Inside
+
+### ✨ Key Features
+
+**Responsive Design** - Works beautifully on phones, tablets, and desktops
+**Dark Mode** - Automatically detects your system preferences
+**Interactive Terminal** - Try commands like `help`, `about`, `projects`, etc.
+**Smooth Animations** - Subtle, performant transitions that feel nice
+**SEO Optimized** - Proper meta tags and structured data
+**No External Dependencies** - Everything is vanilla HTML, CSS, and JS
+**Keyboard Friendly** - Full keyboard navigation support
+**Screen Reader Ready** - WCAG 2.1 AA compliant accessibility
+
+### 🎮 The Terminal
+
+One of the coolest features is the interactive terminal. Press **Ctrl+`** or click the **$_** button in the bottom-right corner to open it.
+
+Try these commands:
+- `help` - See all available commands
+- `about` - Learn about my background
+- `cv` - Get a link to download my CV
+- `projects` - Browse my projects
+- `skills` - See what I work with
+- `contact` - Get my contact info
+- `schedule` - Book a call with me
+- `github` - Visit my GitHub profile
+- `linkedin` - Check out my LinkedIn
+- `clear` - Clear the terminal
+- `exit` - Close the terminal
 
 ---
 
-## 📋 Table of Contents
+## How to Use This
 
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Local Setup](#local-setup)
-- [Deployment Guide](#deployment-guide)
-- [Technologies Used](#technologies-used)
-- [File Organization](#file-organization)
-- [Performance](#performance)
-- [Accessibility](#accessibility)
-- [Contact](#contact)
+### View It Live
+The portfolio is already live on GitHub Pages! Just visit: **[samir-guenchi.github.io/portfolio](https://samir-guenchi.github.io/portfolio)**
 
----
+### Run Locally
+Want to run it on your machine? Super easy:
 
-## 📖 Overview
-
-A modern, responsive portfolio website showcasing:
-- 🎯 Featured AI/ML projects with real-world impact
-- 💼 Professional experience and career progression
-- 📜 Certifications and professional credentials
-- 🔗 Interactive terminal for fun engagement
-- 📞 Direct contact form for opportunities
-- ♿ Full accessibility support (WCAG 2.1 AA)
-
-**Live Demo:** [samir-guenchi.netlify.app](https://samir-guenchi.netlify.app)
-
----
-
-## ✨ Features
-
-### Core Features
-✅ **Responsive Design** - Mobile-first, works on all devices
-✅ **Dark Mode Support** - Automatic theme detection
-✅ **Interactive Terminal** - Play with commands (`help`, `about`, `projects`, etc.)
-✅ **Smooth Animations** - Subtle, performant transitions
-✅ **SEO Optimized** - JSON-LD structured data, meta tags
-✅ **Fast Loading** - Optimized images, CSS, and JavaScript
-✅ **Accessibility** - Keyboard navigation, screen reader support
-✅ **No Dependencies** - Pure HTML, CSS, JavaScript (no frameworks!)
-
-### Technical Highlights
-- **SOLID Principles** - Modular, maintainable JavaScript architecture
-- **CSS Architecture** - Organized by components and sections
-- **Design System** - Centralized color, spacing, typography variables
-- **Performance** - Lazy loading, optimized animations, minified assets
-
----
-
-## 📁 Project Structure
-
-```
-portfolio/
-├── portfolio_corrected.html    # Main HTML file
-├── style/
-│   └── style.css              # All styling with custom animations
-├── js/
-│   └── script.js              # Terminal & interactivity logic
-├── assetes/
-│   ├── samir3.png             # Profile image
-│   └── certificates/
-│       └── previews/          # Certificate images
-├── .gitignore
-└── README.md
-```
-
-## 🎮 Terminal Commands
-
-Open the terminal with **Ctrl+`** or click the **$_** button in the bottom-right:
-
-| Command | Description |
-|---------|------------|
-| `help` | List all available commands |
-| `about` | Learn about my background |
-| `cv` | View CV (download link) |
-| `projects` | Browse featured projects |
-| `skills` | See technical skills |
-| `contact` | Get contact information |
-| `schedule` | Book a call (Calendly) |
-| `github` | Visit GitHub profile |
-| `linkedin` | Visit LinkedIn profile |
-| `coffee` | Support with coffee ☕ |
-| `clear` | Clear terminal screen |
-| `exit` | Close terminal |
-
-## 🚀 Getting Started
-
-### View Live
-The portfolio is ready to deploy! Simply open `portfolio_corrected.html` in a browser.
-
-### Local Development
 ```bash
 # Clone the repository
 git clone https://github.com/Samir-Guenchi/portfolio.git
 cd portfolio
 
-# Open in browser
-open portfolio_corrected.html  # macOS
-start portfolio_corrected.html # Windows
-xdg-open portfolio_corrected.html # Linux
+# Open in your browser
+# On Windows:
+start index.html
+# On macOS:
+open index.html
+# On Linux:
+xdg-open index.html
 ```
 
-### Deploy to GitHub Pages
-1. Go to your GitHub repository settings
-2. Enable GitHub Pages (source: main branch, folder: /)
-3. Your portfolio will be live at `https://Samir-Guenchi.github.io/portfolio`
+That's it! No build process, no npm install, no server needed. Just open the file and browse.
 
-## 📋 Features Breakdown
+## Tech Stack
 
-### 🎨 Design System
-- **Color Palette**: Custom CSS variables for consistent theming
-- **Typography**: Professional font stack (Inter, Caveat, JetBrains Mono)
-- **Animations**: Smooth transitions, fade-ins, and micro-interactions
-- **Responsive**: Mobile-first, works perfectly on all devices
+I built this with:
+- **HTML** - Clean, semantic markup
+- **CSS** - Custom variables, no preprocessors
+- **JavaScript** - Vanilla JS with a modular architecture
+- **Fonts** - Google Fonts (Inter, JetBrains Mono, Caveat)
+- **Icons** - Font Awesome 6.4
+- **Deployment** - GitHub Pages
 
-### 🧠 Interactive Elements
-- **Smart Terminal**: Fully functional command interface with real-time feedback
-- **Project Filters**: Filter projects by category (NLP, Web, Algorithms, etc.)
-- **Smooth Navigation**: Anchor links with smooth scroll behavior
-- **Form Validation**: Client-side validation for contact form
-- **Modal System**: Beautiful certificate viewer with navigation
+Everything is optimized for performance and accessibility. No frameworks, no bloat—just what you need.
 
-### ♿ Accessibility
-- ARIA labels and roles for screen readers
-- Keyboard navigation support
-- High contrast colors
-- Semantic HTML structure
-- Focus indicators on interactive elements
+---
 
-## 📊 Projects Included
+## 🚀 What's Included
 
-1. **Ministry Regulation Q&A** - Arabic NLP RAG system (89% accuracy)
-2. **Hospital Management System** - Full-stack MERN application
-3. **Liver Disorder Analysis** - ML pipeline with 95% accuracy
-4. **QR Security Scanner** - Flutter app with TFLite (93% detection)
-5. **Healthcare Companion** - Cross-platform health tracking app
-6. **Algorithm Visualizer** - Interactive A*, BFS, DFS playground
-7. **Marketing Campaign Predictor** - Data science project analysis
-8. **Blockchain Lab** - Smart contracts and PoW implementation
+### My Projects
+- **Ministry Regulation Q&A** - Arabic NLP with RAG (89% accuracy) 🏆
+- **Hospital Management System** - Full MERN stack
+- **Liver Disorder Analysis** - ML model with 95% accuracy
+- **QR Security Scanner** - Flutter app using TensorFlow Lite
+- **Healthcare Companion** - Cross-platform health tracker
+- **Algorithm Visualizer** - Interactive A*, BFS, DFS demos
+- **Marketing Campaign Predictor** - Data science analysis
+- **Blockchain Lab** - Smart contracts and PoW
 
-## 🎓 Experience Highlights
+### My Background
+I'm currently a software engineering intern at Algérie Poste, and I've worked on everything from mobile apps to AI systems. I also coach competitive programming for the AOI National Program. My focus is on Arabic NLP and making intelligent systems work for low-resource languages.
 
-- **Software Engineering Intern** @ Algérie Poste (Jan 2025–Present)
-- **Automation & Network Optimization** @ ENOF SPA (Summer 2025)
-- **Competitive Programming Coach** @ AOI National Program (2024)
-- **Teaching Assistant** @ El Ijtihad School (2023–2024)
-- **Full-Stack Developer Intern** @ HR Technology (Summer 2023)
-- **Freelance Mobile Developer** (2023–Present)
+**Want to work together?** Shoot me a message or schedule a call on Calendly!
 
-## 🎯 Professional Goals
-
-Currently exploring:
-- 🔬 Scaling Arabic semantic search
-- 🛡️ RAG hallucination detection techniques
-- 🏆 Coaching students for IOI 2026
-- 🤝 Open to research collaborations!
+---
 
 ## 📞 Get in Touch
 
-- **Email**: samir.guenchi@ensia.edu.dz
-- **Phone**: +213 790 789 304
-- **Location**: Maghnia, Tlemcen, Algeria 🇩🇿
-- **LinkedIn**: [guenchi-samir](https://www.linkedin.com/in/guenchi-samir)
-- **GitHub**: [Samir-Guenchi](https://github.com/Samir-Guenchi)
-- **Kaggle**: [guenchisamir](https://www.kaggle.com/guenchisamir)
-- **Codeforces**: [Guenchi_Samir_ia](https://codeforces.com/profile/Guenchi_Samir_ia)
+**Email**: samir.guenchi@ensia.edu.dz
+**Phone**: +213 790 789 304
+**Location**: Maghnia, Tlemcen, Algeria 🇩🇿
 
-**Schedule a call**: [Calendly](https://calendly.com/samir-guenchi)
+### Connect With Me
+- [LinkedIn](https://www.linkedin.com/in/guenchi-samir) - Let's connect professionally
+- [GitHub](https://github.com/Samir-Guenchi) - Check out my code
+- [Kaggle](https://www.kaggle.com/guenchisamir) - See my datasets
+- [Codeforces](https://codeforces.com/profile/Guenchi_Samir_ia) - Competitive programming profile
 
-## 📈 Performance Metrics
+**[Schedule a 1:1 call](https://calendly.com/samir-guenchi)** - I'd love to chat about AI, NLP, or anything cool you're working on!
 
-- ⚡ **Load Time**: < 2 seconds
-- 🎬 **Animation FPS**: 60fps
-- 📱 **Mobile Ready**: 100% responsive
-- ♿ **Accessibility**: WCAG 2.1 AA compliant
-- 🔍 **SEO**: Semantic HTML, proper meta tags
+---
 
-## 🎨 Customization Guide
+## Want to Fork This?
 
-### Colors
-Edit CSS variables in `style/style.css`:
-```css
-:root {
-  --ink: #0d1b2a;
-  --paper: #f5f1e8;
-  --accent: #e07a5f;
-  --term-green: #00ff41;
-  --term-red: #ff4757;
-}
-```
+Feel free! This portfolio is open source under the MIT License. If you use it as a template, I'd appreciate a star ⭐
 
-### Fonts
-Modify font imports and assignments in the CSS to use your preferred fonts.
+To customize it:
+1. Fork the repo
+2. Clone your fork
+3. Edit `index.html` with your content
+4. Update colors and fonts in `style/style.css`
+5. Modify terminal commands in `js/script.js` if you want
+6. Push to your GitHub
+7. Enable GitHub Pages in your settings
 
-### Content
-Edit `portfolio_corrected.html` to:
-- Update profile information
-- Add/remove projects
-- Change skills and experience
-- Update contact details
+That's it—you'll have your own custom portfolio live!
 
-## 📝 License
+---
 
-This portfolio is open source and available under the MIT License - feel free to fork and customize!
+## Fun Facts
 
-## 🙏 Credits
-
-Built from scratch with:
-- ❤️ Passion for clean code
-- 🎯 Focus on user experience
-- ✨ Attention to detail
-- 🚀 Modern web standards
+- ⚡ This portfolio loads in under 2 seconds
+- 🎬 All animations run at 60fps
+- ♿ Fully accessible (WCAG 2.1 AA)
+- 📱 Works perfectly on mobile, tablet, and desktop
+- 🔍 SEO optimized with proper meta tags
+- 🚀 Zero external dependencies in the core
 
 ---
 
 **Made with ☕ and 🤖 by Samir Guenchi**
 
 *Last updated: December 2025*
+
+The code follows SOLID principles with modular managers for different concerns—navigation, loading, certificates, and the terminal all have their own modules.

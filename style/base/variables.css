@@ -1,0 +1,65 @@
+/* ============================================
+   DESIGN SYSTEM: COLOR PALETTE & TYPOGRAPHY
+   Single Source of Truth for all values
+   ============================================ */
+
+:root {
+  /* PRIMARY COLORS - Brand Identity */
+  --ink: #0d1b2a;        /* Primary text, dark UI */
+  --paper: #f8f6f3;      /* Background, light UI */
+  --pencil: #556270;     /* Secondary text */
+  
+  /* ACCENT COLORS - Visual Hierarchy */
+  --highlight: #ffc759;  /* Call-to-action, emphasis */
+  --accent: #e07a5f;     /* Interactive elements, primary CTA */
+  --success: #81b29a;    /* Positive feedback, achievements */
+  --link: #3d5a80;       /* Links, secondary actions */
+  
+  /* UTILITY COLORS - Functional Feedback */
+  --term-bg: #1a1d23;    /* Terminal/Code background */
+  --term-green: #00ff41; /* Terminal success, valid code */
+  --term-yellow: #ffea00;/* Terminal warnings */
+  --term-red: #ff4757;   /* Terminal errors */
+  
+  /* SHADOWS - Elevation & Depth */
+  --shadow: 0 2px 8px rgba(13, 27, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(13, 27, 42, 0.12);
+  --shadow-lg: 0 8px 24px rgba(13, 27, 42, 0.15);
+  
+  /* TYPOGRAPHY - Font Scaling */
+  --font-size-xs: 12px;  /* Labels, badges, captions */
+  --font-size-sm: 14px;  /* Secondary text, button labels */
+  --font-size-base: 17px;/* Body text, standard size */
+  --font-size-lg: 20px;  /* Section subtitles */
+  --font-size-xl: 24px;  /* Section titles */
+  --font-size-2xl: 32px; /* Page headings */
+  --font-size-3xl: 48px; /* Hero headings (clamp applied) */
+  
+  /* SPACING SCALE - Consistent Rhythm */
+  --space-xs: 4px;       /* Micro spacing */
+  --space-sm: 8px;       /* Small gaps */
+  --space-md: 12px;      /* Medium gaps */
+  --space-lg: 16px;      /* Standard gaps */
+  --space-xl: 24px;      /* Large gaps */
+  --space-2xl: 32px;     /* Section padding */
+  --space-3xl: 48px;     /* Hero padding */
+  --space-4xl: 80px;     /* Page padding */
+  
+  /* BORDER & RADIUS - Consistency */
+  --radius: 4px;         /* Standard border radius */
+  --radius-md: 8px;      /* Medium rounded corners */
+  --radius-lg: 12px;     /* Large rounded corners */
+  --radius-full: 9999px; /* Fully rounded (pills) */
+  
+  /* TRANSITIONS & ANIMATIONS */
+  --transition: 0.18s ease;        /* Default transition */
+  --transition-slow: 0.3s ease;    /* Slower interactions */
+  --transition-fast: 0.1s ease;    /* Snappy feedback */
+  
+  /* Z-INDEX SCALE - Predictable Layering */
+  --z-base: 1;      /* Default stacking */
+  --z-dropdown: 50; /* Dropdown menus */
+  --z-modal: 100;   /* Modal overlays */
+  --z-header: 100;  /* Sticky header */
+  --z-tooltip: 150; /* Tooltips above modals */
+}

@@ -29,10 +29,18 @@ const LoadingManager = {
 // Single Responsibility: Handle mobile menu interactions
 // ============================================
 const NavigationManager = {
-  menuToggle: document.getElementById('menuToggle'),
-  mainNav: document.getElementById('mainNav'),
+  menuToggle: null,
+  mainNav: null,
   
   init() {
+    this.menuToggle = document.getElementById('menuToggle');
+    this.mainNav = document.getElementById('mainNav');
+    
+    if (!this.menuToggle || !this.mainNav) {
+      console.warn('Navigation elements not found');
+      return;
+    }
+    
     this.attachToggleListener();
     this.attachLinkListeners();
   },
@@ -177,9 +185,14 @@ const TerminalCommands = {
 // Single Responsibility: Render terminal output
 // ============================================
 const TerminalRenderer = {
-  termOutput: document.getElementById('termOutput'),
+  termOutput: null,
+  
+  init() {
+    this.termOutput = document.getElementById('termOutput');
+  },
   
   renderCommand(cmd) {
+    if (!this.termOutput) return;
     const line = document.createElement('div');
     line.className = 'term-line';
     line.innerHTML = `<span class="term-prompt">samir@portfolio:~$</span> <span class="term-cmd">${cmd}</span>`;
@@ -187,6 +200,7 @@ const TerminalRenderer = {
   },
   
   renderOutput(result) {
+    if (!this.termOutput) return;
     const output = document.createElement('div');
     output.className = 'term-line';
     output.innerHTML = result;
@@ -194,6 +208,7 @@ const TerminalRenderer = {
   },
   
   renderError(cmd) {
+    if (!this.termOutput) return;
     const error = document.createElement('div');
     error.className = 'term-line';
     error.innerHTML = `<span class="term-error">Command not found: ${cmd}</span><br><span class="term-info">Type 'help' for available commands</span>`;
@@ -201,11 +216,11 @@ const TerminalRenderer = {
   },
   
   clear() {
-    this.termOutput.innerHTML = '';
+    if (this.termOutput) this.termOutput.innerHTML = '';
   },
   
   scrollToBottom() {
-    this.termOutput.scrollTop = this.termOutput.scrollHeight;
+    if (this.termOutput) this.termOutput.scrollTop = this.termOutput.scrollHeight;
   }
 };
 
@@ -214,12 +229,23 @@ const TerminalRenderer = {
 // Single Responsibility: Orchestrate terminal functionality
 // ============================================
 const TerminalManager = {
-  terminal: document.getElementById('terminal'),
-  termToggle: document.getElementById('termToggle'),
-  termClose: document.getElementById('termClose'),
-  termInput: document.getElementById('termInput'),
+  terminal: null,
+  termToggle: null,
+  termClose: null,
+  termInput: null,
   
   init() {
+    this.terminal = document.getElementById('terminal');
+    this.termToggle = document.getElementById('termToggle');
+    this.termClose = document.getElementById('termClose');
+    this.termInput = document.getElementById('termInput');
+    
+    if (!this.terminal || !this.termToggle || !this.termClose || !this.termInput) {
+      console.warn('Terminal elements not found');
+      return;
+    }
+    
+    TerminalRenderer.init();
     this.attachToggleListener();
     this.attachCloseListener();
     this.attachInputListener();
@@ -227,15 +253,15 @@ const TerminalManager = {
   },
   
   attachToggleListener() {
-    this.termToggle.addEventListener('click', () => this.toggle());
+    this.termToggle?.addEventListener('click', () => this.toggle());
   },
   
   attachCloseListener() {
-    this.termClose.addEventListener('click', () => this.close());
+    this.termClose?.addEventListener('click', () => this.close());
   },
   
   attachInputListener() {
-    this.termInput.addEventListener('keydown', (e) => this.handleInput(e));
+    this.termInput?.addEventListener('keydown', (e) => this.handleInput(e));
   },
   
   attachKeyboardListener() {
@@ -293,11 +319,19 @@ const TerminalManager = {
 // Single Responsibility: Handle project filtering
 // ============================================
 const ProjectFilterManager = {
-  filterBtns: document.querySelectorAll('.filter-btn'),
-  cards: document.querySelectorAll('.card'),
+  filterBtns: null,
+  cards: null,
   activeFilter: 'all',
   
   init() {
+    this.filterBtns = document.querySelectorAll('.filter-btn');
+    this.cards = document.querySelectorAll('.card');
+    
+    if (this.filterBtns.length === 0 || this.cards.length === 0) {
+      console.warn('Project filter elements not found');
+      return;
+    }
+    
     this.attachFilterListeners();
   },
   
@@ -348,11 +382,16 @@ const ProjectFilterManager = {
 // Single Responsibility: Handle form submissions
 // ============================================
 const FormHandler = {
-  contactForm: document.getElementById('contactForm'),
+  contactForm: null,
   recipientEmail: 'samir.guenchi@ensia.edu.dz',
   fallbackMessage: 'Opening your email client... If it doesn\'t open, please email me directly at samir.guenchi@ensia.edu.dz',
   
   init() {
+    this.contactForm = document.getElementById('contactForm');
+    if (!this.contactForm) {
+      console.warn('Contact form not found');
+      return;
+    }
     this.attachSubmitListener();
   },
   
@@ -418,200 +457,15 @@ const ScrollBehaviorManager = {
 // Dependency Inversion: Initialize all managers
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('🚀 Initializing portfolio application...');
+
+  // Initialize all managers in order
   LoadingManager.init();
   NavigationManager.init();
   TerminalManager.init();
   ProjectFilterManager.init();
   FormHandler.init();
   ScrollBehaviorManager.init();
-  loadCertificates();
-});
-// ============================================
-// MODULE: CERTIFICATE FORMATTER
-// Single Responsibility: Format certificate metadata
-// ============================================
-const CertificateFormatter = {
-  basePath: 'assetes/certificates/previews/',
-  
-  formatTitle(filename) {
-    let title = filename.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-    title = title.replace(/^(attestation_|eCertificate_|Ai_)/i, '');
-    title = title.replace(/_/g, ' ');
-    return title.split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-  },
-  
-  formatIssuer(filename) {
-    const issuerMap = {
-      'hp': 'Hewlett Packard',
-      'oracle': 'Oracle Corporation',
-      'datathon': 'Data Science Community',
-      '3d': 'Innovation Lab',
-      'competitive': 'Programming Association',
-      'ideathon': 'Startup Ecosystem',
-      'data_science': 'Professional Academy',
-      'cloud': 'Oracle Cloud'
-    };
-    
-    const lowerFilename = filename.toLowerCase();
-    for (const [key, issuer] of Object.entries(issuerMap)) {
-      if (lowerFilename.includes(key)) return issuer;
-    }
-    return 'Professional Organization';
-  },
-  
-  getImagePath(filename) {
-    return this.basePath + filename;
-  }
-};
 
-// ============================================
-// MODULE: CERTIFICATE CARD BUILDER
-// Single Responsibility: Build certificate card HTML
-// ============================================
-const CertificateCardBuilder = {
-  build(filename, isSkill) {
-    const title = CertificateFormatter.formatTitle(filename);
-    const issuer = CertificateFormatter.formatIssuer(filename);
-    const imagePath = CertificateFormatter.getImagePath(filename);
-    
-    return `
-      <article class="cert-card ${isSkill ? 'cert-card-featured' : ''}">
-        ${isSkill ? '<div class="cert-badge">Verified</div>' : ''}
-        <div class="cert-image-wrapper">
-          <img 
-            src="${imagePath}" 
-            alt="${title} Certificate"
-            class="cert-image"
-            loading="lazy"
-            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage not found%3C/text%3E%3C/svg%3E';"
-          />
-        </div>
-        <div class="cert-content">
-          <h4 class="cert-title">${title}</h4>
-          <p class="cert-issuer">${issuer}</p>
-        </div>
-        <div class="cert-footer">
-          <button 
-            class="cert-btn ${isSkill ? 'cert-btn-primary' : ''}"
-            onclick="CertificateModalManager.open('${imagePath}', '${title}')"
-            aria-label="View ${title}"
-          >
-            View Certificate
-            <span class="btn-arrow">→</span>
-          </button>
-        </div>
-      </article>
-    `;
-  }
-};
-
-// ============================================
-// MODULE: CERTIFICATE MODAL MANAGER
-// Single Responsibility: Handle certificate modal interactions
-// ============================================
-const CertificateModalManager = {
-  escapeHandler: null,
-  
-  open(imagePath, title) {
-    const modal = this.createModal(imagePath, title);
-    document.body.appendChild(modal);
-    document.body.style.overflow = 'hidden';
-    
-    this.escapeHandler = (e) => {
-      if (e.key === 'Escape') this.close();
-    };
-    document.addEventListener('keydown', this.escapeHandler);
-  },
-  
-  close() {
-    const modal = document.querySelector('.cert-modal');
-    if (modal) {
-      modal.remove();
-      document.body.style.overflow = '';
-      if (this.escapeHandler) {
-        document.removeEventListener('keydown', this.escapeHandler);
-      }
-    }
-  },
-  
-  createModal(imagePath, title) {
-    const modal = document.createElement('div');
-    modal.className = 'cert-modal';
-    modal.innerHTML = `
-      <div class="cert-modal-overlay" onclick="CertificateModalManager.close()"></div>
-      <div class="cert-modal-content">
-        <button class="cert-modal-close" onclick="CertificateModalManager.close()" aria-label="Close modal">
-          ✕
-        </button>
-        <img src="${imagePath}" alt="${title}" class="cert-modal-image" />
-        <p class="cert-modal-title">${title}</p>
-      </div>
-    `;
-    return modal;
-  }
-};
-
-// ============================================
-// MODULE: CERTIFICATE LOADER
-// Single Responsibility: Load and render certificates
-// ============================================
-const CertificateLoader = {
-  certificates: [
-    'Ai_for_business_HP.jpg',
-    'attestation_datathon.jpg',
-    'attestation_3D_Printing.jpg',
-    'attestation_competitive_programming.jpg',
-    'attestation_ideathon.jpg',
-    'eCertificate_Data_science.jpg.jpg',
-    'eCertificate_Oracle_Cloud_infra.jpg'
-  ],
-  
-  init() {
-    this.load();
-  },
-  
-  load() {
-    const attestationsGrid = document.getElementById('attestations-grid');
-    const skillsGrid = document.getElementById('skills-grid');
-    
-    if (!attestationsGrid || !skillsGrid) {
-      console.error('Certificate grids not found');
-      return;
-    }
-    
-    const { attestations, skills } = this.categorize();
-    attestationsGrid.innerHTML = attestations || '<p class="cert-empty">No attestations available yet.</p>';
-    skillsGrid.innerHTML = skills || '<p class="cert-empty">No skill certificates available yet.</p>';
-  },
-  
-  categorize() {
-    let attestations = '';
-    let skills = '';
-    
-    this.certificates.forEach(filename => {
-      const isAttestation = filename.toLowerCase().startsWith('attestation');
-      const cardHTML = CertificateCardBuilder.build(filename, !isAttestation);
-      
-      if (isAttestation) {
-        attestations += cardHTML;
-      } else {
-        skills += cardHTML;
-      }
-    });
-    
-    return { attestations, skills };
-  }
-};
-
-// Update the DOMContentLoaded to use CertificateLoader
-document.addEventListener('DOMContentLoaded', () => {
-  LoadingManager.init();
-  NavigationManager.init();
-  TerminalManager.init();
-  ProjectFilterManager.init();
-  FormHandler.init();
-  ScrollBehaviorManager.init();
-  CertificateLoader.init();
+  console.log('✅ Application initialized successfully');
 });

@@ -1,0 +1,166 @@
+/* ============================================
+   RESPONSIVE DESIGN: Mobile-first approach
+   ============================================ */
+
+/* Tablet: max 960px */
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(13, 27, 42, 0.1);
+    z-index: 99;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid rgba(13, 27, 42, 0.1);
+    font-size: 15px;
+  }
+
+  .nav-menu a:last-child {
+    border-bottom: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .term-toggle {
+    width: 56px;
+    height: 56px;
+    bottom: 16px;
+    right: 16px;
+    font-size: 20px;
+  }
+
+  .terminal {
+    bottom: 72px;
+    right: 16px;
+    width: calc(100vw - 32px);
+    height: 420px;
+  }
+
+  .cta-group {
+    flex-direction: column;
+  }
+
+  .cta-btn {
+    justify-content: center;
+  }
+}
+
+/* Mobile: max 640px */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .sec-title {
+    font-size: 28px;
+  }
+
+  .sketch,
+  .side-sketch,
+  .tab {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .cert-category-title {
+    font-size: 24px;
+    gap: var(--space-sm);
+  }
+
+  .contact {
+    padding: 48px 20px;
+  }
+
+  .contact-grid {
+    gap: 24px;
+  }
+
+  .form {
+    padding: 24px;
+  }
+
+  .note {
+    padding: 24px;
+  }
+}
+
+/* Print styles */
+@media print {
+  header,
+  .term-toggle,
+  .terminal,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .card,
+  .tab {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cert-btn {
+    display: none;
+  }
+
+  .cert-modal {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

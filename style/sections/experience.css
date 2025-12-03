@@ -1,0 +1,117 @@
+/* ============================================
+   EXPERIENCE SECTION: Timeline & roles
+   ============================================ */
+
+.exp {
+  background: rgba(129, 178, 154, 0.05);
+  padding: 60px var(--space-lg);
+}
+
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sec-title {
+  font: 700 36px / 1.2 'Caveat', cursive;
+  margin-bottom: var(--space-md);
+  position: relative;
+  display: inline-block;
+}
+
+.sec-title:after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent) 12px,
+    transparent 12px,
+    transparent 18px
+  );
+}
+
+.sec-sub {
+  color: var(--pencil);
+  margin-bottom: 40px;
+}
+
+.tab {
+  background: white;
+  padding: 28px 28px 28px 44px;
+  margin-bottom: 28px;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: all var(--transition);
+  opacity: 0;
+  animation: slideInLeft 0.5s ease forwards;
+}
+
+.tab:nth-child(2) { animation-delay: 0.1s; }
+.tab:nth-child(3) { animation-delay: 0.2s; }
+.tab:nth-child(4) { animation-delay: 0.3s; }
+.tab:nth-child(5) { animation-delay: 0.4s; }
+
+.tab:hover,
+.tab:focus-within {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(13, 27, 42, 0.12);
+}
+
+.tab:before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 28px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--paper);
+  transition: transform var(--transition);
+}
+
+.tab:hover:before {
+  transform: scale(1.3);
+}
+
+.tab h3 {
+  font: 600 20px / 1.3 Inter;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.meta {
+  display: flex;
+  gap: var(--space-xl);
+  font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
+  color: var(--pencil);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.story {
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+  font-size: 15px;
+}
+
+.tab ul {
+  margin-top: var(--space-md);
+  padding-left: 20px;
+  color: var(--pencil);
+}
+
+.tab li {
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}

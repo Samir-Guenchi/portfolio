@@ -1,0 +1,128 @@
+/* ============================================
+   HERO SECTION: Main landing area
+   ============================================ */
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Sketch / Lab Notes Style */
+.sketch {
+  background: white;
+  padding: 32px;
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--pencil);
+  box-shadow: var(--shadow);
+  position: relative;
+  animation: fadeInLeft 0.6s ease;
+}
+
+.sketch:before {
+  content: '[ lab notes — 2025.10.30 ]';
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  background: var(--paper);
+  padding: 0 var(--space-sm);
+  font: var(--font-size-xs) 'JetBrains Mono', monospace;
+  color: var(--pencil);
+}
+
+/* Hero heading */
+.hero h1 {
+  margin-bottom: var(--space-md);
+  color: var(--ink);
+}
+
+.hi {
+  color: var(--accent);
+  display: inline-block;
+}
+
+/* Hero role */
+.role {
+  font: 600 18px / 1.4 Inter;
+  color: var(--pencil);
+  margin-bottom: 24px;
+}
+
+/* Hero bio */
+.bio {
+  margin-bottom: var(--space-xl);
+  color: var(--pencil);
+}
+
+/* Tags in hero */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.tag {
+  padding: var(--space-xs) var(--space-md);
+  background: var(--highlight);
+  color: var(--ink);
+  border-radius: var(--radius);
+  font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
+  border: 1px solid rgba(13, 27, 42, 0.12);
+  transition: transform var(--transition);
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+}
+
+/* Side sketch box */
+.side-sketch {
+  background: white;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--accent);
+  font: 16px / 1.5 'Caveat', cursive;
+  color: var(--pencil);
+  position: relative;
+  animation: fadeInRight 0.6s ease;
+}
+
+.side-sketch:before {
+  content: '🎯';
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-md);
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+}
+
+.side-sketch h3 {
+  font-size: 20px;
+  margin-bottom: var(--space-md);
+  color: var(--ink);
+}
+
+.side-sketch ul {
+  list-style: none;
+  margin-top: var(--space-md);
+}
+
+.side-sketch li {
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: var(--space-xs);
+}
+
+.side-sketch li:before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}

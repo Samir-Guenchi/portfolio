@@ -1,0 +1,113 @@
+/* ============================================
+   CERTIFICATES SECTION
+   ============================================ */
+
+.certificates {
+  background: var(--paper);
+  padding: 60px 20px;
+  position: relative;
+}
+
+.certificates:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pencil),
+    var(--pencil) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.3;
+}
+
+.certificates-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Category sections */
+.cert-category {
+  margin-bottom: 60px;
+}
+
+.cert-category:last-child {
+  margin-bottom: 0;
+}
+
+.cert-category-title {
+  font: 700 32px / 1.2 'Caveat', cursive;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cert-category-desc {
+  color: var(--pencil);
+  font-size: 16px;
+  margin-bottom: 32px;
+  padding-left: 44px;
+}
+
+/* Certificate grid */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.cert-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: var(--pencil);
+  font-style: italic;
+}
+
+/* Certificate card */
+.cert-card {
+  background: white;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
+}
+
+.cert-card-featured {
+  border-color: var(--accent);
+}
+
+.cert-card-featured:hover {
+  box-shadow: 0 8px 24px rgba(224, 122, 95, 0.2);
+}
+
+/* Certificate badge */
+.cert-badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: var(--success);
+  color: white;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font: 600 var(--font-size-xs) 'JetBrains Mono', monospace;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ...existing certificate styles... */

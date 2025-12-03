@@ -1,31 +1,64 @@
-# 🚀 Samir's AI Portfolio
+# 🤖 Samir Guenchi's Portfolio
 
-A modern, interactive portfolio website showcasing AI/ML projects, competitive programming expertise, and full-stack development work. Built with **pure HTML, CSS, and vanilla JavaScript** — no frameworks, just clean code.
+> AI Engineering Student | Arabic NLP Researcher | Competitive Programming Coach
+
+![GitHub Stars](https://img.shields.io/github/stars/Samir-Guenchi/portfolio?style=flat-square)
+![GitHub Forks](https://img.shields.io/github/forks/Samir-Guenchi/portfolio?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
+
+**[🌐 View Live Site](https://samir-guenchi.netlify.app)** | **[📊 Repository](https://github.com/Samir-Guenchi/portfolio)**
+
+---
+
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Local Setup](#local-setup)
+- [Deployment Guide](#deployment-guide)
+- [Technologies Used](#technologies-used)
+- [File Organization](#file-organization)
+- [Performance](#performance)
+- [Accessibility](#accessibility)
+- [Contact](#contact)
+
+---
+
+## 📖 Overview
+
+A modern, responsive portfolio website showcasing:
+- 🎯 Featured AI/ML projects with real-world impact
+- 💼 Professional experience and career progression
+- 📜 Certifications and professional credentials
+- 🔗 Interactive terminal for fun engagement
+- 📞 Direct contact form for opportunities
+- ♿ Full accessibility support (WCAG 2.1 AA)
+
+**Live Demo:** [samir-guenchi.netlify.app](https://samir-guenchi.netlify.app)
+
+---
 
 ## ✨ Features
 
-### 🎯 Core Features
-- **Interactive Terminal** - Built-in command-line interface with 15+ commands for exploring projects and skills
-- **Modern UI/UX** - Glassmorphism design with smooth animations and responsive layout
-- **Project Showcase** - 8 featured projects with detailed descriptions, tech stacks, and impact metrics
-- **Certificate Management** - Dynamic modal system for viewing certifications and attestations
-- **Keyboard Navigation** - Full accessibility with keyboard shortcuts (Ctrl+` for terminal, Esc to close)
-- **Professional Design** - Gradient backgrounds, custom animations, and semantic HTML
+### Core Features
+✅ **Responsive Design** - Mobile-first, works on all devices
+✅ **Dark Mode Support** - Automatic theme detection
+✅ **Interactive Terminal** - Play with commands (`help`, `about`, `projects`, etc.)
+✅ **Smooth Animations** - Subtle, performant transitions
+✅ **SEO Optimized** - JSON-LD structured data, meta tags
+✅ **Fast Loading** - Optimized images, CSS, and JavaScript
+✅ **Accessibility** - Keyboard navigation, screen reader support
+✅ **No Dependencies** - Pure HTML, CSS, JavaScript (no frameworks!)
 
-### 💻 Technical Highlights
-- **Zero Dependencies** - Pure HTML5, CSS3, and JavaScript (no frameworks or libraries)
-- **Responsive Design** - Mobile-first approach, optimized for all screen sizes (320px - 4K)
-- **Performance Optimized** - Fast load times, smooth 60fps animations
-- **Accessibility First** - ARIA labels, semantic HTML, keyboard navigation support
-- **SEO Friendly** - Proper meta tags, structured data, semantic markup
+### Technical Highlights
+- **SOLID Principles** - Modular, maintainable JavaScript architecture
+- **CSS Architecture** - Organized by components and sections
+- **Design System** - Centralized color, spacing, typography variables
+- **Performance** - Lazy loading, optimized animations, minified assets
 
-## 🛠️ Tech Stack
-
-- **Frontend**: HTML5, CSS3 (Flexbox, Grid, Custom Properties)
-- **Interactivity**: Vanilla JavaScript (ES6+)
-- **Design**: Custom CSS animations, SVG icons
-- **Icons**: Font Awesome, custom SVG
-- **Hosting**: GitHub Pages ready
+---
 
 ## 📁 Project Structure
 

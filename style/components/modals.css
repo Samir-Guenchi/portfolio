@@ -1,0 +1,100 @@
+/* ============================================
+   MODALS: Modal dialogs & lightboxes
+   ============================================ */
+
+.cert-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cert-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 27, 42, 0.9);
+  cursor: pointer;
+}
+
+.cert-modal-content {
+  position: relative;
+  max-width: 1000px;
+  max-height: 90vh;
+  background: white;
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+  overflow: auto;
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: white;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  z-index: 10001;
+  padding: 0;
+}
+
+.cert-modal-close:hover,
+.cert-modal-close:focus {
+  transform: rotate(90deg) scale(1.1);
+  background: var(--ink);
+  outline: none;
+}
+
+.cert-modal-image {
+  width: 100%;
+  height: auto;
+  max-height: calc(90vh - 100px);
+  object-fit: contain;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.cert-modal-title {
+  text-align: center;
+  font: 600 18px Inter;
+  color: var(--ink);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 2px dashed var(--pencil);
+}

@@ -1,0 +1,121 @@
+/* ============================================
+   FORMS: Input fields & form elements
+   ============================================ */
+
+.form {
+  background: white;
+  padding: 36px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--ink);
+  box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.15);
+  transform: translateY(-2px);
+}
+
+.form:before {
+  content: '💬';
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  font-size: 32px;
+  background: var(--paper);
+  padding: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.form:hover:before {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Form groups */
+.fg {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+label:before {
+  content: '▸';
+  color: var(--accent);
+  font-size: 12px;
+  transition: transform var(--transition);
+}
+
+.fg:hover label:before {
+  transform: translateX(4px);
+}
+
+/* Input fields */
+input,
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--pencil);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(248, 246, 243, 0.5);
+}
+
+input:hover,
+textarea:hover {
+  border-color: var(--accent);
+  background: rgba(248, 246, 243, 0.8);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(224, 122, 95, 0.2), 0 0 0 4px rgba(224, 122, 95, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--pencil);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.3;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Form validation */
+input:required,
+textarea:required {
+  border-color: var(--pencil);
+}
+
+input:valid {
+  border-color: var(--success);
+}
+
+input:invalid:not(:placeholder-shown) {
+  border-color: var(--term-red);
+}

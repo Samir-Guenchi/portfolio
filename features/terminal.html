@@ -1,0 +1,39 @@
+<!-- ========================================
+     TERMINAL: Interactive command widget
+     ======================================== -->
+<button class="term-toggle" id="termToggle" aria-label="Open Terminal (Ctrl + `)" title="Press Ctrl + ` to toggle">$_</button>
+
+<aside class="terminal" id="terminal" aria-label="Interactive Terminal" role="region">
+  <div class="term-header">
+    <div class="term-header-left">
+      <div class="term-icon-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="term-icon">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <span class="term-title">samir@portfolio:~</span>
+      <span class="term-separator">$</span>
+    </div>
+    <button class="term-close" id="termClose" aria-label="Close terminal" title="Close (Esc)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="term-output" id="termOutput" role="log" aria-live="polite" aria-label="Terminal output">
+    <div class="term-line term-welcome">
+      <span class="term-info"> Welcome to Samir's Portfolio Terminal v2.0</span>
+    </div>
+    <div class="term-line">
+      <span class="term-info"> Type <span class="term-cmd">help</span> for available commands or <span class="term-cmd">Ctrl+</span><span class="term-cmd">`</span> to toggle</span>
+    </div>
+  </div>
+  <div class="term-input-wrap">
+    <span class="term-prompt"# HTML Refactoring with SOLID Principles
+
+I'll restructure your HTML following SOLID principles by separating concerns into modular, reusable components.
+
+## New HTML File Structure
+

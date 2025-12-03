@@ -1,0 +1,112 @@
+/* ============================================
+   HEADER: Navigation & Brand
+   Sticky header with responsive menu toggle
+   ============================================ */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: rgba(248, 246, 243, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--ink);
+  box-shadow: var(--shadow-md);
+}
+
+.hdr {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* Brand Logo */
+.logo {
+  font: 700 var(--font-size-xl) / 1 'Caveat', cursive;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.logo:hover,
+.logo:focus {
+  color: var(--accent);
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent) 8px,
+    transparent 8px,
+    transparent 12px
+  );
+  animation: slideUnderline 0.5s ease;
+}
+
+/* Navigation Menu */
+nav {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--pencil);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition);
+  padding: var(--space-xs) 0;
+  font-size: var(--font-size-sm);
+}
+
+nav a:not(.cv-btn):hover,
+nav a:not(.cv-btn):focus-visible {
+  color: var(--accent);
+}
+
+/* Navigation Link Underline */
+nav a:not(.cv-btn)::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition-slow) ease;
+}
+
+nav a:not(.cv-btn):hover::before {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-2xl);
+  color: var(--ink);
+  padding: var(--space-sm);
+  border-radius: var(--radius);
+  transition: background-color var(--transition);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background-color: rgba(13, 27, 42, 0.05);
+}

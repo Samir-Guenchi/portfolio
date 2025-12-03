@@ -771,11 +771,28 @@
         <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">MAIN</span>
       </div>
       <nav class="footer-nav" aria-label="Footer navigation" style="display: flex; flex-wrap: wrap; gap: 20px;">
-        <a href="#projects" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; padding: 6px 10px; border-radius: 6px; border-bottom: 2px solid transparent;">Featured Projects</a>
-        <a href="#experience" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; padding: 6px 10px; border-radius: 6px; border-bottom: 2px solid transparent;">Professional Experience</a>
-        <a href="#certificates" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; padding: 6px 10px; border-radius: 6px; border-bottom: 2px solid transparent;">Certificates</a>
-        <a href="#contact" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; padding: 6px 10px; border-radius: 6px; border-bottom: 2px solid transparent;">Get in Touch</a>
+        <a href="#projects" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; position: relative; padding-bottom: 4px;">
+          Featured Projects
+          <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;"></span>
+        </a>
+        <a href="#experience" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; position: relative; padding-bottom: 4px;">
+          Professional Experience
+          <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;"></span>
+        </a>
+        <a href="#certificates" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; position: relative; padding-bottom: 4px;">
+          Certificates
+          <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;"></span>
+        </a>
+        <a href="#contact" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; position: relative; padding-bottom: 4px;">
+          Get in Touch
+          <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;"></span>
+        </a>
       </nav>
+      
+      <style>
+        .footer-link span { pointer-events: none; }
+        .footer-link:hover span { width: 100%; }
+      </style>
     </div>
     
     <!-- TIER 2: Social Links (SOCIAL) -->
@@ -816,7 +833,7 @@
       </div>
       <div style="font-size: 14px; color: var(--pencil); line-height: 1.8;">
         <p style="margin: 0 0 14px 0;">
-          © 2025 Samir Guenchi · Handcrafted with <span style="color: var(--accent);">❤️</span> & <span style="color: var(--accent);">☕</span>
+          © 2025 Samir Guenchi · Handcrafted with dedication
         </p>
         <p style="margin: 0 0 12px 0;">
           <strong style="color: var(--ink);">Tech Stack:</strong> HTML5 · CSS3 (Flexbox & Grid) · Vanilla JavaScript · SVG Icons

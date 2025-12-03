@@ -32,7 +32,7 @@ Here's what you'll find:
 
 ## What's Inside
 
-### ✨ Key Features
+###  Key Features
 
 **Responsive Design** - Works beautifully on phones, tablets, and desktops
 **Dark Mode** - Automatically detects your system preferences
@@ -43,7 +43,7 @@ Here's what you'll find:
 **Keyboard Friendly** - Full keyboard navigation support
 **Screen Reader Ready** - WCAG 2.1 AA compliant accessibility
 
-### 🎮 The Terminal
+###  The Terminal
 
 One of the coolest features is the interactive terminal. Press **Ctrl+`** or click the **$_** button in the bottom-right corner to open it.
 
@@ -103,7 +103,7 @@ Everything is optimized for performance and accessibility. No frameworks, no blo
 ## 🚀 What's Included
 
 ### My Projects
-- **Ministry Regulation Q&A** - Arabic NLP with RAG (89% accuracy) 🏆
+- **Ministry Regulation Q&A** - Arabic NLP with RAG (89% accuracy) �
 - **Hospital Management System** - Full MERN stack
 - **Liver Disorder Analysis** - ML model with 95% accuracy
 - **QR Security Scanner** - Flutter app using TensorFlow Lite
@@ -122,7 +122,7 @@ I'm currently a software engineering intern at Algérie Poste, and I've worked o
 ## 📞 Get in Touch
 
 **Email**: samir.guenchi@ensia.edu.dz
-**Phone**: +213 790 789 304
+**Phone**: +213 774066238
 **Location**: Maghnia, Tlemcen, Algeria 🇩🇿
 
 ### Connect With Me

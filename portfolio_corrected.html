@@ -257,8 +257,8 @@
       <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
         <div style="width: 140px; height: 140px; background: linear-gradient(135deg, var(--accent), var(--highlight)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(224, 122, 95, 0.25);">
           <div style="text-align: center;">
-            <div style="font-size: 48px; margin-bottom: 8px;">✨</div>
-            <p style="font-size: 11px; color: white; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;">3 Projects</p>
+            <div style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 4px;">3</div>
+            <p style="font-size: 11px; color: white; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Projects</p>
           </div>
         </div>
       </div>
@@ -271,30 +271,46 @@
       <!-- Card 1 - Top Left -->
       <div style="position: absolute; top: 10%; left: 5%; width: 240px; animation: float 6s ease-in-out infinite;">
         <article style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 10px 40px rgba(13, 27, 42, 0.12); border-top: 4px solid var(--accent); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(224, 122, 95, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 10px 40px rgba(13, 27, 42, 0.12)'; this.style.transform='scale(1)';">
-          <div style="font-size: 40px; margin-bottom: 12px;">📄</div>
+          <!-- SVG Icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
           <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 10px 0;">Ministry Q&A</h3>
-          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Arabic NLP system helping people navigate government regulations.</p>
-          <p style="font-size: 12px; font-style: italic; color: var(--accent); margin: 0;">Lesson: Speed matters more than accuracy.</p>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Arabic NLP helping people understand government regulations.</p>
+          <p style="font-size: 12px; font-style: italic; color: var(--accent); margin: 0;">"Speed matters more than accuracy."</p>
         </article>
       </div>
 
       <!-- Card 2 - Top Right -->
       <div style="position: absolute; top: 10%; right: 5%; width: 240px; animation: float 6s ease-in-out infinite 2s;">
         <article style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 10px 40px rgba(13, 27, 42, 0.12); border-top: 4px solid var(--success); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(129, 178, 154, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 10px 40px rgba(13, 27, 42, 0.12)'; this.style.transform='scale(1)';">
-          <div style="font-size: 40px; margin-bottom: 12px;">🌐</div>
+          <!-- SVG Icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+            <circle cx="12" cy="12" r="1"></circle>
+            <path d="M12 1v6m0 6v6"></path>
+            <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
+            <path d="M1 12h6m6 0h6"></path>
+            <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
+          </svg>
           <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 10px 0;">Network Redesign</h3>
-          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Enterprise topology overhaul with automation. 40% latency drop.</p>
-          <p style="font-size: 12px; font-style: italic; color: var(--success); margin: 0;">Lesson: Automation removes bottlenecks.</p>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Enterprise topology overhaul. 40% latency reduction, fully automated.</p>
+          <p style="font-size: 12px; font-style: italic; color: var(--success); margin: 0;">"Automation removes bottlenecks."</p>
         </article>
       </div>
 
       <!-- Card 3 - Bottom -->
       <div style="position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); width: 240px; animation: float 6s ease-in-out infinite 4s;">
         <article style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 10px 40px rgba(13, 27, 42, 0.12); border-top: 4px solid var(--link); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(61, 90, 128, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 10px 40px rgba(13, 27, 42, 0.12)'; this.style.transform='scale(1)';">
-          <div style="font-size: 40px; margin-bottom: 12px;">🔒</div>
+          <!-- SVG Icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
+            <circle cx="12" cy="16" r="1"></circle>
+          </svg>
           <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 10px 0;">QR Scanner</h3>
-          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Flutter app detecting malicious QR codes. 100+ downloads.</p>
-          <p style="font-size: 12px; font-style: italic; color: var(--link); margin: 0;">Lesson: Simple tools = real traction.</p>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Flutter app detecting malicious QR codes. 100+ downloads, real impact.</p>
+          <p style="font-size: 12px; font-style: italic; color: var(--link); margin: 0;">"Simple tools = real traction."</p>
         </article>
       </div>
 
@@ -310,14 +326,14 @@
 
     <!-- Tech Stack Badges Below -->
     <div style="text-align: center; margin-top: 80px;">
-      <p style="font-size: 12px; color: var(--pencil); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 20px;">Technologies Used</p>
+      <p style="font-size: 12px; color: var(--pencil); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 20px;">Built with</p>
       <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
         <span style="padding: 8px 16px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 20px; font-size: 13px; font-weight: 600;">Python</span>
         <span style="padding: 8px 16px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 20px; font-size: 13px; font-weight: 600;">Networking</span>
         <span style="padding: 8px 16px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 20px; font-size: 13px; font-weight: 600;">Flutter</span>
         <span style="padding: 8px 16px; background: rgba(255, 199, 89, 0.1); color: var(--highlight); border-radius: 20px; font-size: 13px; font-weight: 600;">ML/AI</span>
         <span style="padding: 8px 16px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 20px; font-size: 13px; font-weight: 600;">LangChain</span>
-        <span style="padding: 8px 16pk; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 20px; font-size: 13px; font-weight: 600;">n8n</span>
+        <span style="padding: 8px 16px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 20px; font-size: 13px; font-weight: 600;">n8n</span>
       </div>
     </div>
   </div>

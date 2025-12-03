@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./style/style.css">
+<!-- Primary Meta Tags -->
+<title>Samir Guenchi — AI Engineer & Arabic NLP Researcher | ENSIA</title>
+<meta name="title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta name="description" content="AI Engineering student at ENSIA specializing in Arabic NLP and RAG systems. Building intelligent solutions for low-resource languages. Open for research collaborations and internships.">
+<meta name="keywords" content="Samir Guenchi, AI Engineer, Arabic NLP, RAG Systems, Machine Learning, ENSIA, Competitive Programming, Algeria">
+<meta name="author" content="Samir Guenchi">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samir-guenchi.netlify.app/">
+<meta property="og:title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta property="og:description" content="Building intelligent systems for Arabic NLP. Research in RAG systems, competitive programming coach, and full-stack developer.">
+<meta property="og:image" content="https://samir-guenchi.netlify.app/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://samir-guenchi.netlify.app/">
+<meta property="twitter:title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta property="twitter:description" content="Building intelligent systems for Arabic NLP. Research in RAG systems, competitive programming coach, and full-stack developer.">
+<meta property="twitter:image" content="https://samir-guenchi.netlify.app/og-image.jpg">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://samir-guenchi.netlify.app/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Samir Guenchi",
+  "url": "https://samir-guenchi.netlify.app/",
+  "sameAs": [
+    "https://www.linkedin.com/in/guenchi-samir",
+    "https://github.com/Samir-Guenchi",
+    "https://www.kaggle.com/guenchisamir",
+    "https://codeforces.com/profile/Guenchi_Samir_ia"
+  ],
+  "jobTitle": "AI Engineering Student & Researcher",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "ENSIA (National Higher School of Artificial Intelligence)"
+  },
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "ENSIA"
+  },
+  "knowsAbout": ["Artificial Intelligence", "Natural Language Processing", "Machine Learning", "Arabic NLP", "RAG Systems", "Python", "Competitive Programming"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Maghnia",
+    "addressRegion": "Tlemcen",
+    "addressCountry": "DZ"
+  }
+}
+</script>
+
+
+</head>
+<body>
+<!-- Loading Screen -->
+<div class="loading" id="loading">
+  <div class="spinner" role="status" aria-label="Loading"></div>
+</div>
+
+<!-- Skip to main content -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+  <div class="hdr">
+    <a class="logo" href="#top" aria-label="Samir Guenchi Home">Samir Guenchi</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav id="mainNav" role="navigation">
+      <a href="#projects">Projects</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#experience">Journey</a>
+      <a href="#contact">Contact</a>
+      <a class="cv-btn" href="https://drive.google.com/uc?export=download&id=1xunML3vUxfK7LtsTeXv7OavHPwEGEmL9" download aria-label="Download CV">Download CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+  <div class="sketch">
+    <!-- Modern Split Layout -->
+    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px; align-items: start; margin-bottom: 32px;">
+      
+      <!-- Left: Profile Picture with decorative element -->
+      <div style="position: relative;">
+        <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid var(--accent); box-shadow: 0 8px 24px rgba(224, 122, 95, 0.3); transition: all 0.4s ease; position: relative; z-index: 2;">
+          <img 
+            src="./assetes/samir3.png" 
+            alt="Samir Guenchi - AI Systems Engineer" 
+            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" 
+            onmouseover="this.style.transform='scale(1.08)'; this.parentElement.style.transform='rotate(-3deg)'" 
+            onmouseout="this.style.transform='scale(1)'; this.parentElement.style.transform='rotate(0deg)'"
+          />
+        </div>
+        <!-- Decorative circle -->
+        <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;"></div>
+      </div>
+      
+      <!-- Right: Main Content -->
+      <div>
+        <!-- Greeting with visual separation -->
+        <div style="margin-bottom: 8px;">
+          <span style="display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 15px; font-weight: 600; color: var(--accent); border: 1px solid rgba(224, 122, 95, 0.2);">
+            👋 Available for opportunities
+          </span>
+        </div>
+        
+        <!-- Main Heading - Left aligned, modern -->
+        <h1 style="margin-bottom: 12px; line-height: 1.2;">
+          <span class="hi">Hey, I'm Samir</span><br>
+          <span style="background: linear-gradient(135deg, var(--ink), var(--pencil)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI Systems Engineer &<br>Software Architect</span>
+        </h1>
+        
+        <!-- Role badges -->
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+          <span style="padding: 6px 14px; background: white; border: 2px solid var(--ink); border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='3px 3px 0 var(--ink)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='2px 2px 0 var(--ink)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8V4H8"/>
+              <rect width="16" height="12" x="4" y="8" rx="2"/>
+              <path d="M2 14h2"/>
+              <path d="M20 14h2"/>
+              <path d="M15 13v2"/>
+              <path d="M9 13v2"/>
+            </svg>
+            AI Engineer
+          </span>
+          <span style="padding: 6px 14px; background: white; border: 2px solid var(--ink); border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='3px 3px 0 var(--ink)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='2px 2px 0 var(--ink)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+            Algorithm Coach
+          </span>
+          <span style="padding: 6px 14px; background: white; border: 2px solid var(--ink); border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='3px 3px 0 var(--ink)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='2px 2px 0 var(--ink)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+              <path d="M4 22h16"/>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+            </svg>
+            RAG Systems Builder
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bio Section - Modern card style -->
+    <div style="position: relative; padding: 24px; background: linear-gradient(135deg, rgba(129, 178, 154, 0.05), rgba(255, 199, 89, 0.05)); border-radius: 12px; margin-bottom: 28px; border: 2px solid rgba(224, 122, 95, 0.15);">
+      <!-- Quote mark decoration -->
+      <div style="position: absolute; top: 16px; left: 16px; font-size: 48px; color: var(--highlight); opacity: 0.3; font-family: Georgia, serif; line-height: 1;">"</div>
+      
+      <p style="margin: 0; padding-left: 32px; color: var(--ink); line-height: 1.75; font-size: 16px;">
+        Fourth-year AI Engineering student at <strong style="color: var(--accent); font-weight: 700;">ENSIA</strong> specializing in the design and implementation of 
+        production-grade AI systems. Proven track record in building scalable RAG architectures, 
+        high-performance backend systems, and leading technical initiatives from concept to deployment.
+      </p>
+    </div>
+    
+    <!-- Expertise Tags - Modern grid layout -->
+    <div style="margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="height: 2px; width: 40px; background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        <span style="font-size: 13px; font-weight: 700; color: var(--pencil); text-transform: uppercase; letter-spacing: 1.5px;">Core Expertise</span>
+      </div>
+      <div class="tags" style="gap: 10px;">
+        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">AI/ML Systems</span>
+        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">RAG Architecture</span>
+        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">Software Design</span>
+        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">System Optimization</span>
+      </div>
+    </div>
+    
+    <!-- CTA Buttons - Enhanced styling -->
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="#contact" class="cta-btn cta-primary" style="flex: 1; min-width: 180px; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        Schedule a Call
+      </a>
+      <a href="https://github.com/Samir-Guenchi" class="cta-btn cta-secondary" style="flex: 1; min-width: 160px; justify-content: center;" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <a href="https://drive.google.com/file/d/136AQPxzA8IrhQfJhfTLrgamWGWesPhnj/view?usp=sharing" class="cta-btn cta-secondary" style="flex: 1; min-width: 160px; justify-content: center;" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+
+  <div class="side-sketch">
+    <h3>What I'm Into Right Now</h3>
+    <p>Late 2025 priorities & curiosities:</p>
+    <ul>
+      <li>Scaling Arabic semantic search</li>
+      <li>RAG hallucination detection</li>
+      <li>Prepping students for IOI 2026</li>
+      <li>Open to research collabs!</li>
+    </ul>
+  </div>
+</section>
+<section class="highlights" id="highlights">
+  <div class="highlights-container">
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 56px;">
+      <div style="display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px; background: white; border: 2px solid var(--ink); border-radius: 30px; box-shadow: 3px 3px 0 var(--accent); margin-bottom: 16px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="7"></circle>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+        </svg>
+        <span style="font: 600 16px Inter; color: var(--ink); text-transform: uppercase; letter-spacing: 1px;">Featured Work</span>
+      </div>
+      <h2 style="font: 700 clamp(32px, 5vw, 48px)/1.2 'Caveat', cursive; color: var(--ink); margin-bottom: 12px;">
+        Projects That Made an Impact
+      </h2>
+      <p style="font-size: 17px; color: var(--pencil); max-width: 600px; margin: 0 auto;">
+        From AI systems to algorithm education, here's what I've been building and shipping
+      </p>
+    </div>
+
+    <!-- Top 3 Highlights - Feature Cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px;">
+      <!-- Highlight 1 -->
+      <article style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.08), rgba(255, 199, 89, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--accent); box-shadow: 0 4px 12px rgba(224, 122, 95, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--highlight); border-radius: 50%; opacity: 0.15;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <path d="M12 18v-6"></path>
+              <path d="M9 15h6"></path>
+            </svg>
+          </div>
+          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Ministry RAG System</h3>
+          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Built intelligent document retrieval system for Algerian Ministry of Higher Education laws</p>
+          <div style="display: inline-block; padding: 8px 16px; background: var(--success); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
+            92% Accuracy
+          </div>
+        </div>
+      </article>
+
+      <!-- Highlight 2 -->
+      <article style="background: linear-gradient(135deg, rgba(129, 178, 154, 0.08), rgba(61, 90, 128, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--success); box-shadow: 0 4px 12px rgba(129, 178, 154, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--success); border-radius: 50%; opacity: 0.15;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">Network Optimization</h3>
+          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Redesigned enterprise network topology and automated workflows at ENOF SPA</p>
+          <div style="display: inline-block; padding: 8px 16px; background: var(--success); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
+            40% Latency ↓
+          </div>
+        </div>
+      </article>
+
+      <!-- Highlight 3 -->
+      <article style="background: linear-gradient(135deg, rgba(61, 90, 128, 0.08), rgba(224, 122, 95, 0.08)); padding: 32px; border-radius: 12px; border: 2px solid var(--link); box-shadow: 0 4px 12px rgba(61, 90, 128, 0.15); position: relative; overflow: hidden; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--link); border-radius: 50%; opacity: 0.15;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div style="width: 56px; height: 56px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              <circle cx="12" cy="16" r="1"></circle>
+            </svg>
+          </div>
+          <h3 style="font: 600 22px/1.3 Inter; color: var(--ink); margin-bottom: 12px;">ML Security System</h3>
+          <p style="color: var(--pencil); margin-bottom: 16px; line-height: 1.6;">Secure QR analyzer with TLS encryption and custom ML model for threat detection</p>
+          <div style="display: inline-block; padding: 8px 16px; background: var(--link); color: white; border-radius: 20px; font: 700 18px 'JetBrains Mono', monospace;">
+            95% Detection
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- All Projects Grid -->
+    <div style="margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+        <h3 style="font: 700 28px/1.2 'Caveat', cursive; color: var(--ink); margin: 0;">All Projects</h3>
+        <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--pencil) 0%, transparent 100%);"></div>
+      </div>
+      
+      <div class="grid">
+        <article class="card" data-category="nlp">
+          <span class="card-label">Arabic NLP</span>
+          <div class="card-header">
+            <h3>Ministry Regulation Q&A</h3>
+            <span class="card-icon" role="img" aria-label="Robot">🤖</span>
+          </div>
+          <p>Built a RAG system from scratch to answer questions about Algerian government regulations. Tackled Arabic tokenization challenges, experimented with embedding models, and finally hit 89% accuracy after weeks of iteration.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Processing 500+ regulation documents, serving 1000+ test queries with 89% accuracy. Reduced manual lookup time by 75%.
+          </div>
+          <div class="tech">
+            <span>Python</span><span>LangChain</span><span>Arabic NLP</span><span>ChromaDB</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/Ministry-Regulation" target="_blank" rel="noopener noreferrer">Explore Code →</a>
+            <span class="metric">89% accuracy</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="web">
+          <span class="card-label">Full-Stack</span>
+          <div class="card-header">
+            <h3>Hospital Management System</h3>
+            <span class="card-icon" role="img" aria-label="Hospital">🏥</span>
+          </div>
+          <p>MERN stack app handling everything hospitals need — patient records, appointments, inventory. Built role-based access control and real-time notifications. Learned that healthcare UX is surprisingly complex.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Designed for 200+ concurrent users across 4 role types. Reduced appointment scheduling errors by 60% with validation logic.
+          </div>
+          <div class="tech">
+            <span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi" target="_blank" rel="noopener noreferrer">View Project →</a>
+            <span class="metric">4 user roles</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="nlp">
+          <span class="card-label">ML Pipeline</span>
+          <div class="card-header">
+            <h3>Liver Disorder Analysis</h3>
+            <span class="card-icon" role="img" aria-label="Chart">📊</span>
+          </div>
+          <p>Deep dive into the BUPA dataset with ensemble methods. Implemented feature engineering, hyperparameter tuning, and cross-validation. The data was messy, which made it the perfect learning playground.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Achieved 95% accuracy on test set. Compared 6 ML algorithms with comprehensive evaluation metrics. Featured in ENSIA research showcase.
+          </div>
+          <div class="tech">
+            <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>XGBoost</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/BUPA-Liver-Disorder-Analysis" target="_blank" rel="noopener noreferrer">See Analysis →</a>
+            <span class="metric">95% accuracy</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="web">
+          <span class="card-label">Mobile Security</span>
+          <div class="card-header">
+            <h3>QR Security Scanner</h3>
+            <span class="card-icon" role="img" aria-label="Lock">🔒</span>
+          </div>
+          <p>Flutter app that spots malicious QR codes before you scan them. Combined heuristic analysis with ML classification. Got featured in a local security workshop, which was cool.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Detected 93% of malicious QR codes in test set. Real-time scanning under 2 seconds. Downloaded by 100+ workshop participants.
+          </div>
+          <div class="tech">
+            <span>Flutter</span><span>Dart</span><span>TFLite</span><span>Firebase</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/Qr_Analyzer" target="_blank" rel="noopener noreferrer">Check it Out →</a>
+            <span class="metric">93% detection</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="web">
+          <span class="card-label">Mobile Health</span>
+          <div class="card-header">
+            <h3>Healthcare Companion</h3>
+            <span class="card-icon" role="img" aria-label="Medicine">💊</span>
+          </div>
+          <p>Cross-platform health tracking app with medication reminders and appointment management. Focused on making medical data accessible and understandable for everyday users.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Improved medication adherence by 40% in user testing with 50+ participants. Push notification system with 98% delivery rate.
+          </div>
+          <div class="tech">
+            <span>Flutter</span><span>Firebase</span><span>Cloud Functions</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi" target="_blank" rel="noopener noreferrer">Explore App →</a>
+            <span class="metric">50+ test users</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="algo">
+          <span class="card-label">Teaching Tool</span>
+          <div class="card-header">
+            <h3>Algorithm Visualizer</h3>
+            <span class="card-icon" role="img" aria-label="Art">🎨</span>
+          </div>
+          <p>Interactive playground for A*, BFS, DFS and more. Built this while teaching — watching algorithms run step-by-step makes abstract concepts click. My students love the path-finding demos.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Used by 20+ students in competitive programming classes. Reduced concept learning time by 30% based on student feedback.
+          </div>
+          <div class="tech">
+            <span>Python</span><span>Pygame</span><span>Algorithms</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/Search_Algo" target="_blank" rel="noopener noreferrer">Try It Live →</a>
+            <span class="metric">6 algorithms</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="nlp">
+          <span class="card-label">Data Science</span>
+          <div class="card-header">
+            <h3>Marketing Campaign Predictor</h3>
+            <span class="card-icon" role="img" aria-label="Growth">📈</span>
+          </div>
+          <p>Analyzing bank marketing data to predict campaign success. Full EDA, feature selection, and model comparison. Learned that data storytelling matters as much as model accuracy.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Analyzed 10K+ customer records. Identified top 3 features driving campaign success. Model predictions improved ROI by 25% in simulations.
+          </div>
+          <div class="tech">
+            <span>Python</span><span>Pandas</span><span>Seaborn</span><span>ML</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/Bank-marketing-analysis" target="_blank" rel="noopener noreferrer">Read Report →</a>
+            <span class="metric">10K+ records</span>
+          </div>
+        </article>
+
+        <article class="card" data-category="algo">
+          <span class="card-label">Web3</span>
+          <div class="card-header">
+            <h3>Blockchain Lab</h3>
+            <span class="card-icon" role="img" aria-label="Chain">⛓️</span>
+          </div>
+          <p>Smart contracts and consensus mechanism experiments. Built a simple proof-of-work chain to understand the fundamentals. Blockchain is fascinating when you build it yourself.</p>
+          <div class="impact">
+            <strong>Impact:</strong> Implemented full PoW consensus from scratch. Deployed 5+ smart contracts on testnet. Documented findings in 20-page technical report.
+          </div>
+          <div class="tech">
+            <span>Solidity</span><span>Web3.js</span><span>Hardhat</span>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/Samir-Guenchi/Blockchain" target="_blank" rel="noopener noreferrer">Explore Contracts →</a>
+            <span class="metric">5+ contracts</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="exp" id="experience" aria-labelledby="exp-title">
+  <div class="timeline">
+    <h2 class="sec-title" id="exp-title">Professional Experience</h2>
+    <p class="sec-sub">Hands-on roles in software engineering, research, coaching, and development.</p>
+    
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Software Engineering Intern — Algérie Poste</h3>
+      <div class="meta">
+        <time datetime="2025-01" itemprop="datePublished">Jan 2025–Present</time>
+        <span itemprop="location">Algiers, Algeria</span>
+      </div>
+      <ul aria-label="Key responsibilities">
+        <li>Developing secure e-commerce platform using Rust and Lynx framework for high-performance web services</li>
+        <li>Implementing secure payment gateways and user authentication systems</li>
+        <li>Optimizing backend architecture for scalability and security</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Automation & Network Optimization Intern — ENOF SPA</h3>
+      <div class="meta">
+        <time datetime="2025-06" itemprop="datePublished">Summer 2025</time>
+        <span itemprop="location">Maghnia, Algeria</span>
+      </div>
+      <ul aria-label="Key achievements">
+        <li>Redesigned network topology from bus to star, improving reliability and reducing latency by 40%</li>
+        <li>Automated workflow processes using n8n, reducing manual tasks by 60%</li>
+        <li>Implemented monitoring solutions for real-time network performance tracking</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Competitive Programming Coach — Algerian Olympiad in Informatics</h3>
+      <div class="meta">
+        <time datetime="2024" itemprop="datePublished">2024</time>
+        <span itemprop="location">National Program</span>
+      </div>
+      <ul aria-label="Coaching highlights">
+        <li>Coached students in advanced algorithms, graph theory, and dynamic programming</li>
+        <li>Prepared students for national competitions with personalized training strategies</li>
+        <li>Created comprehensive practice problems and training modules</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Algorithms Teaching Assistant — El Ijtihad School</h3>
+      <div class="meta">
+        <time datetime="2023/2024" itemprop="datePublished">2023–2024</time>
+        <span itemprop="location">Maghnia, Algeria</span>
+      </div>
+      <ul aria-label="Teaching responsibilities">
+        <li>Instructed students in Algorithms 1 & 2, covering fundamental to advanced concepts</li>
+        <li>Designed tailored curriculum bridging theoretical concepts with practical coding challenges</li>
+        <li>Improved student engagement and comprehension through interactive teaching methods</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Full-Stack Developer Intern — HR Technology</h3>
+      <div class="meta">
+        <time datetime="2023-06" itemprop="datePublished">Summer 2023</time>
+        <span itemprop="location">Algiers, Algeria</span>
+      </div>
+      <ul aria-label="Development work">
+        <li>Built project tracking web application using React and Laravel with real-time updates</li>
+        <li>Designed RESTful APIs and integrated MySQL database with optimized queries</li>
+        <li>Implemented responsive UI/UX following modern design principles</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">IT Manager — Scientific Club, ENSIA</h3>
+      <div class="meta">
+        <time datetime="2023" itemprop="datePublished">2023</time>
+        <span itemprop="location">Algiers, Algeria</span>
+      </div>
+      <ul aria-label="Management duties">
+        <li>Managed IT infrastructure and technical operations for student scientific club</li>
+        <li>Coordinated technical workshops and events for club members</li>
+        <li>Oversaw digital platforms and communication systems</li>
+      </ul>
+    </article>
+
+    <article class="tab" itemscope itemtype="https://schema.org/WorkExperience">
+      <h3 itemprop="name">Freelance Mobile Developer — Self-Employed</h3>
+      <div class="meta">
+        <time datetime="2023" itemprop="datePublished">2023–Present</time>
+        <span itemprop="location">Remote</span>
+      </div>
+      <ul aria-label="Freelance projects">
+        <li>Developed cross-platform mobile applications using Flutter for various clients</li>
+        <li>Delivered 5+ projects with focus on performance and user experience</li>
+        <li>Managed full development lifecycle from requirements gathering to deployment</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Certificates Section -->
+<section id="certificates" class="certificates">
+  <div class="certificates-container">
+    <!-- Section Header -->
+    <h2 class="sec-title">Certificates & Attestations</h2>
+    <p class="sec-sub">Professional credentials and event participations</p>
+
+    <!-- Attestations of Presence -->
+    <div class="cert-category">
+      <h3 class="cert-category-title">
+        <span class="cert-icon">📋</span>
+        Attestations of Presence
+      </h3>
+      <p class="cert-category-desc">Events, workshops, and conferences attended</p>
+      <div id="attestations-grid" class="cert-grid">
+        <!-- Dynamically loaded attestations -->
+      </div>
+    </div>
+
+    <!-- Skill Certificates -->
+    <div class="cert-category">
+      <h3 class="cert-category-title">
+        <span class="cert-icon">🏆</span>
+        Skill Certificates
+      </h3>
+      <p class="cert-category-desc">Professional certifications and completed courses</p>
+      <div id="skills-grid" class="cert-grid">
+        <!-- Dynamically loaded skill certificates -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="contact" id="contact">
+  <h2 class="sec-title">Let's Build Something Together</h2>
+  <p class="sec-sub">Research collaborations, internship opportunities, or just geeking out about NLP — I'm all ears. Prefer email or scheduled calls for serious inquiries.</p>
+
+  <div class="contact-grid">
+    <aside class="note">
+      <h3><i class="fas fa-paper-plane"></i> Ready to Connect?</h3>
+      
+      <!-- Email -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:samir.guenchi@ensia.edu.dz">samir.guenchi@ensia.edu.dz</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">
+            <a href="tel:+213790789304">+213 790 789 304</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Based in</div>
+          <div class="contact-value">Maghnia, Tlemcen 🇩🇿</div>
+        </div>
+      </div>
+
+      <!-- Looking For -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Looking for</div>
+          <div class="contact-value">
+            <span class="interests-badge">
+              <i class="fas fa-flask"></i> Research Internships
+            </span>
+            <span class="interests-badge">
+              <i class="fas fa-brain"></i> AI Collaborations
+            </span>
+            <span class="interests-badge">
+              <i class="fas fa-language"></i> Arabic NLP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="socials-section">
+        <div class="socials-title">
+          <i class="fas fa-share-nodes"></i> Connect on Social
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/guenchi-samir" class="social social-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+            <i class="fab fa-linkedin social-icon"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/Samir-Guenchi" class="social social-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <i class="fab fa-github social-icon"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.kaggle.com/guenchisamir" class="social social-kaggle" target="_blank" rel="noopener noreferrer" aria-label="Kaggle Profile">
+            <i class="fab fa-kaggle social-icon"></i>
+            <span>Kaggle</span>
+          </a>
+          <a href="https://codeforces.com/profile/Guenchi_Samir_ia" class="social social-codeforces" target="_blank" rel="noopener noreferrer" aria-label="Codeforces Profile">
+            <i class="fas fa-code social-icon"></i>
+            <span>Codeforces</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="cta-group">
+        <a href="https://calendly.com/samir-guenchi" class="cta-btn cta-primary" target="_blank" rel="noopener noreferrer">
+          <i class="far fa-calendar-check"></i> Schedule 30-min Call
+        </a>
+      </div>
+    </aside>
+
+    <!-- Contact Form (your existing form code goes here) -->
+     
+    <form class="form" id="contactForm">
+      <div class="fg">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="subject">Subject *</label>
+        <input type="text" id="subject" name="subject" required placeholder="Collaboration / Research / Opportunity" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" required placeholder="Tell me about your project, idea, or just say hi..." aria-required="true"></textarea>
+      </div>
+      <button type="submit" class="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo" aria-label="Site footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="footer-logo">
+        <span class="footer-emoji">🤖</span>
+        <span class="footer-brand">Samir Guenchi</span>
+      </div>
+      <p class="footer-tagline">Building intelligent systems for Arabic NLP & AI</p>
+    </div>
+    
+    <div class="footer-section">
+      <h3 class="footer-section-title">Quick Links</h3>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#projects" class="footer-link">Projects</a>
+        <a href="#experience" class="footer-link">Experience</a>
+        <a href="#contact" class="footer-link">Contact</a>
+        <a href="#certificates" class="footer-link">Certificates</a>
+      </nav>
+    </div>
+    
+    <div class="footer-section">
+      <h3 class="footer-section-title">Connect</h3>
+      <div class="footer-socials" aria-label="Social media links">
+        <a href="https://linkedin.com/in/guenchi-samir" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.732-2.004 1.438-.103.249-.129.597-.129.946v5.421h-3.554s.047-8.789 0-9.707h3.554v1.375c.43-.664 1.199-1.61 2.920-1.61 2.135 0 3.733 1.398 3.733 4.403v5.539z M5.337 9.341c-1.144 0-1.915-.759-1.915-1.71 0-.955.77-1.71 1.954-1.71 1.184 0 1.915.755 1.94 1.71 0 .951-.756 1.71-1.979 1.71zm1.581 11.111H3.564V8.584h3.354v11.868zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/Samir-Guenchi" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://kaggle.com/guenchisamir" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Kaggle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.825 23.859c-.027.467-.508.844-1.027.844-.53 0-.972-.382-.972-.848v-.005c0-.503.467-.856.999-.856.519 0 .991.385.991.848.003.014.003.028 0 .017zm-8.567-.003c0 .467-.508.844-1.027.844-.53 0-.972-.382-.972-.848 0-.503.467-.856.999-.856.519 0 .991.386.991.848.003.014.003.028.009.012zm8.134-5.263c-.386-1.121-1.22-2.048-2.268-2.635l-.316-.177-.202.285c-.315.457-.59 1.045-.708 1.566-.214.992-.069 1.927.408 2.701.176.286.408.545.67.773l.188.158.196-.161c.543-.456 1.089-1.138 1.312-1.795.131-.389.149-.929.112-1.35l-.192-.4zm-10.263-1.973c-.318-.188-.588-.532-.67-.916-.165-.789.298-1.583 1.069-1.88.288-.11.634-.139.913-.078.229.048.45.138.649.262l.265.152.113-.269c.157-.369.25-.848.25-1.371 0-1.122-.335-2.167-1.001-2.968l-.165-.201-.201.083c-.888.368-1.554 1.016-1.951 1.824-.369.753-.467 1.588-.276 2.361.115.449.298.864.544 1.226.17.245.346.46.542.645l.127.109.119-.117c.188-.186.462-.457.721-.751zm15.896-4.49c-.529-.617-1.296-1.015-2.134-1.174-.385-.07-.783-.07-1.167 0-.52.101-1.039.327-1.475.667l-.314.247-.115-.333c-.285-.788-.805-1.496-1.457-2.011l-.321-.249-.296.259c-.95.849-1.449 2.1-1.449 3.495 0 1.364.419 2.601 1.225 3.576.387.478.879.864 1.429 1.118l.318.155.313-.161c.621-.324 1.278-.487 1.954-.487.914 0 1.768.28 2.482.81l.284.218.263-.233c1.066-.947 1.736-2.301 1.946-3.833.134-.979.005-2.053-.465-2.916zm-5.983-1.42c.335-.603.837-1.094 1.418-1.403.316-.165.659-.27 1.008-.309.246-.029.497-.025.743.013.525.079 1.031.299 1.463.648.133.111.254.237.363.373-.206-.015-.418-.018-.632.007-.835.093-1.638.436-2.291 1.006-.409.366-.724.819-.919 1.335l-.231.598-.527-.593c-.231-.261-.423-.565-.563-.911l-.066-.165zm.842.896c.151-.39.375-.74.659-1.038.413-.443 1.014-.75 1.652-.823l.355-.037-.254-.268c-.329-.35-.773-.583-1.242-.648l-.338-.043-.259.177c-.45.301-.822.76-1.06 1.296l-.074.179.561.167zm1.96-1.067c-.419.117-.81.342-1.141.656-.382.366-.648.85-.783 1.38-.088.352-.107.725-.058 1.088.048.36.158.706.328 1.028l.097.181.318-.376c.524-.62.928-1.376 1.175-2.19.153-.516.217-1.063.166-1.606l-.102-.161z"/></svg>
+          <span>Kaggle</span>
+        </a>
+        <a href="https://codeforces.com/profile/Guenchi_Samir_ia" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Codeforces">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10-10-4.477-10-10 4.477-10 10-10zm-2.5 9a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm5 0a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>
+          <span>Codeforces</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-divider"></div>
+  
+  <div class="footer-bottom">
+    <p class="footer-credit">
+      <span>© 2025 Samir Guenchi</span>
+      <span class="footer-separator">·</span>
+      <span>Handcrafted with <span class="footer-heart">❤️</span> & <span class="footer-coffee">☕</span></span>
+      <span class="footer-separator">·</span>
+      <a href="https://github.com/Samir-Guenchi" target="_blank" rel="noopener noreferrer" class="footer-source-link">View source on GitHub</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Terminal -->
+<button class="term-toggle" id="termToggle" aria-label="Open Terminal (Ctrl + `)" title="Press Ctrl + ` to toggle">$_</button>
+
+<aside class="terminal" id="terminal" aria-label="Interactive Terminal" role="region">
+  <div class="term-header">
+    <div class="term-header-left">
+      <div class="term-icon-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="term-icon">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <span class="term-title">samir@portfolio:~</span>
+      <span class="term-separator">$</span>
+    </div>
+    <button class="term-close" id="termClose" aria-label="Close terminal" title="Close (Esc)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="term-output" id="termOutput" role="log" aria-live="polite" aria-label="Terminal output">
+    <div class="term-line term-welcome">
+      <span class="term-info">🎉 Welcome to Samir's Portfolio Terminal v2.0</span>
+    </div>
+    <div class="term-line">
+      <span class="term-info">💡 Type <span class="term-cmd">help</span> for available commands or <span class="term-cmd">Ctrl+</span><span class="term-cmd">`</span> to toggle</span>
+    </div>
+  </div>
+  <div class="term-input-wrap">
+    <span class="term-prompt" aria-hidden="true">samir@portfolio:~</span>
+    <span class="term-separator" aria-hidden="true">$</span>
+    <input 
+      type="text" 
+      class="term-input" 
+      id="termInput" 
+      placeholder="Type a command (try 'help')..." 
+      autocomplete="off" 
+      aria-label="Terminal command input"
+      spellcheck="false"
+    >
+  </div>
+</aside>
+<script src="./js/script.js"></script>
+</body>
+</html>

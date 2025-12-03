@@ -553,29 +553,55 @@
   <div class="certificates-container">
     <!-- Section Header -->
     <h2 class="sec-title">Certificates & Attestations</h2>
-    <p class="sec-sub">Professional credentials and event participations</p>
+    <p class="sec-sub">Professional credentials, certifications, and event participations arranged by impact</p>
 
-    <!-- Attestations of Presence -->
-    <div class="cert-category">
-      <h3 class="cert-category-title">
-        <span class="cert-icon">📋</span>
-        Attestations of Presence
-      </h3>
-      <p class="cert-category-desc">Events, workshops, and conferences attended</p>
-      <div id="attestations-grid" class="cert-grid">
+    <!-- TIER 1: Professional Certifications (Most Important) -->
+    <div class="cert-category" style="margin-bottom: 60px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">
+          Professional Certifications
+        </h3>
+        <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">KEY</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: var(--pencil); font-size: 14px;">
+        Industry-recognized certifications and professional credentials
+      </p>
+      <div id="skills-grid" class="cert-grid" style="border-left: 3px solid var(--accent); padding-left: 20px;">
+        <!-- Dynamically loaded skill certificates -->
+      </div>
+    </div>
+
+    <!-- TIER 2: Event Participation (Moderate Importance) -->
+    <div class="cert-category" style="margin-bottom: 60px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--success); text-transform: uppercase; letter-spacing: 1px;">
+          Event Attestations
+        </h3>
+        <span style="font-size: 11px; background: rgba(129, 178, 154, 0.2); color: var(--success); padding: 4px 10px; border-radius: 12px; font-weight: 700;">PARTICIPATION</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: var(--pencil); font-size: 14px;">
+        Workshops, conferences, competitions, and major events attended
+      </p>
+      <div id="attestations-grid" class="cert-grid" style="border-left: 3px solid var(--success); padding-left: 20px;">
         <!-- Dynamically loaded attestations -->
       </div>
     </div>
 
-    <!-- Skill Certificates -->
+    <!-- TIER 3: Learning & Courses (Supporting) -->
     <div class="cert-category">
-      <h3 class="cert-category-title">
-        <span class="cert-icon">🏆</span>
-        Skill Certificates
-      </h3>
-      <p class="cert-category-desc">Professional certifications and completed courses</p>
-      <div id="skills-grid" class="cert-grid">
-        <!-- Dynamically loaded skill certificates -->
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--link); text-transform: uppercase; letter-spacing: 1px;">
+          Online Courses & Learning
+        </h3>
+        <span style="font-size: 11px; background: rgba(61, 90, 128, 0.2); color: var(--link); padding: 4px 10px; border-radius: 12px; font-weight: 700;">SELF-STUDY</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: var(--pencil); font-size: 14px;">
+        Completed online courses and self-directed learning accomplishments
+      </p>
+      <div id="courses-grid" class="cert-grid" style="border-left: 3px solid var(--link); padding-left: 20px;">
+        <div style="padding: 16px; background: white; border-radius: 8px; border-left: 2px solid var(--link); color: var(--pencil); text-align: center; font-size: 13px;">
+          <p style="margin: 0;">More courses to showcase coming soon.</p>
+        </div>
       </div>
     </div>
   </div>

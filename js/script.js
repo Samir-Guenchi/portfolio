@@ -8,14 +8,95 @@
 // ============================================
 
 // ============================================
+// PERFORMANCE UTILITIES
+// Throttle & Debounce for main thread optimization
+// ============================================
+const PerformanceUtils = {
+  /**
+   * Throttle: Execute at most once per interval
+   * Use for: scroll, resize, mousemove events
+   */
+  throttle(fn, delay = 100) {
+    let lastCall = 0;
+    let timeoutId = null;
+    return function(...args) {
+      const now = Date.now();
+      const remaining = delay - (now - lastCall);
+      
+      if (remaining <= 0) {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+        lastCall = now;
+        fn.apply(this, args);
+      } else if (!timeoutId) {
+        timeoutId = setTimeout(() => {
+          lastCall = Date.now();
+          timeoutId = null;
+          fn.apply(this, args);
+        }, remaining);
+      }
+    };
+  },
+
+  /**
+   * Debounce: Execute only after delay with no new calls
+   * Use for: input, search, form validation
+   */
+  debounce(fn, delay = 150) {
+    let timeoutId = null;
+    return function(...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
+  },
+
+  /**
+   * RequestIdleCallback polyfill for non-critical tasks
+   */
+  runWhenIdle(fn, timeout = 2000) {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(fn, { timeout });
+    } else {
+      setTimeout(fn, 50);
+    }
+  },
+
+  /**
+   * Chunk heavy operations to avoid long tasks
+   */
+  chunkOperation(items, processFn, chunkSize = 5) {
+    let index = 0;
+    
+    function processChunk() {
+      const chunk = items.slice(index, index + chunkSize);
+      chunk.forEach(processFn);
+      index += chunkSize;
+      
+      if (index < items.length) {
+        requestAnimationFrame(processChunk);
+      }
+    }
+    
+    requestAnimationFrame(processChunk);
+  }
+};
+
+// ============================================
 // MODULE: UI LOADING MANAGER
 // Single Responsibility: Handle page loading state
 // ============================================
 const LoadingManager = {
   init() {
-    window.addEventListener('load', () => {
-      setTimeout(() => this.hideLoading(), 500);
-    });
+    // Use requestIdleCallback for non-critical loading hide
+    if (document.readyState === 'complete') {
+      this.hideLoading();
+    } else {
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => this.hideLoading());
+      }, { once: true });
+    }
   },
   
   hideLoading() {
@@ -446,70 +527,77 @@ const CertificateManager = {
   ],
   
   init() {
-    this.loadSkillsCertificates();
-    this.loadAttestations();
+    // Defer certificate loading to idle time
+    PerformanceUtils.runWhenIdle(() => {
+      this.loadSkillsCertificates();
+      this.loadAttestations();
+    });
   },
   
   loadSkillsCertificates() {
     const skillsGrid = document.getElementById('skills-grid');
-    if (!skillsGrid) {
-      console.warn('Skills grid not found');
-      return;
-    }
+    if (!skillsGrid) return;
     
     skillsGrid.innerHTML = '';
-    this.skillsCerts.forEach(cert => {
+    // Use chunked operation to avoid long tasks
+    PerformanceUtils.chunkOperation(this.skillsCerts, (cert) => {
       const card = this.createCertificateCard(cert);
       skillsGrid.appendChild(card);
-    });
+    }, 2);
   },
   
   loadAttestations() {
     const attestationsGrid = document.getElementById('attestations-grid');
-    if (!attestationsGrid) {
-      console.warn('Attestations grid not found');
-      return;
-    }
+    if (!attestationsGrid) return;
     
     attestationsGrid.innerHTML = '';
-    this.attestations.forEach(cert => {
+    PerformanceUtils.chunkOperation(this.attestations, (cert) => {
       const card = this.createCertificateCard(cert);
       attestationsGrid.appendChild(card);
-    });
+    }, 2);
   },
   
   createCertificateCard(cert) {
     const card = document.createElement('div');
+    card.className = 'cert-card';
     card.style.cssText = `
       padding: 12px;
       background: white;
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      contain: layout style paint;
     `;
     
+    // Use lazy loading for certificate images
     card.innerHTML = `
-      <img src="${cert.image}" alt="${cert.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 6px; display: block;">
+      <img 
+        src="${cert.image}" 
+        alt="${cert.title}" 
+        loading="lazy"
+        decoding="async"
+        width="200"
+        height="150"
+        style="width: 100%; height: 150px; object-fit: cover; border-radius: 6px; display: block;"
+      >
       <p style="margin: 8px 0 0 0; font-size: 13px; font-weight: 500; color: var(--ink); text-align: center;">${cert.title}</p>
     `;
     
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-4px)';
-      card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.15)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0)';
-      card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-    });
-    
-    card.addEventListener('click', () => {
-      this.showCertificateModal(cert);
-    });
+    // Use passive event listeners
+    card.addEventListener('mouseenter', this.handleCardHover.bind(this, card, true), { passive: true });
+    card.addEventListener('mouseleave', this.handleCardHover.bind(this, card, false), { passive: true });
+    card.addEventListener('click', () => this.showCertificateModal(cert));
     
     return card;
+  },
+
+  handleCardHover(card, isHovering) {
+    requestAnimationFrame(() => {
+      card.style.transform = isHovering ? 'translateY(-4px)' : 'translateY(0)';
+      card.style.boxShadow = isHovering ? '0 8px 16px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.08)';
+    });
   },
   
   showCertificateModal(cert) {
@@ -535,8 +623,8 @@ const CertificateManager = {
     
     modal.innerHTML = `
       <div style="background: white; border-radius: 12px; max-width: 90vw; max-height: 90vh; overflow: auto; position: relative;">
-        <button onclick="this.closest('#certModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; z-index: 10;">×</button>
-        <img src="${cert.image}" alt="${cert.title}" style="width: 100%; display: block; border-radius: 12px 12px 0 0;">
+        <button onclick="this.closest('#certModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; z-index: 10;" aria-label="Close modal">×</button>
+        <img src="${cert.image}" alt="${cert.title}" loading="eager" style="width: 100%; display: block; border-radius: 12px 12px 0 0;">
         <div style="padding: 20px; text-align: center;">
           <h3 style="margin: 0 0 10px 0; color: var(--ink);">${cert.title}</h3>
         </div>
@@ -546,7 +634,7 @@ const CertificateManager = {
     modal.style.display = 'flex';
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.style.display = 'none';
-    });
+    }, { once: true });
   }
 };
 
@@ -560,18 +648,78 @@ const ScrollBehaviorManager = {
   },
   
   attachScrollListeners() {
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => this.handleScroll(e));
+    // Use event delegation instead of multiple listeners
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (link) this.handleScroll(e, link);
     });
   },
   
-  handleScroll(e) {
+  handleScroll(e, link) {
     e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute('href'));
+    const targetId = link.getAttribute('href');
+    const target = document.querySelector(targetId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      target.focus();
+      // Update URL without triggering scroll
+      history.pushState(null, '', targetId);
     }
+  }
+};
+
+// ============================================
+// MODULE: LAZY LOAD MANAGER
+// Single Responsibility: Handle lazy loading of images
+// ============================================
+const LazyLoadManager = {
+  init() {
+    // Use native lazy loading with IntersectionObserver fallback
+    if ('loading' in HTMLImageElement.prototype) {
+      // Native lazy loading supported
+      this.applyNativeLazyLoad();
+    } else {
+      // Fallback to IntersectionObserver
+      this.initIntersectionObserver();
+    }
+  },
+
+  applyNativeLazyLoad() {
+    // Images below fold get lazy loading
+    const images = document.querySelectorAll('img:not([loading])');
+    const viewportHeight = window.innerHeight;
+    
+    images.forEach(img => {
+      const rect = img.getBoundingClientRect();
+      if (rect.top > viewportHeight) {
+        img.setAttribute('loading', 'lazy');
+        img.setAttribute('decoding', 'async');
+      }
+    });
+  },
+
+  initIntersectionObserver() {
+    const options = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.01
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+          }
+          observer.unobserve(img);
+        }
+      });
+    }, options);
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      observer.observe(img);
+    });
   }
 };
 
@@ -580,16 +728,17 @@ const ScrollBehaviorManager = {
 // Dependency Inversion: Initialize all managers
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 Initializing portfolio application...');
-
-  // Initialize all managers in order
+  // Critical path - initialize immediately
   LoadingManager.init();
   NavigationManager.init();
-  TerminalManager.init();
-  ProjectFilterManager.init();
-  FormHandler.init();
-  CertificateManager.init();
-  ScrollBehaviorManager.init();
+  LazyLoadManager.init();
 
-  console.log('✅ Application initialized successfully');
+  // Defer non-critical initialization
+  PerformanceUtils.runWhenIdle(() => {
+    TerminalManager.init();
+    ProjectFilterManager.init();
+    FormHandler.init();
+    CertificateManager.init();
+    ScrollBehaviorManager.init();
+  }, 1000);
 });

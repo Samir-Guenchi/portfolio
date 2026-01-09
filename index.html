@@ -64,14 +64,64 @@
 <!-- ========================================
      STYLESHEET & PERFORMANCE OPTIMIZATION
      ======================================== -->
-<link rel="stylesheet" href="./style/style.css" media="screen">
+<!-- Critical CSS inlined for fastest FCP -->
+<style>
+  /* Critical above-the-fold styles */
+  :root {
+    --ink: #0d1b2a;
+    --paper: #f8f6f3;
+    --accent: #c2410c;
+    --pencil: #4a5568;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248, 246, 243, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--ink);
+  }
+  .hdr {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font: 700 24px / 1 'Caveat', cursive;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+  }
+  /* Hide loading spinner after load */
+  #loading.hide { display: none; }
+</style>
+
+<!-- Main stylesheet - loaded async for non-blocking -->
+<link rel="preload" href="./style/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./style/style.css"></noscript>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
 <!-- Google Fonts with display=swap for better font loading -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
 <!-- FontAwesome with deferred loading and font-display fix -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -254,13 +304,20 @@
       
       <!-- Left: Profile Picture with decorative element -->
       <div style="position: relative;">
-        <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid var(--accent); box-shadow: 0 8px 24px rgba(224, 122, 95, 0.3); transition: all 0.4s ease; position: relative; z-index: 2;">
+        <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid var(--accent); box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); transition: transform 0.4s ease; position: relative; z-index: 2;">
           <picture>
+            <!-- Mobile-first: serve smallest image first -->
             <source 
-              srcset="./assetes/samir3-140.webp 140w, ./assetes/samir3-280.webp 280w"
-              sizes="140px"
+              media="(max-width: 480px)"
+              srcset="./assetes/samir3-140.webp"
               type="image/webp"
             />
+            <!-- Desktop: serve 2x for retina -->
+            <source 
+              srcset="./assetes/samir3-140.webp 1x, ./assetes/samir3-280.webp 2x"
+              type="image/webp"
+            />
+            <!-- Fallback PNG -->
             <img 
               src="./assetes/samir3.png" 
               alt="Samir Guenchi - AI Systems Engineer"
@@ -268,14 +325,13 @@
               height="140"
               loading="eager"
               fetchpriority="high"
-              style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" 
-              onmouseover="this.style.transform='scale(1.08)'; this.parentElement.parentElement.style.transform='rotate(-3deg)'" 
-              onmouseout="this.style.transform='scale(1)'; this.parentElement.parentElement.style.transform='rotate(0deg)'"
+              decoding="async"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;" 
             />
           </picture>
         </div>
         <!-- Decorative circle -->
-        <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;"></div>
+        <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;" aria-hidden="true"></div>
       </div>
       
       <!-- Right: Main Content -->
@@ -1054,6 +1110,6 @@
     >
   </div>
 </aside>
-<script src="./js/script.js"></script>
+<script src="./js/script.js" defer></script>
 </body>
 </html>

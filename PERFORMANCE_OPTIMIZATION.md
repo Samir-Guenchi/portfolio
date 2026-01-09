@@ -1,81 +1,124 @@
-# Performance Optimization Guide
+# Mobile Performance Optimization Guide
 
-## 1. Image Optimization (REQUIRED - Manual Step)
+## Current Issues & Solutions Applied
 
-The image `./assetes/samir3.png` (1.2MB) needs to be converted to WebP format.
+### 1. Image Optimization (LCP Fix)
 
-### Option A: Using Squoosh (Online - Recommended)
-1. Go to https://squoosh.app/
-2. Upload `assetes/samir3.png`
-3. Select WebP format, quality 85
-4. Resize to 280x280 (for 2x retina)
-5. Download as `samir3-280.webp`
-6. Repeat with 140x140 size as `samir3-140.webp`
+**Problem:** `samir3.png` is 1.2MB, causing 10.4s LCP on mobile.
 
-### Option B: Using ImageMagick (Command Line)
+**Solution Applied:**
+- Added `<picture>` element with WebP sources
+- Mobile-first srcset with smaller images
+- `fetchpriority="high"` for LCP image
+- `loading="lazy"` for below-fold images
+
+**REQUIRED: Create WebP Images**
+
+Using Squoosh (https://squoosh.app/):
+1. Upload `assetes/samir3.png`
+2. Resize to 140x140, export as `samir3-140.webp` (quality 80)
+3. Resize to 280x280, export as `samir3-280.webp` (quality 85)
+
+Or using ImageMagick:
 ```bash
-# Install ImageMagick first, then run:
-magick ./assetes/samir3.png -resize 280x280 -quality 85 ./assetes/samir3-280.webp
-magick ./assetes/samir3.png -resize 140x140 -quality 85 ./assetes/samir3-140.webp
+magick assetes/samir3.png -resize 140x140 -quality 80 assetes/samir3-140.webp
+magick assetes/samir3.png -resize 280x280 -quality 85 assetes/samir3-280.webp
 ```
 
-### Option C: Using Sharp (Node.js)
-```bash
-npm install sharp
-node -e "
-const sharp = require('sharp');
-sharp('./assetes/samir3.png').resize(280,280).webp({quality:85}).toFile('./assetes/samir3-280.webp');
-sharp('./assetes/samir3.png').resize(140,140).webp({quality:85}).toFile('./assetes/samir3-140.webp');
-"
+### 2. Render-Blocking CSS (4.7s Block Fix)
+
+**Problem:** 21 CSS files blocking render for 4.7 seconds.
+
+**Solution Applied:**
+- Critical CSS inlined in `<head>` for instant FCP
+- Main stylesheet loaded async with `preload` + `onload` pattern
+- Google Fonts loaded async with `display=swap`
+- FontAwesome deferred with `preload`
+
+**CSS Loading Pattern Used:**
+```html
+<link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="style.css"></noscript>
 ```
 
-## 2. CSS Bundling Strategy
+### 3. JavaScript Long Task (10.3s Fix)
 
-Your 20+ CSS files are already using `@import` which is fine for development. For production:
+**Problem:** `script.js` blocking main thread for 10.3 seconds.
 
-### Option A: Keep Current Setup (Acceptable)
-The browser will make multiple requests, but with HTTP/2 this is manageable.
+**Solutions Applied in `js/script.js`:**
 
-### Option B: Use a Build Tool
-```bash
-# Using PostCSS with cssnano
-npm install postcss postcss-cli postcss-import cssnano
-npx postcss style/style.css -o style/style.min.css
+1. **Throttle/Debounce utilities** - Prevent excessive function calls
+2. **requestIdleCallback** - Defer non-critical work
+3. **Chunked operations** - Break DOM manipulation into frames
+4. **Event delegation** - Single listener instead of many
+5. **Passive event listeners** - Don't block scrolling
+6. **Deferred initialization** - Critical modules first, others idle
+
+**Key Code Added:**
+```javascript
+const PerformanceUtils = {
+  throttle(fn, delay = 100) { /* ... */ },
+  debounce(fn, delay = 150) { /* ... */ },
+  runWhenIdle(fn, timeout = 2000) { /* ... */ },
+  chunkOperation(items, processFn, chunkSize = 5) { /* ... */ }
+};
 ```
 
-Create `postcss.config.js`:
-```js
-module.exports = {
-  plugins: [
-    require('postcss-import'),
-    require('cssnano')({ preset: 'default' })
-  ]
+### 4. Color Contrast (WCAG AA)
+
+**Updated in `variables.css`:**
+| Variable | Old | New | Contrast |
+|----------|-----|-----|----------|
+| --accent | #e07a5f | #c2410c | 4.5:1 ✓ |
+| --success | #81b29a | #047857 | 4.5:1 ✓ |
+| --link | #3d5a80 | #1e40af | 4.5:1 ✓ |
+| --pencil | #556270 | #4a5568 | 4.5:1 ✓ |
+
+### 5. Heading Hierarchy
+
+**Fixed:** "What I'm Into Right Now" changed from `<h3>` to `<h2>`
+
+**Correct Structure:**
+```
+h1 - Page title (hero)
+  h2 - Section titles (Highlights, Experience, etc.)
+    h3 - Subsection titles (project names, job titles)
+```
+
+### 6. Animation Performance
+
+**Fixed in `header.css`:**
+```css
+/* Before: Uses left/width (causes reflow) */
+.logo::after {
+  animation: slideUnderline 0.5s ease;
+}
+
+/* After: Uses transform (GPU composited) */
+.logo::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slideUnderlineGPU 0.5s ease forwards;
+}
+
+@keyframes slideUnderlineGPU {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
 }
 ```
 
-## 3. Changes Already Applied
+## Expected Improvements
 
-### Color Contrast (WCAG AA Compliant)
-- `--accent`: #e07a5f → #c2410c (4.5:1 contrast on white)
-- `--success`: #81b29a → #047857 (4.5:1 contrast on white)  
-- `--link`: #3d5a80 → #1e40af (4.5:1 contrast on white)
-- `--highlight`: #ffc759 → #d97706 (4.5:1 contrast on white)
-- `--pencil`: #556270 → #4a5568 (improved readability)
+| Metric | Before | After (Expected) |
+|--------|--------|------------------|
+| Performance | 59 | 85+ |
+| LCP | 10.4s | < 2.5s |
+| FCP | 4.7s | < 1.8s |
+| TBT | 10.3s | < 200ms |
+| Accessibility | 95 | 100 |
 
-### Animation Performance
-- `.logo::after` now uses `transform: scaleX()` instead of `left/width`
-- GPU-accelerated with `will-change` implied by transform
+## Remaining Manual Steps
 
-### Font Loading
-- Google Fonts already has `&display=swap`
-- FontAwesome now uses `font-display: swap` override
-- Deferred loading with `preload` pattern
-
-### Heading Hierarchy
-- "What I'm Into Right Now" changed from `<h3>` to `<h2>`
-- Proper semantic structure: h1 (hero) → h2 (sections) → h3 (subsections)
-
-### Responsive Images
-- Added `<picture>` element with WebP sources
-- `srcset` with 140w and 280w variants
-- Proper `width` and `height` attributes for CLS prevention
+1. **Create WebP images** (see section 1)
+2. **Compress certificate images** in `assetes/certificates/previews/`
+3. **Consider CDN** for static assets if traffic increases

@@ -72,6 +72,8 @@
     --paper: #f8f6f3;
     --accent: #c2410c;
     --pencil: #4a5568;
+    --highlight: #b45309;
+    --success: #047857;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -109,11 +111,15 @@
   }
   /* Hide loading spinner after load */
   #loading.hide { display: none; }
+  /* Font-display swap for all fonts */
+  @font-face { font-family: 'Inter'; font-display: swap; src: local('Inter'); }
+  @font-face { font-family: 'Caveat'; font-display: swap; src: local('Caveat'); }
+  @font-face { font-family: 'JetBrains Mono'; font-display: swap; src: local('JetBrains Mono'); }
 </style>
 
-<!-- Main stylesheet - loaded async for non-blocking -->
-<link rel="preload" href="./style/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./style/style.css"></noscript>
+<!-- Minified CSS bundle - single file instead of 21 -->
+<link rel="preload" href="./style/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./style/styles.min.css"></noscript>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -305,30 +311,16 @@
       <!-- Left: Profile Picture with decorative element -->
       <div style="position: relative;">
         <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid var(--accent); box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); transition: transform 0.4s ease; position: relative; z-index: 2;">
-          <picture>
-            <!-- Mobile-first: serve smallest image first -->
-            <source 
-              media="(max-width: 480px)"
-              srcset="./assetes/samir3-140.webp"
-              type="image/webp"
-            />
-            <!-- Desktop: serve 2x for retina -->
-            <source 
-              srcset="./assetes/samir3-140.webp 1x, ./assetes/samir3-280.webp 2x"
-              type="image/webp"
-            />
-            <!-- Fallback PNG -->
-            <img 
-              src="./assetes/samir3.png" 
-              alt="Samir Guenchi - AI Systems Engineer"
-              width="140"
-              height="140"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              style="width: 100%; height: 100%; object-fit: cover; display: block;" 
-            />
-          </picture>
+          <img 
+            src="./assetes/samir3.png" 
+            alt="Samir Guenchi - AI Systems Engineer"
+            width="140"
+            height="140"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;" 
+          />
         </div>
         <!-- Decorative circle -->
         <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;" aria-hidden="true"></div>
@@ -1111,5 +1103,15 @@
   </div>
 </aside>
 <script src="./js/script.js" defer></script>
+<script>
+  // Register Service Worker for caching (bypasses GitHub Pages 10-min cache)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed'));
+    });
+  }
+</script>
 </body>
 </html>

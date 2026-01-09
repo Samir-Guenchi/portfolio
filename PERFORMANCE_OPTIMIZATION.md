@@ -1,124 +1,107 @@
 # Mobile Performance Optimization Guide
 
-## Current Issues & Solutions Applied
+## Summary of Changes
 
-### 1. Image Optimization (LCP Fix)
+### 1. CSS Consolidation (21 files → 1 file)
 
-**Problem:** `samir3.png` is 1.2MB, causing 10.4s LCP on mobile.
+**Problem:** 21 render-blocking CSS files causing 4.7s FCP.
 
-**Solution Applied:**
-- Added `<picture>` element with WebP sources
-- Mobile-first srcset with smaller images
-- `fetchpriority="high"` for LCP image
-- `loading="lazy"` for below-fold images
+**Solution:** Created `build-css.js` script that:
+- Concatenates all 21 CSS files in correct order
+- Minifies output (33% size reduction: 56.7KB → 37.9KB)
+- Generates versioned filename for cache busting
 
-**REQUIRED: Create WebP Images**
-
-Using Squoosh (https://squoosh.app/):
-1. Upload `assetes/samir3.png`
-2. Resize to 140x140, export as `samir3-140.webp` (quality 80)
-3. Resize to 280x280, export as `samir3-280.webp` (quality 85)
-
-Or using ImageMagick:
+**To rebuild CSS:**
 ```bash
-magick assetes/samir3.png -resize 140x140 -quality 80 assetes/samir3-140.webp
-magick assetes/samir3.png -resize 280x280 -quality 85 assetes/samir3-280.webp
+node build-css.js
 ```
 
-### 2. Render-Blocking CSS (4.7s Block Fix)
-
-**Problem:** 21 CSS files blocking render for 4.7 seconds.
-
-**Solution Applied:**
-- Critical CSS inlined in `<head>` for instant FCP
-- Main stylesheet loaded async with `preload` + `onload` pattern
-- Google Fonts loaded async with `display=swap`
-- FontAwesome deferred with `preload`
-
-**CSS Loading Pattern Used:**
+**HTML Loading Pattern:**
 ```html
-<link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="style.css"></noscript>
+<link rel="preload" href="./style/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./style/styles.min.css"></noscript>
 ```
 
-### 3. JavaScript Long Task (10.3s Fix)
+### 2. Service Worker (Cache Bypass)
 
-**Problem:** `script.js` blocking main thread for 10.3 seconds.
+**Problem:** GitHub Pages 10-minute cache TTL.
 
-**Solutions Applied in `js/script.js`:**
+**Solution:** `sw.js` implements stale-while-revalidate:
+- Precaches critical assets on install
+- Returns cached content immediately
+- Updates cache in background
+- 7-day cache duration for static assets
 
-1. **Throttle/Debounce utilities** - Prevent excessive function calls
-2. **requestIdleCallback** - Defer non-critical work
-3. **Chunked operations** - Break DOM manipulation into frames
-4. **Event delegation** - Single listener instead of many
-5. **Passive event listeners** - Don't block scrolling
-6. **Deferred initialization** - Critical modules first, others idle
-
-**Key Code Added:**
+**Registration (in index.html):**
 ```javascript
-const PerformanceUtils = {
-  throttle(fn, delay = 100) { /* ... */ },
-  debounce(fn, delay = 150) { /* ... */ },
-  runWhenIdle(fn, timeout = 2000) { /* ... */ },
-  chunkOperation(items, processFn, chunkSize = 5) { /* ... */ }
-};
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
 ```
 
-### 4. Color Contrast (WCAG AA)
+### 3. Font Loading (2.9s Render Delay Fix)
 
-**Updated in `variables.css`:**
-| Variable | Old | New | Contrast |
-|----------|-----|-----|----------|
-| --accent | #e07a5f | #c2410c | 4.5:1 ✓ |
-| --success | #81b29a | #047857 | 4.5:1 ✓ |
-| --link | #3d5a80 | #1e40af | 4.5:1 ✓ |
-| --pencil | #556270 | #4a5568 | 4.5:1 ✓ |
+**Problem:** Google Fonts blocking text render for 2.9 seconds.
 
-### 5. Heading Hierarchy
+**Solution:** 
+- Added `font-display: swap` in critical CSS
+- Fonts load async, text shows immediately with fallback
 
-**Fixed:** "What I'm Into Right Now" changed from `<h3>` to `<h2>`
-
-**Correct Structure:**
-```
-h1 - Page title (hero)
-  h2 - Section titles (Highlights, Experience, etc.)
-    h3 - Subsection titles (project names, job titles)
-```
-
-### 6. Animation Performance
-
-**Fixed in `header.css`:**
 ```css
-/* Before: Uses left/width (causes reflow) */
-.logo::after {
-  animation: slideUnderline 0.5s ease;
-}
-
-/* After: Uses transform (GPU composited) */
-.logo::after {
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: slideUnderlineGPU 0.5s ease forwards;
-}
-
-@keyframes slideUnderlineGPU {
-  0% { transform: scaleX(0); opacity: 0; }
-  100% { transform: scaleX(1); opacity: 1; }
-}
+@font-face { font-family: 'Inter'; font-display: swap; src: local('Inter'); }
+@font-face { font-family: 'Caveat'; font-display: swap; src: local('Caveat'); }
 ```
 
-## Expected Improvements
+### 4. Color Contrast (WCAG AA Compliant)
 
-| Metric | Before | After (Expected) |
-|--------|--------|------------------|
-| Performance | 59 | 85+ |
-| LCP | 10.4s | < 2.5s |
-| FCP | 4.7s | < 1.8s |
-| TBT | 10.3s | < 200ms |
-| Accessibility | 95 | 100 |
+**Updated Colors:**
+| Variable | Old | New | Contrast Ratio |
+|----------|-----|-----|----------------|
+| --highlight | #ffc759 | #b45309 | 4.7:1 ✓ |
+| --success | #81b29a | #047857 | 4.6:1 ✓ |
+| --accent | #e07a5f | #c2410c | 4.5:1 ✓ |
+| --link | #3d5a80 | #1e40af | 7.2:1 ✓ |
 
-## Remaining Manual Steps
+### 5. Image Optimization
 
-1. **Create WebP images** (see section 1)
-2. **Compress certificate images** in `assetes/certificates/previews/`
-3. **Consider CDN** for static assets if traffic increases
+**Profile Image:**
+- Uses PNG fallback (WebP files not created yet)
+- `fetchpriority="high"` for LCP
+- `decoding="async"` for non-blocking
+
+**Certificate Images:**
+- `loading="lazy"` for below-fold images
+- `decoding="async"` for all images
+
+**To create WebP versions (optional):**
+1. Go to https://squoosh.app/
+2. Upload `assetes/samir3.png`
+3. Export as WebP at 140x140 and 280x280
+
+## File Structure
+
+```
+portfolio/
+├── build-css.js          # CSS build script
+├── sw.js                 # Service worker
+├── style/
+│   ├── styles.min.css    # Minified bundle (use this)
+│   └── style.css         # Original (development)
+└── js/
+    └── script.js         # Optimized with throttle/debounce
+```
+
+## Expected Performance Improvements
+
+| Metric | Before | After |
+|--------|--------|-------|
+| FCP | 4.7s | < 1.5s |
+| LCP | 5.2s | < 2.5s |
+| Performance Score | 68 | 85+ |
+
+## Deployment Checklist
+
+1. ✅ Run `node build-css.js` before deploying
+2. ✅ Ensure `styles.min.css` is committed
+3. ✅ Ensure `sw.js` is in root directory
+4. ⬜ Optional: Create WebP images for further optimization

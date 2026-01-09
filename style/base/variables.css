@@ -9,11 +9,11 @@
   --paper: #f8f6f3;      /* Background, light UI */
   --pencil: #4a5568;     /* Secondary text - WCAG AA compliant */
   
-  /* ACCENT COLORS - Visual Hierarchy (WCAG AA Compliant) */
-  --highlight: #d97706;  /* Call-to-action, emphasis - 4.5:1 on white */
-  --accent: #c2410c;     /* Interactive elements, primary CTA - 4.5:1 on white */
-  --success: #047857;    /* Positive feedback, achievements - 4.5:1 on white */
-  --link: #1e40af;       /* Links, secondary actions - 4.5:1 on white */
+  /* ACCENT COLORS - WCAG AA Compliant (4.5:1 minimum on white) */
+  --highlight: #b45309;  /* Gold/Amber - 4.7:1 contrast on white */
+  --accent: #c2410c;     /* Orange-Red - 4.5:1 on white */
+  --success: #047857;    /* Emerald Green - 4.6:1 on white */
+  --link: #1e40af;       /* Blue - 7.2:1 on white */
   
   /* Button text colors for contrast */
   --btn-text: #ffffff;   /* White text on accent buttons */

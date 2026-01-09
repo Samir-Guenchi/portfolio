@@ -68,10 +68,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+<!-- Google Fonts with display=swap for better font loading -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
+<!-- FontAwesome with deferred loading and font-display fix -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+<!-- FontAwesome font-display fix -->
+<style>
+  @font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-display: swap;
+  }
+</style>
 
 <!-- ========================================
      STRUCTURED DATA: JSON-LD
@@ -239,13 +255,24 @@
       <!-- Left: Profile Picture with decorative element -->
       <div style="position: relative;">
         <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid var(--accent); box-shadow: 0 8px 24px rgba(224, 122, 95, 0.3); transition: all 0.4s ease; position: relative; z-index: 2;">
-          <img 
-            src="./assetes/samir3.png" 
-            alt="Samir Guenchi - AI Systems Engineer" 
-            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" 
-            onmouseover="this.style.transform='scale(1.08)'; this.parentElement.style.transform='rotate(-3deg)'" 
-            onmouseout="this.style.transform='scale(1)'; this.parentElement.style.transform='rotate(0deg)'"
-          />
+          <picture>
+            <source 
+              srcset="./assetes/samir3-140.webp 140w, ./assetes/samir3-280.webp 280w"
+              sizes="140px"
+              type="image/webp"
+            />
+            <img 
+              src="./assetes/samir3.png" 
+              alt="Samir Guenchi - AI Systems Engineer"
+              width="140"
+              height="140"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" 
+              onmouseover="this.style.transform='scale(1.08)'; this.parentElement.parentElement.style.transform='rotate(-3deg)'" 
+              onmouseout="this.style.transform='scale(1)'; this.parentElement.parentElement.style.transform='rotate(0deg)'"
+            />
+          </picture>
         </div>
         <!-- Decorative circle -->
         <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;"></div>
@@ -354,8 +381,8 @@
     </div>
   </div>
 
-  <div class="side-sketch">
-    <h3>What I'm Into Right Now</h3>
+  <aside class="side-sketch" aria-labelledby="current-interests">
+    <h2 id="current-interests">What I'm Into Right Now</h2>
     <p>Late 2025 priorities & curiosities:</p>
     <ul>
       <li>Scaling Arabic semantic search</li>
@@ -363,7 +390,7 @@
       <li>Prepping students for IOI 2026</li>
       <li>Open to research collabs!</li>
     </ul>
-  </div>
+  </aside>
 </section>
 <section class="highlights" id="highlights">
   <div class="highlights-container">

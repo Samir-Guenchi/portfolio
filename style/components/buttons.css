@@ -21,7 +21,7 @@
 /* Primary variant */
 .cta-primary {
   background: var(--accent);
-  color: var(--paper);
+  color: var(--btn-text);
   box-shadow: 2px 2px 0 var(--ink);
 }
 
@@ -42,7 +42,7 @@
 .cta-secondary:hover,
 .cta-secondary:focus {
   background: var(--ink);
-  color: white;
+  color: var(--btn-text);
   outline: none;
 }
 
@@ -50,7 +50,7 @@
 .cv-btn {
   padding: var(--space-sm) var(--space-lg);
   background: var(--accent);
-  color: var(--paper);
+  color: var(--btn-text);
   border: none;
   border-radius: var(--radius);
   font-weight: 600;
@@ -68,7 +68,7 @@
 .cv-btn:focus-visible {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0 var(--ink);
-  color: var(--paper);
+  color: var(--btn-text);
   outline: none;
 }
 

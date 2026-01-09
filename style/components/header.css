@@ -51,7 +51,21 @@ header {
     transparent 8px,
     transparent 12px
   );
-  animation: slideUnderline 0.5s ease;
+  /* GPU-accelerated animation using transform instead of left/width */
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slideUnderlineGPU 0.5s ease forwards;
+}
+
+@keyframes slideUnderlineGPU {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 /* Navigation Menu */

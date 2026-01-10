@@ -31,14 +31,48 @@
   padding: 28px;
   border-radius: var(--radius-md);
   border: 2px solid var(--ink);
-  box-shadow: var(--shadow);
   text-align: center;
   transition: transform var(--transition);
+  position: relative;
+  /* Remove direct box-shadow */
+  box-shadow: none;
+}
+
+/* GPU-composited box-shadow via pseudo-element */
+.highlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 8px 20px rgba(13, 27, 42, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .highlight-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(13, 27, 42, 0.15);
+}
+
+.highlight-card:hover::after {
+  opacity: 0;
+}
+
+.highlight-card:hover::before {
+  opacity: 1;
 }
 
 .highlight-icon {
@@ -140,15 +174,49 @@
   background: white;
   padding: 18px;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(13, 27, 42, 0.1);
-  /* GPU-composited transitions only */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  /* GPU-composited transitions only - transform */
+  transition: transform 0.3s ease;
   will-change: transform;
+  /* Remove direct box-shadow, use pseudo-element */
+  box-shadow: none;
+}
+
+/* GPU-composited box-shadow via pseudo-element */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 8px 30px rgba(13, 27, 42, 0.1);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 15px 45px rgba(224, 122, 95, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .project-card:hover {
-  box-shadow: 0 15px 45px rgba(224, 122, 95, 0.15);
   transform: scale(1.04);
+}
+
+.project-card:hover::after {
+  opacity: 0;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card.accent-border { border-top: 3px solid var(--accent); }

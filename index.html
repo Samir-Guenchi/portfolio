@@ -125,12 +125,27 @@
     padding: 80px 20px 60px;
     min-height: 600px;
     contain: layout style;
+    /* CLS FIX: Explicit grid columns prevent layout shift */
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  /* CLS FIX: Side-sketch reserved space */
+  .side-sketch {
+    min-height: 200px;
+    min-width: 300px;
+    contain: layout style;
   }
   @media (max-width: 960px) {
     .hero {
       padding: 40px 16px 40px;
       min-height: auto;
-      /* Use aspect-ratio for predictable mobile height */
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .side-sketch {
+      min-width: auto;
     }
   }
   
@@ -283,11 +298,23 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   
-  /* ===== FONT-DISPLAY: SWAP for all fonts ===== */
+  /* ===== FONT-DISPLAY: SWAP + Matching Fallback Fonts ===== */
+  /* System font stack that closely matches Inter metrics */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Font size adjust to minimize CLS when Inter loads */
+    font-synthesis: none;
+  }
+  
+  /* Fallback font metrics adjustment for minimal CLS */
   @font-face { 
     font-family: 'Inter'; 
-    font-display: swap; 
+    font-display: swap;
     src: local('Inter'), local('Inter-Regular');
+    /* Adjust fallback metrics to match Inter */
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
   }
   @font-face { 
     font-family: 'Caveat'; 
@@ -303,11 +330,18 @@
     font-family: 'Font Awesome 6 Free';
     font-display: swap;
     font-weight: 400 900;
+    src: local('Font Awesome 6 Free');
   }
   @font-face {
     font-family: 'Font Awesome 6 Brands';
     font-display: swap;
     font-weight: 400;
+    src: local('Font Awesome 6 Brands');
+  }
+  
+  /* Font loading class - hide icons until FA loads */
+  .fa, .fas, .far, .fab {
+    font-display: swap;
   }
 </style>
 
@@ -505,14 +539,16 @@
       <!-- Left: Profile Picture with decorative element -->
       <div style="position: relative;">
         <div class="profile-img-container" style="box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); position: relative; z-index: 2;">
-          <!-- Optimized responsive image with WebP support -->
+          <!-- Optimized responsive image with WebP support + srcset for DPI -->
           <picture>
             <source 
-              srcset="./assetes/samir3.webp" 
+              srcset="./assetes/samir3-140w.webp 1x, ./assetes/samir3-280w.webp 2x, ./assetes/samir3-420w.webp 3x" 
               type="image/webp"
             >
             <img 
               src="./assetes/samir3.png" 
+              srcset="./assetes/samir3-140w.webp 140w, ./assetes/samir3-280w.webp 280w, ./assetes/samir3-420w.webp 420w"
+              sizes="(max-width: 640px) 100px, 140px"
               alt="Samir Guenchi - AI Systems Engineer"
               width="140"
               height="140"

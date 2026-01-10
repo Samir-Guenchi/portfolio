@@ -8,11 +8,14 @@
   margin: 0 auto;
   padding: 80px 20px 60px;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  /* CLS FIX: Explicit column sizing prevents layout shift */
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
   gap: 48px;
   align-items: start;
   /* Reserve minimum height to prevent CLS */
   min-height: 600px;
+  /* Contain layout to prevent cascade shifts */
+  contain: layout style;
 }
 
 /* Sketch / Lab Notes Style */
@@ -21,11 +24,27 @@
   padding: 32px;
   border-radius: var(--radius-md);
   border: 2px dashed var(--pencil);
-  box-shadow: var(--shadow);
   position: relative;
   animation: fadeInLeft 0.6s ease;
   /* Reserve minimum height */
   min-height: 400px;
+  /* CLS FIX: Contain layout */
+  contain: layout style;
+  /* GPU-COMPOSITED: Use pseudo-element for box-shadow */
+  box-shadow: none;
+}
+
+/* GPU-composited box-shadow via pseudo-element */
+.sketch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .sketch:before {
@@ -90,15 +109,34 @@
   padding: 24px;
   border-radius: var(--radius-md);
   border: 2px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--accent);
   font: 16px / 1.5 'Caveat', cursive;
   color: var(--pencil);
   position: relative;
   animation: fadeInRight 0.6s ease;
-  /* CLS FIX: Reserve minimum height */
+  /* CLS FIX: Reserve minimum height + explicit sizing */
   min-height: 200px;
+  min-width: 300px;
   /* Contain layout to prevent shifts */
   contain: layout style;
+  /* GPU-COMPOSITED: Use pseudo-element for box-shadow */
+  box-shadow: none;
+}
+
+/* GPU-composited box-shadow via pseudo-element */
+.side-sketch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 4px 4px 0 var(--accent);
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.side-sketch:hover::after {
+  transform: translate(2px, 2px);
 }
 
 .side-sketch:before {

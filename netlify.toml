@@ -8,29 +8,93 @@
   to = "/index.html"
   status = 200
 
-# Cache static assets aggressively
+# ============================================
+# CACHE HEADERS - Optimized for Performance
+# ============================================
+
+# CSS files - Long cache with immutable
 [[headers]]
-  for = "/style/*"
+  for = "/style/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "/style/**/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css; charset=utf-8"
+
+# JavaScript files - Long cache with immutable
+[[headers]]
+  for = "/js/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/js/**/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript; charset=utf-8"
+
+# Images - Long cache (1 year)
+[[headers]]
+  for = "/assetes/*.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/js/*"
+  for = "/assetes/*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/assetes/*"
+  for = "/assetes/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# HTML - shorter cache
+[[headers]]
+  for = "/assetes/*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assetes/**/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonts - Long cache
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# HTML - Short cache for updates
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
 
-# Security headers
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+# Service Worker - No cache
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Security headers for all files
 [[headers]]
   for = "/*"
   [headers.values]
@@ -38,3 +102,4 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"

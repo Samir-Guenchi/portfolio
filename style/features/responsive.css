@@ -1,5 +1,6 @@
 /* ============================================
    RESPONSIVE DESIGN: Mobile-first approach
+   PERFORMANCE: CLS prevention + GPU compositing
    ============================================ */
 
 /* Tablet: max 960px */
@@ -7,6 +8,7 @@
   .hero {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+    min-height: auto; /* Allow natural height on mobile */
   }
 
   .contact-grid {
@@ -21,6 +23,7 @@
     grid-template-columns: 1fr;
   }
 
+  /* Mobile nav - positioned to prevent CLS */
   .nav-menu {
     display: none;
     position: absolute;
@@ -34,10 +37,18 @@
     padding: 16px 20px;
     box-shadow: 0 4px 12px rgba(13, 27, 42, 0.1);
     z-index: 99;
+    /* GPU-accelerated show/hide */
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    pointer-events: none;
   }
 
   .nav-menu.open {
     display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-menu a {
@@ -51,7 +62,9 @@
   }
 
   .menu-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .term-toggle {
@@ -75,6 +88,11 @@
 
   .cta-btn {
     justify-content: center;
+  }
+  
+  /* Sketch section - reduce min-height on mobile */
+  .sketch {
+    min-height: auto;
   }
 }
 
@@ -127,6 +145,14 @@
   .note {
     padding: 24px;
   }
+  
+  /* Profile image - smaller on mobile */
+  .profile-img-container {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+  }
 }
 
 /* Print styles */
@@ -157,10 +183,14 @@
   }
 }
 
-/* Reduced motion */
+/* Reduced motion - Respect user preferences */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,5 +1,6 @@
 /* ============================================
    BADGES: Tags, pills, and badges
+   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
 /* Interest badges */
@@ -15,11 +16,25 @@
   color: var(--accent);
   margin: 4px 4px 0 0;
   white-space: nowrap;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* FIXED: Only animate transform and box-shadow */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(224, 122, 95, 0.12);
   cursor: default;
+  z-index: 1;
+}
+
+/* Use pseudo-element for background color transition */
+.interests-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scale(0);
+  border-radius: inherit;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .interests-badge:before {
@@ -30,24 +45,34 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  transition: left 0.6s ease;
+  transition: transform 0.6s ease;
+  z-index: 2;
 }
 
 .interests-badge:hover {
   transform: translateY(-4px) scale(1.1);
   box-shadow: 0 6px 20px rgba(224, 122, 95, 0.3);
-  background: var(--accent);
   color: white;
-  border-color: var(--accent);
+}
+
+.interests-badge:hover::after {
+  transform: scale(1);
 }
 
 .interests-badge:hover:before {
-  left: 100%;
+  transform: translateX(200%);
 }
 
 .interests-badge i {
   font-size: 13px;
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.interests-badge span {
+  position: relative;
+  z-index: 3;
 }
 
 .interests-badge:hover i {
@@ -89,6 +114,7 @@
   border-radius: var(--radius);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
   border: 1px solid rgba(13, 27, 42, 0.12);
+  /* FIXED: Only animate transform */
   transition: transform var(--transition);
   display: inline-block;
 }

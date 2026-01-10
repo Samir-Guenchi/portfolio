@@ -300,8 +300,17 @@ const TerminalRenderer = {
     if (this.termOutput) this.termOutput.innerHTML = '';
   },
   
+  /**
+   * FIXED: Use requestAnimationFrame to batch the scroll operation
+   * Reading scrollHeight and writing scrollTop in sequence causes reflow
+   */
   scrollToBottom() {
-    if (this.termOutput) this.termOutput.scrollTop = this.termOutput.scrollHeight;
+    if (!this.termOutput) return;
+    
+    // Batch the read/write in a single frame to minimize reflow
+    requestAnimationFrame(() => {
+      this.termOutput.scrollTop = this.termOutput.scrollHeight;
+    });
   }
 };
 
@@ -670,31 +679,52 @@ const ScrollBehaviorManager = {
 // ============================================
 // MODULE: LAZY LOAD MANAGER
 // Single Responsibility: Handle lazy loading of images
+// PERFORMANCE: Avoid forced reflows by batching reads
 // ============================================
 const LazyLoadManager = {
   init() {
     // Use native lazy loading with IntersectionObserver fallback
     if ('loading' in HTMLImageElement.prototype) {
-      // Native lazy loading supported
-      this.applyNativeLazyLoad();
+      // Native lazy loading supported - use IntersectionObserver to avoid reflow
+      this.applyNativeLazyLoadSafe();
     } else {
       // Fallback to IntersectionObserver
       this.initIntersectionObserver();
     }
   },
 
-  applyNativeLazyLoad() {
-    // Images below fold get lazy loading
+  /**
+   * FIXED: Avoid forced reflow by using IntersectionObserver
+   * instead of getBoundingClientRect() in a loop
+   * 
+   * BAD (causes 85ms reflow):
+   *   images.forEach(img => {
+   *     const rect = img.getBoundingClientRect(); // Forces layout!
+   *     if (rect.top > viewportHeight) { ... }
+   *   });
+   * 
+   * GOOD: Use IntersectionObserver (no layout thrashing)
+   */
+  applyNativeLazyLoadSafe() {
     const images = document.querySelectorAll('img:not([loading])');
-    const viewportHeight = window.innerHeight;
     
-    images.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      if (rect.top > viewportHeight) {
-        img.setAttribute('loading', 'lazy');
-        img.setAttribute('decoding', 'async');
-      }
+    // Use IntersectionObserver to check visibility without forcing reflow
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        const img = entry.target;
+        if (!entry.isIntersecting) {
+          // Image is below fold - mark for lazy loading
+          img.setAttribute('loading', 'lazy');
+          img.setAttribute('decoding', 'async');
+        }
+        obs.unobserve(img);
+      });
+    }, {
+      rootMargin: '0px',
+      threshold: 0
     });
+
+    images.forEach(img => observer.observe(img));
   },
 
   initIntersectionObserver() {

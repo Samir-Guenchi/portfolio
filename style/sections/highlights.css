@@ -68,6 +68,7 @@
 
 /* ============================================
    CIRCULAR LAYOUT - Featured Projects
+   PERFORMANCE: Using GPU-composited animations only
    ============================================ */
 
 .circular-layout {
@@ -76,6 +77,8 @@
   max-width: 700px;
   margin: 0 auto 80px;
   aspect-ratio: 1.2;
+  /* Reserve space to prevent CLS */
+  min-height: 400px;
 }
 
 .center-badge {
@@ -108,7 +111,11 @@
 .project-card-wrapper {
   position: absolute;
   width: 200px;
-  animation: float 6s ease-in-out infinite;
+  /* GPU-composited animation using transform only */
+  animation: floatGPU 6s ease-in-out infinite;
+  /* Enable GPU acceleration */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .project-card-wrapper.card-1 {
@@ -134,7 +141,9 @@
   padding: 18px;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(13, 27, 42, 0.1);
-  transition: all 0.3s ease;
+  /* GPU-composited transitions only */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .project-card:hover {
@@ -146,8 +155,9 @@
 .project-card.success-border { border-top: 3px solid var(--success); }
 .project-card.link-border { border-top: 3px solid var(--link); }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
+/* GPU-composited float animation - uses transform only */
+@keyframes floatGPU {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
   25% { transform: translateY(-8px) rotate(1.5deg); }
   75% { transform: translateY(8px) rotate(-1.5deg); }
 }

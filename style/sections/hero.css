@@ -1,5 +1,6 @@
 /* ============================================
    HERO SECTION: Main landing area
+   PERFORMANCE: CLS prevention with reserved heights
    ============================================ */
 
 .hero {
@@ -10,6 +11,8 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 48px;
   align-items: start;
+  /* Reserve minimum height to prevent CLS */
+  min-height: 600px;
 }
 
 /* Sketch / Lab Notes Style */
@@ -21,6 +24,8 @@
   box-shadow: var(--shadow);
   position: relative;
   animation: fadeInLeft 0.6s ease;
+  /* Reserve minimum height */
+  min-height: 400px;
 }
 
 .sketch:before {
@@ -90,6 +95,10 @@
   color: var(--pencil);
   position: relative;
   animation: fadeInRight 0.6s ease;
+  /* CLS FIX: Reserve minimum height */
+  min-height: 200px;
+  /* Contain layout to prevent shifts */
+  contain: layout style;
 }
 
 .side-sketch:before {

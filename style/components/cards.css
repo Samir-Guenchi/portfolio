@@ -1,6 +1,6 @@
 /* ============================================
    CARDS: Reusable card component
-   Liskov Substitution: Cards are interchangeable
+   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
 .card {
@@ -10,9 +10,12 @@
   border: 2px solid var(--ink);
   box-shadow: var(--shadow);
   position: relative;
-  transition: all var(--transition);
+  /* FIXED: Only animate transform and box-shadow */
+  transition: transform var(--transition), box-shadow var(--transition);
   opacity: 0;
   animation: fadeInUp 0.5s ease forwards;
+  /* Prevent CLS with min-height */
+  min-height: 200px;
 }
 
 .card:nth-child(1) { animation-delay: 0.1s; }
@@ -56,6 +59,7 @@
 .card-icon {
   font-size: 24px;
   filter: grayscale(0);
+  /* FIXED: Only animate transform */
   transition: transform var(--transition);
 }
 
@@ -98,6 +102,7 @@
   color: var(--link);
   border-radius: var(--radius-full);
   font: 500 var(--font-size-xs) 'JetBrains Mono', monospace;
+  /* FIXED: Only animate transform */
   transition: transform var(--transition);
 }
 

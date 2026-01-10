@@ -1,6 +1,7 @@
 /* ============================================
    HEADER: Navigation & Brand
    Sticky header with responsive menu toggle
+   PERFORMANCE: GPU-composited animations only
    ============================================ */
 
 header {
@@ -11,6 +12,8 @@ header {
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--ink);
   box-shadow: var(--shadow-md);
+  /* Reserve header height to prevent CLS */
+  min-height: 64px;
 }
 
 .hdr {
@@ -21,6 +24,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: var(--space-lg);
+  min-height: 32px;
 }
 
 /* Brand Logo */
@@ -91,23 +95,26 @@ nav a:not(.cv-btn):focus-visible {
   color: var(--accent);
 }
 
-/* Navigation Link Underline */
+/* Navigation Link Underline - GPU composited */
 nav a:not(.cv-btn)::before {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 0;
-  width: 0;
+  right: 0;
   height: 2px;
   background: var(--accent);
-  transition: width var(--transition-slow) ease;
+  /* Use scaleX instead of width for GPU compositing */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow) ease;
 }
 
 nav a:not(.cv-btn):hover::before {
-  width: 100%;
+  transform: scaleX(1);
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle - Fixed dimensions to prevent CLS */
 .menu-toggle {
   display: none;
   background: none;
@@ -118,6 +125,13 @@ nav a:not(.cv-btn):hover::before {
   padding: var(--space-sm);
   border-radius: var(--radius);
   transition: background-color var(--transition);
+  /* Fixed dimensions prevent CLS */
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-toggle:hover,

@@ -1,6 +1,6 @@
 /* ============================================
    BUTTONS: Interactive Elements
-   Open/Closed: Easy to extend with variants
+   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
 /* Primary CTA Button */
@@ -12,7 +12,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  transition: all var(--transition);
+  /* FIXED: Only animate transform and box-shadow (composited) */
+  transition: transform var(--transition), box-shadow var(--transition);
   font-size: 15px;
   cursor: pointer;
   border: none;
@@ -37,13 +38,32 @@
   background: white;
   color: var(--ink);
   border: 2px solid var(--ink);
+  /* Use pseudo-element for background color change */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cta-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+  z-index: -1;
 }
 
 .cta-secondary:hover,
 .cta-secondary:focus {
-  background: var(--ink);
   color: var(--btn-text);
   outline: none;
+}
+
+.cta-secondary:hover::before,
+.cta-secondary:focus::before {
+  transform: scaleX(1);
 }
 
 /* CV Download Button */
@@ -85,19 +105,39 @@
   border-radius: var(--radius-full);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
   cursor: pointer;
-  transition: all var(--transition);
+  /* FIXED: Only animate transform and box-shadow */
+  transition: transform var(--transition), box-shadow var(--transition);
   color: var(--pencil);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scale(0);
+  border-radius: inherit;
+  transition: transform var(--transition);
+  z-index: -1;
 }
 
 .filter-btn:hover,
 .filter-btn:focus,
 .filter-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
   color: white;
+  border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow);
   outline: none;
+}
+
+.filter-btn:hover::before,
+.filter-btn:focus::before,
+.filter-btn.active::before {
+  transform: scale(1);
 }
 
 /* Submit Button */
@@ -112,7 +152,8 @@
   font-size: 17px;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(224, 122, 95, 0.35);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* FIXED: Only animate transform and box-shadow */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -127,7 +168,8 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  /* FIXED: Use scale instead of width/height */
+  transition: transform 0.6s ease;
 }
 
 .submit:hover {
@@ -136,8 +178,7 @@
 }
 
 .submit:hover:before {
-  width: 450px;
-  height: 450px;
+  transform: translate(-50%, -50%) scale(50);
 }
 
 .submit:focus {

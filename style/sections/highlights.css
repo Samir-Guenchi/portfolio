@@ -1,16 +1,22 @@
 /* ============================================
    HIGHLIGHTS SECTION: Featured projects
+   PERFORMANCE: CLS prevention with reserved heights
    ============================================ */
 
 .highlights {
   background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1));
   padding: 48px var(--space-lg);
   margin: 60px 0;
+  /* CLS FIX: Reserve minimum height */
+  min-height: 500px;
+  contain: layout style;
 }
 
 .highlights-container {
   max-width: 1000px;
   margin: 0 auto;
+  /* CLS FIX: Reserve space */
+  min-height: 400px;
 }
 
 .highlights h2 {

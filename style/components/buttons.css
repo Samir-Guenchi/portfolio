@@ -1,9 +1,9 @@
 /* ============================================
    BUTTONS: Interactive Elements
-   PERFORMANCE: GPU-composited transitions only
+   PERFORMANCE: GPU-composited transitions only (transform/opacity)
    ============================================ */
 
-/* Primary CTA Button */
+/* Primary CTA Button - GPU-COMPOSITED */
 .cta-btn {
   padding: 12px 24px;
   border-radius: var(--radius);
@@ -12,23 +12,26 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  /* FIXED: Only animate transform and box-shadow (composited) */
-  transition: transform var(--transition), box-shadow var(--transition);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform var(--transition);
   font-size: 15px;
   cursor: pointer;
   border: none;
+  position: relative;
 }
 
 /* Primary variant */
 .cta-primary {
   background: var(--accent);
   color: var(--btn-text);
+  /* Static box-shadow, no transition */
   box-shadow: 2px 2px 0 var(--ink);
 }
 
 .cta-primary:hover,
 .cta-primary:focus {
   transform: translate(-2px, -2px);
+  /* Instant shadow change, no animation */
   box-shadow: 4px 4px 0 var(--ink);
   outline: none;
 }
@@ -66,7 +69,7 @@
   transform: scaleX(1);
 }
 
-/* CV Download Button */
+/* CV Download Button - GPU-COMPOSITED */
 .cv-btn {
   padding: var(--space-sm) var(--space-lg);
   background: var(--accent);
@@ -74,8 +77,10 @@
   border: none;
   border-radius: var(--radius);
   font-weight: 600;
+  /* Static box-shadow */
   box-shadow: 2px 2px 0 var(--ink);
-  transition: transform var(--transition), box-shadow var(--transition);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform var(--transition);
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
@@ -97,7 +102,7 @@
   box-shadow: 1px 1px 0 var(--ink);
 }
 
-/* Filter Button */
+/* Filter Button - GPU-COMPOSITED */
 .filter-btn {
   padding: var(--space-sm) var(--space-lg);
   background: white;
@@ -105,8 +110,8 @@
   border-radius: var(--radius-full);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
   cursor: pointer;
-  /* FIXED: Only animate transform and box-shadow */
-  transition: transform var(--transition), box-shadow var(--transition);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform var(--transition);
   color: var(--pencil);
   position: relative;
   overflow: hidden;
@@ -130,7 +135,6 @@
   color: white;
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
   outline: none;
 }
 
@@ -140,7 +144,7 @@
   transform: scale(1);
 }
 
-/* Submit Button */
+/* Submit Button - GPU-COMPOSITED */
 .submit {
   width: 100%;
   padding: 18px;
@@ -151,9 +155,10 @@
   font-weight: 700;
   font-size: 17px;
   cursor: pointer;
+  /* Static box-shadow */
   box-shadow: 0 4px 16px rgba(224, 122, 95, 0.35);
-  /* FIXED: Only animate transform and box-shadow */
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -168,12 +173,13 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%);
-  /* FIXED: Use scale instead of width/height */
+  /* GPU-COMPOSITED: Use scale instead of width/height */
   transition: transform 0.6s ease;
 }
 
 .submit:hover {
   transform: translateY(-4px) scale(1.02);
+  /* Instant shadow change */
   box-shadow: 0 12px 32px rgba(224, 122, 95, 0.5);
 }
 

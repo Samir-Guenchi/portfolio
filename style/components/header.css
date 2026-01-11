@@ -27,13 +27,12 @@ header {
   min-height: 32px;
 }
 
-/* Brand Logo */
+/* Brand Logo - No color transition (not GPU-composited) */
 .logo {
   font: 700 var(--font-size-xl) / 1 'Caveat', cursive;
   color: var(--ink);
   text-decoration: none;
   position: relative;
-  transition: color var(--transition);
 }
 
 .logo:hover,
@@ -55,7 +54,7 @@ header {
     transparent 8px,
     transparent 12px
   );
-  /* GPU-accelerated animation using transform instead of left/width */
+  /* GPU-accelerated animation using transform */
   transform: scaleX(0);
   transform-origin: left;
   animation: slideUnderlineGPU 0.5s ease forwards;
@@ -80,12 +79,12 @@ nav {
   flex-wrap: wrap;
 }
 
+/* Nav links - No color transition (not GPU-composited) */
 nav a {
   color: var(--pencil);
   text-decoration: none;
   font-weight: 500;
   position: relative;
-  transition: color var(--transition);
   padding: var(--space-xs) 0;
   font-size: var(--font-size-sm);
 }
@@ -104,7 +103,7 @@ nav a:not(.cv-btn)::before {
   right: 0;
   height: 2px;
   background: var(--accent);
-  /* Use scaleX instead of width for GPU compositing */
+  /* GPU-COMPOSITED: Use scaleX instead of width */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-slow) ease;
@@ -124,7 +123,8 @@ nav a:not(.cv-btn):hover::before {
   color: var(--ink);
   padding: var(--space-sm);
   border-radius: var(--radius);
-  transition: background-color var(--transition);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform var(--transition);
   /* Fixed dimensions prevent CLS */
   width: 44px;
   height: 44px;

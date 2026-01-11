@@ -98,13 +98,15 @@ footer:before {
   font-size: 15px;
   font-weight: 500;
   position: relative;
-  transition: all 0.3s ease;
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform 0.3s ease;
   display: inline-block;
 }
 
 .footer-link:hover,
 .footer-link:focus {
   color: var(--accent);
+  transform: translateX(4px);
   outline: none;
 }
 
@@ -126,20 +128,21 @@ footer:before {
   text-decoration: none;
   color: var(--paper);
   font: 600 var(--font-size-xs) Inter;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .footer-social-link:before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: var(--accent);
-  transition: left 0.4s ease;
+  /* GPU-COMPOSITED: Use transform instead of left */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
   z-index: -1;
 }
 
@@ -148,13 +151,12 @@ footer:before {
   color: white;
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(224, 122, 95, 0.25);
   outline: none;
 }
 
 .footer-social-link:hover:before,
 .footer-social-link:focus:before {
-  left: 0;
+  transform: translateX(0);
 }
 
 .footer-social-link svg {
@@ -210,8 +212,10 @@ footer:before {
   color: var(--highlight);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform 0.3s ease;
   position: relative;
+  display: inline-block;
 }
 
 .footer-source-link:after {
@@ -219,10 +223,13 @@ footer:before {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 2px;
   background: var(--highlight);
-  transition: width 0.3s ease;
+  /* GPU-COMPOSITED: Use scaleX instead of width */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
 .footer-source-link:hover,
@@ -233,5 +240,5 @@ footer:before {
 
 .footer-source-link:hover:after,
 .footer-source-link:focus:after {
-  width: 100%;
+  transform: scaleX(1);
 }

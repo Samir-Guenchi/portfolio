@@ -1,5 +1,6 @@
 /* ============================================
    FORMS: Input fields & form elements
+   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
 .form {
@@ -7,17 +8,27 @@
   padding: 36px;
   border-radius: var(--radius-lg);
   border: 2px solid var(--ink);
-  box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);
   position: relative;
-  transition: all 0.3s ease;
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform 0.3s ease;
+  /* Remove direct box-shadow, use pseudo-element */
+  box-shadow: none;
 }
 
-.form:hover {
-  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.15);
-  transform: translateY(-2px);
+/* GPU-composited box-shadow via pseudo-element */
+.form::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
-.form:before {
+.form::before {
   content: '💬';
   position: absolute;
   top: -20px;
@@ -28,7 +39,28 @@
   transition: transform 0.3s ease;
 }
 
-.form:hover:before {
+/* Hover shadow via separate pseudo-element */
+.form-shadow-hover {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.form:hover {
+  transform: translateY(-2px);
+}
+
+.form:hover::after {
+  opacity: 0;
+}
+
+.form:hover::before {
   transform: scale(1.2) rotate(5deg);
 }
 
@@ -61,7 +93,7 @@ label:before {
   transform: translateX(4px);
 }
 
-/* Input fields */
+/* Input fields - GPU-COMPOSITED transitions only */
 input,
 textarea {
   width: 100%;
@@ -70,10 +102,12 @@ textarea {
   border-radius: var(--radius-md);
   font-family: inherit;
   font-size: 15px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* GPU-COMPOSITED: Only transform and opacity */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
   background: rgba(248, 246, 243, 0.5);
 }
 
+/* Use focus-within on parent for border color change (no animation) */
 input:hover,
 textarea:hover {
   border-color: var(--accent);
@@ -86,6 +120,7 @@ textarea:focus {
   border-color: var(--accent);
   background: white;
   transform: translateY(-2px);
+  /* Static box-shadow, no transition */
   box-shadow: 0 8px 24px rgba(224, 122, 95, 0.2), 0 0 0 4px rgba(224, 122, 95, 0.1);
 }
 
@@ -106,7 +141,7 @@ textarea {
   min-height: 140px;
 }
 
-/* Form validation */
+/* Form validation - no transitions on border-color */
 input:required,
 textarea:required {
   border-color: var(--pencil);

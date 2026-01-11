@@ -212,20 +212,32 @@
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid var(--accent);
-    /* Skeleton placeholder while loading */
-    background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-    background-size: 200% 100%;
+    /* Skeleton placeholder - solid background */
+    background: #e0e0e0;
+    position: relative;
+  }
+  /* GPU-COMPOSITED skeleton animation using transform */
+  .profile-img-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
     animation: skeleton-pulse 1.5s ease-in-out infinite;
+    /* GPU acceleration */
+    will-change: transform;
   }
   .profile-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    position: relative;
+    z-index: 1;
   }
+  /* GPU-COMPOSITED: Use transform instead of background-position */
   @keyframes skeleton-pulse {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
   @media (max-width: 640px) {
     .profile-img-container {
@@ -357,19 +369,30 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
-<!-- FontAwesome with deferred loading and font-display fix -->
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<!-- FontAwesome - Load asynchronously after page is interactive -->
+<!-- Using media="print" trick for non-blocking load -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-<!-- FontAwesome font-display fix -->
+<!-- FontAwesome font-display fix + icon placeholders -->
 <style>
+  /* Ensure FA uses swap to prevent FOIT */
   @font-face {
     font-family: 'Font Awesome 6 Free';
     font-display: swap;
+    src: local('Font Awesome 6 Free');
   }
   @font-face {
     font-family: 'Font Awesome 6 Brands';
     font-display: swap;
+    src: local('Font Awesome 6 Brands');
+  }
+  /* Reserve space for icons to prevent CLS */
+  .fa, .fas, .far, .fab {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
   }
 </style>
 

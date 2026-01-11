@@ -70,29 +70,63 @@
   font-style: italic;
 }
 
-/* Certificate card */
+/* Certificate card - GPU-COMPOSITED */
 .cert-card {
   background: white;
   border: 2px solid var(--ink);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: all var(--transition);
   display: flex;
   flex-direction: column;
   position: relative;
+  /* GPU-COMPOSITED: Only transform */
+  transition: transform var(--transition);
+  /* Remove direct box-shadow */
+  box-shadow: none;
+}
+
+/* GPU-composited box-shadow via pseudo-element */
+.cert-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .cert-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
+}
+
+.cert-card:hover::after {
+  opacity: 0;
+}
+
+.cert-card:hover::before {
+  opacity: 1;
 }
 
 .cert-card-featured {
   border-color: var(--accent);
 }
 
-.cert-card-featured:hover {
+.cert-card-featured::before {
   box-shadow: 0 8px 24px rgba(224, 122, 95, 0.2);
 }
 

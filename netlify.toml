@@ -98,8 +98,61 @@
 [[headers]]
   for = "/*"
   [headers.values]
+    # ============================================
+    # SECURITY HEADERS
+    # ============================================
+    
+    # Content Security Policy - Strict but allows required external resources
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+      font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+      img-src 'self' data: https: blob:;
+      connect-src 'self' https://www.google-analytics.com https://formspree.io https://api.emailjs.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self' https://formspree.io;
+      upgrade-insecure-requests;
+    """
+    
+    # Cross-Origin-Opener-Policy - Isolate browsing context
+    Cross-Origin-Opener-Policy = "same-origin"
+    
+    # Cross-Origin-Embedder-Policy - Required for SharedArrayBuffer
+    Cross-Origin-Embedder-Policy = "credentialless"
+    
+    # Cross-Origin-Resource-Policy
+    Cross-Origin-Resource-Policy = "same-origin"
+    
+    # Prevent MIME type sniffing
     X-Content-Type-Options = "nosniff"
+    
+    # Prevent clickjacking
     X-Frame-Options = "DENY"
+    
+    # XSS Protection (legacy browsers)
     X-XSS-Protection = "1; mode=block"
+    
+    # Referrer Policy
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    
+    # Permissions Policy - Disable unnecessary APIs
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    
+    # Strict Transport Security (HSTS)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# robots.txt - Serve as plain text
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+# sitemap.xml - Serve as XML
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=86400"

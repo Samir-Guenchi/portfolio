@@ -1,6 +1,7 @@
 /* ============================================
    TYPOGRAPHY: Font Families & Text Scales
    Consistent font usage across application
+   FIX: Explicit h1 font-size to avoid H1UserAgentFontSizeInSection warning
    ============================================ */
 
 /* Font Family Definitions */
@@ -20,8 +21,21 @@ body, button, input, textarea {
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Heading Scales */
-h1 {
+/* ============================================
+   H1 FONT SIZE FIX
+   Explicit font-size for h1 in ALL contexts to prevent
+   browser default sizing in sectioning elements
+   (section, article, aside, nav, header, footer)
+   ============================================ */
+h1,
+section h1,
+article h1,
+aside h1,
+nav h1,
+header h1,
+footer h1,
+main h1,
+.hero h1 {
   font-size: clamp(28px, 5vw, 48px);
   line-height: 1.15;
 }

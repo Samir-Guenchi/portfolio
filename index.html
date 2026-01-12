@@ -129,11 +129,21 @@
   .highlights, #highlights {
     min-height: 500px;
     contain: layout style;
+    /* Defer rendering of below-fold content */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
   }
   @media (max-width: 768px) {
     .highlights, #highlights {
       min-height: 800px; /* More space for stacked cards on mobile */
+      contain-intrinsic-size: auto 800px;
     }
+  }
+  
+  /* ===== CLS FIX: Below-fold sections use content-visibility ===== */
+  .exp, #experience, .certificates, #certificates, .contact, #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
   }
   
   /* ===== MOBILE CLS FIX: Hero section with aspect-ratio fallback ===== */
@@ -148,6 +158,11 @@
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
     gap: 48px;
     align-items: start;
+  }
+  /* CLS FIX: Sketch container reserved space */
+  .sketch {
+    min-height: 500px;
+    contain: layout style;
   }
   /* CLS FIX: Side-sketch reserved space */
   .side-sketch {

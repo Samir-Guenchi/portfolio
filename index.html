@@ -154,10 +154,20 @@
     contain: layout style;
   }
   
-  /* ===== CLS FIX: Availability badge reserved space ===== */
+  /* ===== CLS FIX: Availability badge EXACT dimensions ===== */
+  /* Prevents layout shift when badge renders */
   .availability-badge {
-    min-height: 32px;
-    min-width: 220px;
+    display: inline-block;
+    height: 32px;
+    min-width: 248px;
+    padding: 6px 16px;
+    line-height: 20px;
+    contain: layout style size;
+  }
+  /* Container also needs fixed height */
+  .badge-container {
+    height: 40px;
+    margin-bottom: 8px;
     contain: layout style;
   }
   
@@ -379,34 +389,44 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   
-  /* ===== FONT-DISPLAY: SWAP + Matching Fallback Fonts ===== */
+  /* ===== FONT-DISPLAY: OPTIONAL for LCP + Fallback Metrics ===== */
   /* System font stack that closely matches Inter metrics */
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    /* Font size adjust to minimize CLS when Inter loads */
     font-synthesis: none;
   }
   
-  /* Fallback font metrics adjustment for minimal CLS */
+  /* Inter fallback with size-adjust to match system fonts */
   @font-face { 
     font-family: 'Inter'; 
-    font-display: swap;
+    font-display: optional; /* Prevents CLS - uses fallback if font not cached */
     src: local('Inter'), local('Inter-Regular');
-    /* Adjust fallback metrics to match Inter */
+    /* Size-adjust matches Inter to system font metrics */
+    size-adjust: 100%;
     ascent-override: 90%;
     descent-override: 22%;
     line-gap-override: 0%;
   }
+  
+  /* Caveat for headings - swap is OK since it's decorative */
   @font-face { 
     font-family: 'Caveat'; 
-    font-display: swap; 
+    font-display: swap;
     src: local('Caveat'), local('Caveat-Regular');
+    size-adjust: 105%;
+    ascent-override: 95%;
+    descent-override: 30%;
   }
+  
+  /* JetBrains Mono for code */
   @font-face { 
     font-family: 'JetBrains Mono'; 
-    font-display: swap; 
+    font-display: optional;
     src: local('JetBrains Mono'), local('JetBrainsMono-Regular');
+    size-adjust: 100%;
   }
+  
+  /* FontAwesome - swap since icons need to show */
   @font-face {
     font-family: 'Font Awesome 6 Free';
     font-display: swap;
@@ -420,14 +440,17 @@
     src: local('Font Awesome 6 Brands');
   }
   
-  /* Font loading class - hide icons until FA loads */
+  /* Reserve space for icons to prevent CLS */
   .fa, .fas, .far, .fab {
-    font-display: swap;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
   }
 </style>
 
-<!-- Minified CSS bundle - single file instead of 21 -->
-<link rel="preload" href="./style/styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<!-- Minified CSS bundle with version hash for cache busting -->
+<link rel="preload" href="./style/styles.min.css?v=2.0" as="style" onload="this.onload=null;this.rel='stylesheet'">>
 <noscript><link rel="stylesheet" href="./style/styles.min.css"></noscript>
 
 <!-- ========================================
@@ -668,9 +691,9 @@
       
       <!-- Right: Main Content -->
       <div>
-        <!-- Greeting with visual separation - CLS FIX: Reserved height -->
-        <div style="margin-bottom: 8px; min-height: 36px;">
-          <span class="availability-badge" style="display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 15px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2); min-height: 32px; line-height: 20px;">
+        <!-- CLS FIX: Badge container with exact dimensions -->
+        <div class="badge-container">
+          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 15px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2);">
             👋 Available for opportunities
           </span>
         </div>
@@ -1443,7 +1466,7 @@
     >
   </div>
 </aside>
-<script src="./js/script.min.js" defer></script>
+<script src="./js/script.min.js?v=2.0" defer></script>
 <script>
   // Register Service Worker for caching (bypasses GitHub Pages 10-min cache)
   if ('serviceWorker' in navigator) {

@@ -575,7 +575,7 @@ const CertificateManager = {
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       contain: layout style paint;
     `;
@@ -603,8 +603,10 @@ const CertificateManager = {
   },
 
   handleCardHover(card, isHovering) {
+    // GPU-COMPOSITED: Only animate transform, instant box-shadow change
     requestAnimationFrame(() => {
       card.style.transform = isHovering ? 'translateY(-4px)' : 'translateY(0)';
+      // Instant shadow change - no animation to avoid non-composited transition
       card.style.boxShadow = isHovering ? '0 8px 16px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.08)';
     });
   },

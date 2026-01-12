@@ -23,6 +23,7 @@ venv/
 # Build files
 dist/
 build/
+style/styles.mk*.min.css
 
 # Logs
 *.log

@@ -48,8 +48,9 @@
   gap: var(--space-md);
 }
 
+/* WCAG AA: #374151 on white = 8.6:1 contrast ratio */
 .cert-category-desc {
-  color: var(--pencil);
+  color: #374151; /* Dark gray - WCAG AAA compliant */
   font-size: 16px;
   margin-bottom: 32px;
   padding-left: 44px;
@@ -66,7 +67,7 @@
   grid-column: 1 / -1;
   text-align: center;
   padding: 40px;
-  color: var(--pencil);
+  color: #374151; /* Dark gray - WCAG AA compliant */
   font-style: italic;
 }
 

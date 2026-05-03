@@ -212,6 +212,20 @@
     overflow-x: hidden;
     width: 100%;
   }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+  .hero-media {
+    position: relative;
+  }
+  .hero-content {
+    min-width: 0;
+  }
   /* CLS FIX: Sketch container reserved space */
   .sketch {
     min-height: 500px;
@@ -247,6 +261,85 @@
     }
     .sketch {
       width: 100%;
+      min-height: auto;
+    }
+  }
+  @media (max-width: 640px) {
+    h1 {
+      font-size: clamp(22px, 6vw, 30px);
+      line-height: 1.15;
+    }
+    .hero {
+      padding: 28px 14px;
+    }
+    .sketch {
+      padding: 20px;
+    }
+    .hero-grid {
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .badge-container {
+      height: auto;
+    }
+    .availability-badge {
+      font-size: 11px !important;
+      padding: 5px 10px !important;
+      gap: 5px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      border-radius: 20px !important;
+      width: fit-content !important;
+      max-width: fit-content !important;
+      overflow: hidden !important;
+    }
+    .badge-text-full {
+      display: inline !important;
+    }
+    .badge-text-mobile {
+      display: none !important;
+    }
+    .availability-badge svg {
+      flex-shrink: 0 !important;
+      width: 13px !important;
+      height: 13px !important;
+    }
+    .badge-container {
+      display: inline-block !important;
+      width: fit-content !important;
+      margin-bottom: 12px !important;
+      overflow: visible !important;
+    }
+    .hero-grid {
+      overflow: visible !important;
+    }
+    .sketch {
+      overflow: visible !important;
+    }
+    .hero {
+      overflow: visible !important;
+    }
+    .role-badges {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+      justify-content: flex-start !important;
+    }
+    .role-badge {
+      font-size: 10px !important;
+      padding: 5px 9px !important;
+      flex: 0 0 auto !important;
+    }
+    /* Ensure first two badges stay on same row */
+    .role-badge:nth-child(1),
+    .role-badge:nth-child(2) {
+      max-width: calc(50% - 3px) !important;
+    }
+    .role-badge:nth-child(3) {
+      flex: 0 0 auto !important;
     }
   }
   
@@ -342,10 +435,10 @@
   }
   @media (max-width: 640px) {
     .profile-img-container {
-      width: 100px;
-      height: 100px;
-      min-width: 100px;
-      min-height: 100px;
+      width: 96px;
+      height: 96px;
+      min-width: 96px;
+      min-height: 96px;
     }
   }
   
@@ -684,10 +777,10 @@
   <section class="hero" id="top">
   <div class="sketch">
     <!-- Modern Split Layout -->
-    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px; align-items: start; margin-bottom: 32px; max-width: 100%; overflow: hidden;">
+    <div class="hero-grid">
       
       <!-- Left: Profile Picture with decorative element -->
-      <div style="position: relative; flex-shrink: 0;">
+      <div class="hero-media">
         <div class="profile-img-container" style="box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); position: relative; z-index: 2;">
           <!-- Professional profile image -->
           <img 
@@ -706,15 +799,16 @@
       </div>
       
       <!-- Right: Main Content -->
-      <div style="min-width: 0; overflow: hidden;">
+      <div class="hero-content">
         <!-- CLS FIX: Badge container with exact dimensions -->
-        <div class="badge-container">
-          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2); max-width: 100%; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="badge-container" style="margin-bottom: 12px;">
+          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px !important; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2); display: inline-flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; overflow: hidden;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M12 6v6l4 2"></path>
             </svg>
-            Available for opportunities
+            <span class="badge-text-full">Available for opportunities</span>
+            <span class="badge-text-mobile" style="display: none;">Available</span>
           </span>
         </div>
         

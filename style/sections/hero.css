@@ -18,6 +18,23 @@
   contain: layout style;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
+  max-width: 100%;
+}
+
+.hero-media {
+  position: relative;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
 /* Sketch / Lab Notes Style */
 .sketch {
   background: white;

@@ -1,4 +1,14 @@
 {
+  "name": "samir-guenchi-portfolio",
+  "version": "2.0.0",
+  "description": "AI Engineer Portfolio - Vanilla HTML/CSS/JS",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o",
+    "build:css": "node build-css.js",
+    "build:js": "npx terser js/script.js -o js/script.min.js -c -m",
+    "build": "npm run build:css && npm run build:js",
+    "optimize:images": "node optimize-images.js"
+  },
   "devDependencies": {
     "sharp": "^0.34.5",
     "terser": "^5.44.1"

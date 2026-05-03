@@ -20,22 +20,19 @@
   script-src 'self' 'unsafe-inline';
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
   font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
-  img-src 'self' data: https: blob:;
-  connect-src 'self';
-  frame-ancestors 'none';
+  img-src 'self' data: https: http: blob:;
+  connect-src 'self' http: https:;
+  manifest-src 'self' data:;
   base-uri 'self';
   form-action 'self';
-  upgrade-insecure-requests;
 ">
 
 <!-- Referrer Policy - protects user privacy -->
 <meta name="referrer" content="no-referrer-when-downgrade">
 
-<!-- Note: X-Frame-Options and COOP cannot be set via meta tags (HTTP headers only)
-     GitHub Pages enforces some security by default:
-     - HTTPS is enforced
-     - X-Content-Type-Options: nosniff is set
-     For full HSTS/COOP/Trusted Types, use Netlify or Cloudflare Pages -->
+<!-- Note: frame-ancestors and upgrade-insecure-requests removed from CSP meta tag
+     as they are ignored in meta tags and can cause issues in local development.
+     For production, use HTTP headers via Netlify/Cloudflare configuration. -->
 
 <!-- ========================================
      META: CONTENT METADATA (SEO)
@@ -86,7 +83,7 @@
      ======================================== -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23f8f6f3' width='180' height='180'/><text x='90' y='95' font-size='140' text-anchor='middle' y='50%' dominant-baseline='middle'>🤖</text></svg>">
-<link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Samir%20Guenchi%20Portfolio%22,%22short_name%22:%22Samir%20G.%22,%22theme_color%22:%22%230d1b2a%22,%22background_color%22:%22%23f8f6f3%22}">
+<link rel="manifest" href="manifest.json">
 
 <!-- ========================================
      STYLESHEET & PERFORMANCE OPTIMIZATION
@@ -104,12 +101,19 @@
     --link: #1e40af;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { 
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
   body { 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--paper);
     color: var(--ink);
     line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   /* ===== H1 FONT SIZE FIX (Deprecated API Warning) ===== */
@@ -204,17 +208,28 @@
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
     gap: 48px;
     align-items: start;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    width: 100%;
   }
   /* CLS FIX: Sketch container reserved space */
   .sketch {
     min-height: 500px;
     contain: layout style;
+    /* Prevent overflow */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   /* CLS FIX: Side-sketch reserved space */
   .side-sketch {
     min-height: 200px;
     min-width: 300px;
     contain: layout style;
+    /* Prevent overflow */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   @media (max-width: 960px) {
     .hero {
@@ -222,9 +237,16 @@
       min-height: auto;
       grid-template-columns: 1fr;
       gap: 32px;
+      /* Ensure no overflow on mobile */
+      max-width: 100vw;
+      box-sizing: border-box;
     }
     .side-sketch {
       min-width: auto;
+      width: 100%;
+    }
+    .sketch {
+      width: 100%;
     }
   }
   
@@ -450,13 +472,13 @@
 </style>
 
 <!-- Minified CSS bundle with version hash for cache busting -->
-<link rel="preload" href="./style/styles.min.css?v=2.0" as="style" onload="this.onload=null;this.rel='stylesheet'">>
-<noscript><link rel="stylesheet" href="./style/styles.min.css"></noscript>
+<link rel="preload" href="style/styles.min.css?v=2.1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="style/styles.min.css"></noscript>
 
 <!-- ========================================
      LCP OPTIMIZATION: Preload hero image
      ======================================== -->
-<link rel="preload" href="./assetes/samir3-280w.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="preload" href="assetes/profile.jpg" as="image" type="image/jpeg" fetchpriority="high">
 
 <!-- ========================================
      FONT OPTIMIZATION: Preload + Preconnect
@@ -635,7 +657,8 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">☰</button>
     <nav id="mainNav" role="navigation" aria-label="Main navigation" class="nav-menu">
       <a href="#top" class="nav-link">Home</a>
-      <a href="#highlights" class="nav-link">Highlights</a>
+      <a href="#highlights" class="nav-link">Projects</a>
+      <a href="#glossary" class="nav-link">Tech Guide</a>
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#certificates" class="nav-link">Certificates</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -661,47 +684,44 @@
   <section class="hero" id="top">
   <div class="sketch">
     <!-- Modern Split Layout -->
-    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px; align-items: start; margin-bottom: 32px;">
+    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px; align-items: start; margin-bottom: 32px; max-width: 100%; overflow: hidden;">
       
       <!-- Left: Profile Picture with decorative element -->
-      <div style="position: relative;">
+      <div style="position: relative; flex-shrink: 0;">
         <div class="profile-img-container" style="box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); position: relative; z-index: 2;">
-          <!-- Optimized responsive image with WebP support + srcset for DPI -->
-          <picture>
-            <source 
-              srcset="./assetes/samir3-140w.webp 1x, ./assetes/samir3-280w.webp 2x, ./assetes/samir3-420w.webp 3x" 
-              type="image/webp"
-            >
-            <img 
-              src="./assetes/samir3.png" 
-              srcset="./assetes/samir3-140w.webp 140w, ./assetes/samir3-280w.webp 280w, ./assetes/samir3-420w.webp 420w"
-              sizes="(max-width: 640px) 100px, 140px"
-              alt="Samir Guenchi - AI Systems Engineer"
-              width="140"
-              height="140"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </picture>
+          <!-- Professional profile image -->
+          <img 
+            src="assetes/profile.jpg" 
+            alt="Samir Guenchi - AI Systems Engineer"
+            width="140"
+            height="140"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
         </div>
         <!-- Decorative circle -->
         <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;" aria-hidden="true"></div>
       </div>
       
       <!-- Right: Main Content -->
-      <div>
+      <div style="min-width: 0; overflow: hidden;">
         <!-- CLS FIX: Badge container with exact dimensions -->
         <div class="badge-container">
-          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 15px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2);">
-            👋 Available for opportunities
+          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2); max-width: 100%; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+            Available for opportunities
           </span>
         </div>
         
         <!-- Main Heading - Left aligned, modern -->
-        <h1 style="margin-bottom: 12px; line-height: 1.2;">
+        <h1 style="margin-bottom: 12px; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word;">
           <span class="hi">Hey, I'm Samir</span><br>
-          <span style="background: linear-gradient(135deg, var(--ink), var(--pencil)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI Systems Engineer &<br>Software Architect</span>
+          <span style="background: linear-gradient(135deg, var(--ink), var(--pencil)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; max-width: 100%;">AI Systems Engineer &<br>Software Architect</span>
         </h1>
         
         <!-- Role badges -->
@@ -745,9 +765,12 @@
       <div style="position: absolute; top: 16px; left: 16px; font-size: 48px; color: var(--highlight); opacity: 0.3; font-family: Georgia, serif; line-height: 1;">"</div>
       
       <p style="margin: 0; padding-left: 32px; color: var(--ink); line-height: 1.75; font-size: 16px;">
-        Fourth-year AI Engineering student at <strong style="color: var(--accent); font-weight: 700;">ENSIA</strong> specializing in the design and implementation of 
-        production-grade AI systems. Proven track record in building scalable RAG architectures, 
-        high-performance backend systems, and leading technical initiatives from concept to deployment.
+        Fourth-year AI Engineering student at <strong style="color: var(--accent); font-weight: 700;">ENSIA</strong> specializing in building 
+        production-ready AI systems. I create scalable RAG (Retrieval-Augmented Generation) architectures, 
+        optimize backend systems, and lead technical projects from idea to deployment. 
+        <span style="display: block; margin-top: 12px; font-style: italic; color: var(--pencil);">
+          Whether you're new to tech or an experienced developer, I'm here to collaborate and build something meaningful together.
+        </span>
       </p>
     </div>
     
@@ -793,13 +816,59 @@
   </div>
 
   <aside class="side-sketch" aria-labelledby="current-interests">
-    <h2 id="current-interests">What I'm Into Right Now</h2>
-    <p>Late 2025 priorities & curiosities:</p>
-    <ul>
-      <li>Scaling Arabic semantic search</li>
-      <li>RAG hallucination detection</li>
-      <li>Prepping students for IOI 2026</li>
-      <li>Open to research collabs!</li>
+    <h2 id="current-interests">What I'm Working On</h2>
+    <p style="margin-bottom: 16px; color: var(--pencil); font-size: 14px;">Current projects and interests (2025):</p>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); margin-bottom: 4px; font-size: 14px;">Arabic Semantic Search</strong>
+          <span style="font-size: 13px; color: var(--pencil); line-height: 1.4;">Building smarter search for Arabic content</span>
+        </div>
+      </li>
+      <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+          <path d="M12 8V4H8"/>
+          <rect width="16" height="12" x="4" y="8" rx="2"/>
+          <path d="M2 14h2"/>
+          <path d="M20 14h2"/>
+          <path d="M15 13v2"/>
+          <path d="M9 13v2"/>
+        </svg>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); margin-bottom: 4px; font-size: 14px;">RAG Hallucination Detection</strong>
+          <span style="font-size: 13px; color: var(--pencil); line-height: 1.4;">Making AI responses more reliable</span>
+        </div>
+      </li>
+      <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </svg>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); margin-bottom: 4px; font-size: 14px;">IOI 2026 Coaching</strong>
+          <span style="font-size: 13px; color: var(--pencil); line-height: 1.4;">Training students for international competitions</span>
+        </div>
+      </li>
+      <li style="padding: 10px 0; display: flex; align-items: start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); margin-bottom: 4px; font-size: 14px;">Open to Collaborations</strong>
+          <span style="font-size: 13px; color: var(--pencil); line-height: 1.4;">Research, internships, or interesting projects</span>
+        </div>
+      </li>
     </ul>
   </aside>
 </section>
@@ -807,88 +876,110 @@
   <div class="highlights-container">
     <!-- Section Header -->
     <div style="text-align: center; margin-bottom: 60px;">
-      <p style="font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">
-        Real Work
+      <p style="font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 12px;">
+        Featured Work
       </p>
-      <h2 style="font: 700 clamp(28px, 5vw, 44px)/1.1 'Caveat', cursive; color: var(--ink); margin-bottom: 12px;">
-        Projects that solved problems
+      <h2 style="font: 700 clamp(28px, 5vw, 44px)/1.1 'Caveat', cursive; color: var(--ink); margin-bottom: 16px;">
+        Projects That Solved Real Problems
       </h2>
-      <p style="font-size: 14px; color: var(--pencil); line-height: 1.5; margin: 0;">
-        Real struggles. Real lessons.
+      <p style="font-size: 15px; color: var(--pencil); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        Real-world projects where I tackled technical challenges and delivered measurable results.
       </p>
     </div>
 
-    <!-- Compact Circular Layout -->
-    <div class="circular-layout">
-      <!-- Center Badge -->
-      <div class="center-badge">
-        <div class="center-badge-inner">
-          <div style="text-align: center;">
-            <div class="badge-number" style="font-size: 28px; font-weight: 700; color: white; margin-bottom: 2px;">3</div>
-            <p class="badge-text" style="font-size: 10px; color: white; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Projects</p>
+    <!-- Professional Project Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 60px;">
+      
+      <!-- Project 1: Ministry Q&A -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(224, 122, 95, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Ministry Q&A System</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Built an AI-powered Q&A system for Arabic government regulations. Helps citizens find answers quickly using NLP.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Python</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Arabic NLP</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">RAG</span>
+          </div>
+          <div style="padding: 12px; background: rgba(224, 122, 95, 0.05); border-left: 3px solid var(--accent); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--accent); margin: 0; font-weight: 500;">
+              "Speed matters more than perfection"
+            </p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Orbit Circle -->
-      <svg class="orbit-circle" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="75" fill="none" stroke="var(--pencil)" stroke-width="0.5" opacity="0.08" stroke-dasharray="4,4"></circle>
-      </svg>
+      <!-- Project 2: Network Redesign -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(129, 178, 154, 0.1), rgba(129, 178, 154, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1"></circle>
+              <path d="M12 1v6m0 6v6"></path>
+              <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
+              <path d="M1 12h6m6 0h6"></path>
+              <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Enterprise Network Redesign</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Redesigned company network from bus to star topology. Reduced latency by 40% and improved reliability.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Networking</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Automation</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">n8n</span>
+          </div>
+          <div style="padding: 12px; background: rgba(129, 178, 154, 0.05); border-left: 3px solid var(--success); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--success); margin: 0; font-weight: 500;">
+              "Find and remove bottlenecks"
+            </p>
+          </div>
+        </div>
+      </article>
 
-      <!-- Card 1 - Top Left -->
-      <div class="project-card-wrapper card-1">
-        <article class="project-card accent-border">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-          </svg>
-          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0 0 8px 0;">Ministry Q&A</h3>
-          <p style="font-size: 12px; color: var(--pencil); line-height: 1.4; margin-bottom: 8px;">Arabic NLP for government regulations.</p>
-          <p style="font-size: 11px; font-style: italic; color: var(--accent); margin: 0;">"Speed > accuracy"</p>
-        </article>
-      </div>
+      <!-- Project 3: QR Scanner -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(61, 90, 128, 0.1), rgba(61, 90, 128, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
+              <circle cx="12" cy="16" r="1"></circle>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Secure QR Scanner</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Flutter mobile app that detects malicious QR codes before they cause harm. Simple security for everyone.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Flutter</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Security</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Mobile</span>
+          </div>
+          <div style="padding: 12px; background: rgba(61, 90, 128, 0.05); border-left: 3px solid var(--link); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--link); margin: 0; font-weight: 500;">
+              "Simple solutions are often the best"
+            </p>
+          </div>
+        </div>
+      </article>
 
-      <!-- Card 2 - Top Right -->
-      <div class="project-card-wrapper card-2">
-        <article class="project-card success-border">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;">
-            <circle cx="12" cy="12" r="1"></circle>
-            <path d="M12 1v6m0 6v6"></path>
-            <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
-            <path d="M1 12h6m6 0h6"></path>
-            <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
-          </svg>
-          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0 0 8px 0;">Network Redesign</h3>
-          <p style="font-size: 12px; color: var(--pencil); line-height: 1.4; margin-bottom: 8px;">Enterprise topology, 40% latency drop.</p>
-          <p style="font-size: 11px; font-style: italic; color: var(--success); margin: 0;">"Remove bottlenecks"</p>
-        </article>
-      </div>
-
-      <!-- Card 3 - Bottom -->
-      <div class="project-card-wrapper card-3">
-        <article class="project-card link-border">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
-            <circle cx="12" cy="16" r="1"></circle>
-          </svg>
-          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0 0 8px 0;">QR Scanner</h3>
-          <p style="font-size: 12px; color: var(--pencil); line-height: 1.4; margin-bottom: 8px;">Flutter app detecting malicious QR codes.</p>
-          <p style="font-size: 11px; font-style: italic; color: var(--link); margin: 0;">"Simple = effective"</p>
-        </article>
-      </div>
     </div>
 
-    <!-- Tech Stack Badges -->
-    <div style="text-align: center;">
-      <p style="font-size: 11px; color: var(--pencil); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 16px;">Built with</p>
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-        <span style="padding: 6px 12px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 16px; font-size: 12px; font-weight: 600;">Python</span>
-        <span style="padding: 6px 12px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 16px; font-size: 12px; font-weight: 600;">Networking</span>
-        <span style="padding: 6px 12px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 16px; font-size: 12px; font-weight: 600;">Flutter</span>
-        <span style="padding: 6px 12px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 16px; font-size: 12px; font-weight: 600;">ML/AI</span>
-      </div>
-    </div>
+    <style>
+      article:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12) !important;
+      }
+    </style>
 
     <!-- More Projects Section -->
     <div style="margin-top: 80px; padding-top: 60px; border-top: 2px solid rgba(75, 85, 99, 0.1);">
@@ -960,6 +1051,168 @@
     </div>
   </div>
 </section>
+
+<!-- Tech Glossary Section for Beginners -->
+<section class="glossary" id="glossary" style="background: linear-gradient(135deg, rgba(61, 90, 128, 0.05), rgba(129, 178, 154, 0.05)); padding: 60px 20px; margin: 60px 0;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 48px;">
+      <p style="font-size: 11px; color: var(--link); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 12px;">
+        For Everyone
+      </p>
+      <h2 style="font: 700 clamp(28px, 5vw, 40px)/1.1 'Caveat', cursive; color: var(--ink); margin-bottom: 12px;">
+        Tech Terms Explained Simply
+      </h2>
+      <p style="font-size: 15px; color: var(--pencil); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        New to tech? Here's what these terms mean in plain English.
+      </p>
+    </div>
+
+    <!-- Glossary Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      
+      <!-- AI/ML -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(224, 122, 95, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8V4H8"/>
+              <rect width="16" height="12" x="4" y="8" rx="2"/>
+              <path d="M2 14h2"/>
+              <path d="M20 14h2"/>
+              <path d="M15 13v2"/>
+              <path d="M9 13v2"/>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">AI & Machine Learning</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Teaching computers to learn from data and make decisions, like how you learn from experience. Think: Netflix recommendations or voice assistants.
+        </p>
+      </div>
+
+      <!-- RAG -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(129, 178, 154, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">RAG Systems</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          <strong>Retrieval-Augmented Generation:</strong> AI that searches for relevant information before answering, making responses more accurate and reliable.
+        </p>
+      </div>
+
+      <!-- NLP -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--link); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(61, 90, 128, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">NLP (Natural Language Processing)</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Teaching computers to understand and work with human language. Examples: translation apps, chatbots, or text summarization.
+        </p>
+      </div>
+
+      <!-- Backend -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--highlight); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(180, 83, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Backend Development</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          The "behind-the-scenes" part of websites and apps. It handles data storage, security, and business logic that users don't see.
+        </p>
+      </div>
+
+      <!-- Full-Stack -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(224, 122, 95, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Full-Stack Development</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Building both the visible part (frontend) and behind-the-scenes (backend) of websites and apps. A full-stack developer does it all.
+        </p>
+      </div>
+
+      <!-- Competitive Programming -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(129, 178, 154, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+              <path d="M4 22h16"/>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Competitive Programming</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Solving coding challenges under time pressure. Like a sport for programmers, testing problem-solving skills and algorithm knowledge.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Call to Action -->
+    <div style="text-align: center; margin-top: 40px; padding: 24px; background: rgba(224, 122, 95, 0.1); border-radius: 12px; border: 2px dashed var(--accent);">
+      <p style="font-size: 15px; color: var(--ink); margin: 0 0 16px 0; font-weight: 600;">
+        Still confused about something? I'm happy to explain!
+      </p>
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: transform 0.3s ease; box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Ask Me Anything
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .glossary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(13, 27, 42, 0.15) !important;
+  }
+  
+  @media (max-width: 640px) {
+    .glossary {
+      padding: 40px 16px !important;
+      margin: 40px 0 !important;
+    }
+    
+    .glossary-card {
+      padding: 16px !important;
+    }
+    
+    .glossary h2 {
+      font-size: clamp(24px, 6vw, 32px) !important;
+    }
+  }
+</style>
 
 
 
@@ -1466,15 +1719,15 @@
     >
   </div>
 </aside>
-<script src="./js/script.min.js?v=2.0" defer></script>
+<script src="js/script.min.js?v=2.1" defer></script>
 <script>
   // Register Service Worker for caching (bypasses GitHub Pages 10-min cache)
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     window.addEventListener('load', () => {
       // Use relative path for GitHub Pages compatibility
-      navigator.serviceWorker.register('./sw.js')
+      navigator.serviceWorker.register('sw.js')
         .then(reg => console.log('SW registered'))
-        .catch(err => console.log('SW registration failed'));
+        .catch(err => console.log('SW registration failed:', err));
     });
   }
 </script>

@@ -7,12 +7,14 @@
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+    gap: var(--space-xl);
+    padding: 40px 20px;
     min-height: auto; /* Allow natural height on mobile */
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .grid {
@@ -21,6 +23,22 @@
 
   .highlight-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  /* Better spacing for sections on tablet */
+  .exp, .certificates, .contact {
+    padding: 60px 24px;
+  }
+  
+  /* Footer improvements */
+  .footer-content {
+    padding: 40px 24px;
+  }
+  
+  .footer-nav {
+    flex-direction: column;
+    gap: 12px;
   }
 
   /* Mobile nav - positioned to prevent CLS */
@@ -100,38 +118,56 @@
 @media (max-width: 640px) {
   html {
     font-size: 15px;
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  * {
+    max-width: 100%;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .sec-title {
-    font-size: 28px;
+    font-size: clamp(24px, 5vw, 32px);
+    word-wrap: break-word;
   }
 
   .sketch,
   .side-sketch,
   .tab {
-    padding: 20px;
+    padding: 16px;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .card {
-    padding: 20px;
+    padding: 16px;
+    max-width: 100%;
   }
 
   .cert-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .cert-category-title {
-    font-size: 24px;
+    font-size: 20px;
     gap: var(--space-sm);
   }
 
   .contact {
-    padding: 48px 20px;
+    padding: 40px 16px;
   }
 
   .contact-grid {
@@ -139,11 +175,13 @@
   }
 
   .form {
-    padding: 24px;
+    padding: 20px;
+    max-width: 100%;
   }
 
   .note {
-    padding: 24px;
+    padding: 20px;
+    max-width: 100%;
   }
   
   /* Profile image - smaller on mobile */
@@ -152,6 +190,137 @@
     height: 100px;
     min-width: 100px;
     min-height: 100px;
+  }
+  
+  /* Better mobile spacing */
+  .hero {
+    padding: 32px 16px;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Role badges stack better on mobile */
+  .role-badges {
+    gap: 8px !important;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .role-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+  
+  /* CTA buttons full width on mobile */
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  /* Experience section improvements */
+  .timeline {
+    padding: 0 8px;
+  }
+  
+  .tab {
+    margin-bottom: 20px;
+  }
+  
+  /* Footer improvements */
+  .footer-content {
+    padding: 32px 16px;
+  }
+  
+  .footer-socials {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-social-link {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Prevent any text overflow */
+  p, span, div, a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix grid layouts on mobile */
+  [style*="display: grid"] {
+    max-width: 100%;
+  }
+}
+
+/* Extra small mobile: max 375px (iPhone SE, small phones) */
+@media (max-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: clamp(22px, 7vw, 28px);
+  }
+  
+  .hero {
+    padding: 24px 12px;
+  }
+  
+  .profile-img-container {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+  }
+  
+  .role-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  
+  .contact, .exp, .certificates {
+    padding: 32px 12px;
+  }
+  
+  .note, .form {
+    padding: 16px;
+  }
+  
+  .project-card {
+    padding: 14px;
+  }
+  
+  .sec-title {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+  
+  .sec-sub {
+    font-size: 13px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding: 24px 16px;
+    min-height: auto;
+  }
+  
+  .terminal {
+    height: 300px;
+  }
+  
+  header {
+    min-height: 56px;
   }
 }
 

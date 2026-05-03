@@ -1,0 +1,27 @@
+{
+  "name": "Samir Guenchi Portfolio",
+  "short_name": "Samir G.",
+  "description": "AI Engineering student at ENSIA specializing in Arabic NLP and RAG systems",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0d1b2a",
+  "background_color": "#f8f6f3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23f8f6f3' width='180' height='180'/><text x='90' y='110' font-size='140' text-anchor='middle' dominant-baseline='middle'>🤖</text></svg>",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23f8f6f3' width='512' height='512'/><text x='256' y='320' font-size='400' text-anchor='middle' dominant-baseline='middle'>🤖</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "ai", "engineering"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

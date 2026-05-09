@@ -1447,50 +1447,23 @@ if ('serviceWorker' in navigator) {
       <!-- Right: Main Content -->
       <div class="hero-content">
         <!-- CLS FIX: Badge container with exact dimensions -->
-        <div class="badge-container" style="margin-bottom: 12px;">
-          <span class="availability-badge" style="
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px 6px 10px;
-            background: rgba(194, 65, 12, 0.07);
-            border: 1.5px solid rgba(194, 65, 12, 0.25);
-            border-radius: 9999px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #9a3412;
-            white-space: nowrap;
-            width: fit-content;
-            max-width: fit-content;
-            box-shadow: 0 2px 8px rgba(194,65,12,0.08);
-          ">
-            <!-- Pulsing orange dot -->
+        <div class="badge-container" style="margin-bottom: 12px; display: table;">
+          <span class="availability-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; background: rgba(194,65,12,0.07); border: 1.5px solid rgba(194,65,12,0.25); border-radius: 9999px; font-size: 13px; font-weight: 600; color: #9a3412; white-space: nowrap; box-shadow: 0 2px 8px rgba(194,65,12,0.08);">
             <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 10px; height: 10px; flex-shrink: 0;">
-              <span style="
-                position: absolute;
-                width: 10px; height: 10px;
-                background: var(--accent, #e07a5f);
-                border-radius: 50%;
-                animation: availPulse 2s ease-in-out infinite;
-              "></span>
-              <span style="
-                width: 6px; height: 6px;
-                background: #c2410c;
-                border-radius: 50%;
-                position: relative;
-                z-index: 1;
-              "></span>
+              <span style="position: absolute; width: 10px; height: 10px; background: var(--accent, #e07a5f); border-radius: 50%; animation: availPulse 2s ease-in-out infinite;"></span>
+              <span style="width: 6px; height: 6px; background: #c2410c; border-radius: 50%; position: relative; z-index: 1;"></span>
             </span>
             Available for opportunities
           </span>
-          <style>
-            @keyframes availPulse {
-              0%, 100% { opacity: 1; transform: scale(1); }
-              50% { opacity: 0.25; transform: scale(1.7); }
-            }
-          </style>
         </div>
+        <style>
+          @keyframes availPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.7); }
+          }
+        </style>
         
+
         <!-- Main Heading - Left aligned, modern -->
         <h1 style="margin-bottom: 12px; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word;">
           <span class="hi">Hey, I'm Samir</span><br>

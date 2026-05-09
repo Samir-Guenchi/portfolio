@@ -1198,6 +1198,20 @@ if ('serviceWorker' in navigator) {
     align-self: flex-start !important;
   }
 
+  /* Badge mobile text swap: show short text on phones */
+  @media (max-width: 640px) {
+    .badge-text-full { display: none !important; }
+    .badge-text-mobile { display: inline !important; }
+    .availability-badge {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .badge-container {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
+
   /* =========================================================
      FIX 6: REMOVE EMOJI & ARROWS FROM "WHAT I'M WORKING ON"
      The CSS adds a 🎯 emoji corner and → arrows to list items.
@@ -1461,7 +1475,7 @@ if ('serviceWorker' in navigator) {
               <span style="position: absolute; width: 10px; height: 10px; background: var(--accent, #e07a5f); border-radius: 50%; animation: availPulse 2s ease-in-out infinite;"></span>
               <span style="width: 6px; height: 6px; background: #c2410c; border-radius: 50%; position: relative; z-index: 1;"></span>
             </span>
-            Available for opportunities
+            <span class="badge-text-full">Available for opportunities</span><span class="badge-text-mobile" style="display:none;">Available</span>
           </span>
         </div>
         <style>

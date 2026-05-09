@@ -70,9 +70,31 @@
   }
 
   .nav-menu a {
-    padding: var(--space-lg) 0;
+    padding: var(--space-lg) var(--space-md);
     border-bottom: 1px solid rgba(13, 27, 42, 0.1);
     font-size: 15px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .nav-menu a:hover {
+    background-color: var(--accent);
+    color: white;
+  }
+  
+  .nav-menu a:active {
+    background-color: var(--accent) !important;
+    color: white !important;
+  }
+  
+  @media (hover: none) {
+    .nav-menu a:active {
+      background-color: var(--accent);
+      color: white;
+    }
   }
 
   .nav-menu a:last-child {

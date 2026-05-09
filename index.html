@@ -1448,14 +1448,45 @@ if ('serviceWorker' in navigator) {
       <div class="hero-content">
         <!-- CLS FIX: Badge container with exact dimensions -->
         <div class="badge-container" style="margin-bottom: 12px;">
-          <span class="availability-badge" style="background: rgba(194, 65, 12, 0.07); border-radius: 20px !important; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(194, 65, 12, 0.2); display: inline-flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; overflow: hidden;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 6v6l4 2"></path>
-            </svg>
-            <span class="badge-text-full">Available for opportunities</span>
-            <span class="badge-text-mobile" style="display: none;">Available</span>
+          <span class="availability-badge" style="
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1.5px solid rgba(34, 197, 94, 0.3);
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #15803d;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(34,197,94,0.1);
+          ">
+            <!-- Pulsing green dot -->
+            <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 10px; height: 10px; flex-shrink: 0;">
+              <span style="
+                position: absolute;
+                width: 10px; height: 10px;
+                background: #22c55e;
+                border-radius: 50%;
+                animation: availPulse 2s ease-in-out infinite;
+              "></span>
+              <span style="
+                width: 6px; height: 6px;
+                background: #16a34a;
+                border-radius: 50%;
+                position: relative;
+                z-index: 1;
+              "></span>
+            </span>
+            Available for opportunities
           </span>
+          <style>
+            @keyframes availPulse {
+              0%, 100% { opacity: 1; transform: scale(1); }
+              50% { opacity: 0.3; transform: scale(1.6); }
+            }
+          </style>
         </div>
         
         <!-- Main Heading - Left aligned, modern -->

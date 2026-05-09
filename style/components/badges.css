@@ -1,89 +1,44 @@
 /* ============================================
    BADGES: Tags, pills, and badges
-   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
-/* Interest badges - GPU-COMPOSITED */
+/* Interest badges */
 .interests-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 8px 14px;
+  padding: 7px 13px;
   background: white;
-  border: 2px solid var(--accent);
+  border: 1.5px solid rgba(194, 65, 12, 0.35);
   border-radius: var(--radius-full);
   font: 600 var(--font-size-xs) 'JetBrains Mono', monospace;
   color: var(--accent);
   margin: 4px 4px 0 0;
   white-space: nowrap;
-  /* GPU-COMPOSITED: Only transform and opacity */
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
-  position: relative;
-  overflow: hidden;
+  transition: background var(--transition), color var(--transition);
   cursor: default;
-  z-index: 1;
-}
-
-/* Use pseudo-element for background color transition */
-.interests-badge::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scale(0);
-  border-radius: inherit;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-}
-
-.interests-badge:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-  z-index: 2;
 }
 
 .interests-badge:hover {
-  transform: translateY(-4px) scale(1.1);
-  color: white;
-}
-
-.interests-badge:hover::after {
-  transform: scale(1);
-}
-
-.interests-badge:hover:before {
-  transform: translateX(100%);
+  background: rgba(194, 65, 12, 0.07);
+  color: var(--accent);
 }
 
 .interests-badge i {
-  font-size: 13px;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 3;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 .interests-badge span {
-  position: relative;
-  z-index: 3;
-}
-
-.interests-badge:hover i {
-  transform: rotate(360deg);
+  line-height: 1;
 }
 
 /* Generic badge */
 .badge {
   display: inline-block;
-  padding: 6px 12px;
-  background: var(--highlight);
-  color: var(--ink);
+  padding: 5px 11px;
+  background: rgba(180, 83, 9, 0.12);
+  color: var(--highlight);
   border-radius: var(--radius);
   font-size: var(--font-size-xs);
   font-weight: 600;
@@ -91,33 +46,32 @@
 }
 
 .badge-accent {
-  background: var(--accent);
-  color: white;
+  background: rgba(194, 65, 12, 0.1);
+  color: var(--accent);
 }
 
 .badge-success {
-  background: var(--success);
-  color: white;
+  background: rgba(4, 120, 87, 0.1);
+  color: var(--success);
 }
 
 .badge-link {
-  background: var(--link);
-  color: white;
+  background: rgba(30, 64, 175, 0.1);
+  color: var(--link);
 }
 
-/* Tag - GPU-COMPOSITED */
+/* Tag */
 .tag {
   padding: var(--space-xs) var(--space-md);
-  background: var(--highlight);
+  background: rgba(180, 83, 9, 0.1);
   color: var(--ink);
   border-radius: var(--radius);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
-  border: 1px solid rgba(13, 27, 42, 0.12);
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform var(--transition);
+  border: 1px solid rgba(180, 83, 9, 0.18);
   display: inline-block;
+  transition: background var(--transition);
 }
 
 .tag:hover {
-  transform: translateY(-2px);
+  background: rgba(180, 83, 9, 0.16);
 }

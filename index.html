@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    if (regs.length > 0) {
+      regs.forEach(r => r.unregister());
+      caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => location.reload());
+    }
+  });
+}
+</script>
 <!-- ========================================
      META: ESSENTIAL IDENTIFICATION
      ======================================== -->
@@ -442,29 +452,26 @@
     }
   }
   
-  /* ===== GPU-COMPOSITED Role Badges (replaces transition: all) ===== */
+  /* ===== Role Badges ===== */
   .role-badge {
     padding: 6px 14px;
     background: white;
-    border: 2px solid var(--ink);
+    border: 1.5px solid rgba(13, 27, 42, 0.2);
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
     color: var(--ink);
-    box-shadow: 2px 2px 0 var(--ink);
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    /* GPU-COMPOSITED: Only transform and box-shadow */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    will-change: transform;
+    transition: border-color 0.18s ease, background 0.18s ease;
   }
   .role-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 3px 3px 0 var(--ink);
+    border-color: rgba(13, 27, 42, 0.45);
+    background: rgba(13, 27, 42, 0.03);
   }
   
-  /* ===== GPU-COMPOSITED Footer Social Links ===== */
+  /* ===== Footer Social Links ===== */
   .footer-social-link {
     display: inline-flex;
     align-items: center;
@@ -476,13 +483,44 @@
     padding: 8px 12px;
     border-radius: 8px;
     border: 1px solid transparent;
-    /* GPU-COMPOSITED: Only transform and opacity */
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: background 0.18s ease, border-color 0.18s ease;
   }
   .footer-social-link:hover {
-    transform: translateY(-2px);
+    background: rgba(30, 64, 175, 0.07);
+    border-color: rgba(30, 64, 175, 0.2);
   }
   
+  /* ===== HUMAN-CRAFT OVERRIDES (always fresh) ===== */
+  /* Remove mechanical offset shadows from cards */
+  .card::before { display: none !important; }
+  .card { box-shadow: 0 1px 4px rgba(13,27,42,0.06), 0 3px 10px rgba(13,27,42,0.05) !important; border: 1.5px solid rgba(13,27,42,0.15) !important; }
+  .card:hover { transform: translateY(-3px) !important; box-shadow: 0 4px 16px rgba(13,27,42,0.1) !important; }
+  /* Remove orange offset drop shadow from side-sketch */
+  .side-sketch::after { display: none !important; }
+  .side-sketch { box-shadow: 0 2px 10px rgba(13,27,42,0.07) !important; border: 1.5px solid rgba(13,27,42,0.14) !important; }
+  /* Remove dashed mechanical underlines from section titles */
+  .sec-title::after { background: var(--accent) !important; opacity: 0.45 !important; height: 3px !important; border-radius: 2px !important; }
+  /* Soften highlights section gradient background */
+  .highlights { background: #f2ede8 !important; }
+  /* Remove gradient from experience tabs */
+  .tab { background: white !important; border-left-width: 3px !important; }
+  /* Remove shimmer from interest badges */
+  .interests-badge::before { display: none !important; }
+  .interests-badge:hover { transform: none !important; }
+  /* Soften tech tags */
+  .tech span { border-radius: 4px !important; background: rgba(30,64,175,0.06) !important; }
+  /* Remove 360deg icon rotation on badges */
+  .interests-badge:hover i { transform: none !important; }
+  /* Highlight card - clean look */
+  .highlight-card { text-align: left !important; box-shadow: 0 1px 4px rgba(13,27,42,0.06) !important; border: 1.5px solid rgba(13,27,42,0.12) !important; }
+  .highlight-card:hover { transform: translateY(-3px) !important; box-shadow: 0 6px 20px rgba(13,27,42,0.09) !important; }
+  .highlight-card::before { display: none !important; }
+  /* Certificate cards */
+  .cert-card { border: 1.5px solid rgba(13,27,42,0.12) !important; box-shadow: 0 1px 4px rgba(13,27,42,0.05) !important; }
+  .cert-card::before { display: none !important; }
+  /* Submit button - clean */
+  .submit::before { display: none !important; }
+
   /* Hide loading spinner after load */
   #loading.hide { display: none; }
   .loading {
@@ -565,7 +603,7 @@
 </style>
 
 <!-- Minified CSS bundle with version hash for cache busting -->
-<link rel="preload" href="style/styles.min.css?v=2.1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="style/styles.min.css?v=3.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="style/styles.min.css"></noscript>
 
 <!-- ========================================
@@ -802,7 +840,7 @@
       <div class="hero-content">
         <!-- CLS FIX: Badge container with exact dimensions -->
         <div class="badge-container" style="margin-bottom: 12px;">
-          <span class="availability-badge" style="background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(255, 199, 89, 0.1)); border-radius: 20px !important; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(224, 122, 95, 0.2); display: inline-flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; overflow: hidden;">
+          <span class="availability-badge" style="background: rgba(194, 65, 12, 0.07); border-radius: 20px !important; font-size: 14px; font-weight: 600; color: #9a3412; border: 1px solid rgba(194, 65, 12, 0.2); display: inline-flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; overflow: hidden;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M12 6v6l4 2"></path>
@@ -854,7 +892,7 @@
     </div>
     
     <!-- Bio Section - Modern card style -->
-    <div style="position: relative; padding: 24px; background: linear-gradient(135deg, rgba(129, 178, 154, 0.05), rgba(255, 199, 89, 0.05)); border-radius: 12px; margin-bottom: 28px; border: 2px solid rgba(224, 122, 95, 0.15);">
+    <div style="position: relative; padding: 24px; background: rgba(13, 27, 42, 0.02); border-radius: 8px; margin-bottom: 28px; border: 1px solid rgba(13, 27, 42, 0.09);">
       <!-- Quote mark decoration -->
       <div style="position: absolute; top: 16px; left: 16px; font-size: 48px; color: var(--highlight); opacity: 0.3; font-family: Georgia, serif; line-height: 1;">"</div>
       
@@ -875,10 +913,10 @@
         <span style="font-size: 13px; font-weight: 700; color: var(--pencil); text-transform: uppercase; letter-spacing: 1.5px;">Core Expertise</span>
       </div>
       <div class="tags" style="gap: 10px;">
-        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">AI/ML Systems</span>
-        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">RAG Architecture</span>
-        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">Software Design</span>
-        <span class="tag" style="box-shadow: 2px 2px 0 rgba(13, 27, 42, 0.1);">System Optimization</span>
+        <span class="tag">AI/ML Systems</span>
+        <span class="tag">RAG Architecture</span>
+        <span class="tag">Software Design</span>
+        <span class="tag">System Optimization</span>
       </div>
     </div>
     
@@ -987,7 +1025,7 @@
       <!-- Project 1: Ministry Q&A -->
       <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
         <div style="padding: 28px;">
-          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(224, 122, 95, 0.1), rgba(224, 122, 95, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div style="width: 48px; height: 48px; background: rgba(194, 65, 12, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -1013,7 +1051,7 @@
       <!-- Project 2: Network Redesign -->
       <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
         <div style="padding: 28px;">
-          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(129, 178, 154, 0.1), rgba(129, 178, 154, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div style="width: 48px; height: 48px; background: rgba(4, 120, 87, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="1"></circle>
               <path d="M12 1v6m0 6v6"></path>
@@ -1042,7 +1080,7 @@
       <!-- Project 3: QR Scanner -->
       <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
         <div style="padding: 28px;">
-          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(61, 90, 128, 0.1), rgba(61, 90, 128, 0.05)); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div style="width: 48px; height: 48px; background: rgba(30, 64, 175, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
@@ -1070,8 +1108,8 @@
 
     <style>
       article:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 14px rgba(13, 27, 42, 0.09) !important;
       }
     </style>
 
@@ -1147,7 +1185,7 @@
 </section>
 
 <!-- Tech Glossary Section for Beginners -->
-<section class="glossary" id="glossary" style="background: linear-gradient(135deg, rgba(61, 90, 128, 0.05), rgba(129, 178, 154, 0.05)); padding: 60px 20px; margin: 60px 0;">
+<section class="glossary" id="glossary" style="background: #f7f5f2; padding: 60px 20px; margin: 60px 0;">
   <div style="max-width: 1000px; margin: 0 auto;">
     <!-- Section Header -->
     <div style="text-align: center; margin-bottom: 48px;">
@@ -1324,7 +1362,7 @@
       <h3 style="font: 700 14px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Current & Featured</h3>
 
       <!-- Software Engineering Intern at Algérie Poste (Current) -->
-      <article class="tab" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, rgba(224, 122, 95, 0.05), transparent);" itemscope itemtype="https://schema.org/WorkExperience">
+      <article class="tab" style="border-left: 3px solid rgba(194, 65, 12, 0.5);" itemscope itemtype="https://schema.org/WorkExperience">
         <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
           <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Software Engineering Intern</h3>
           <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">CURRENT</span>
@@ -1342,7 +1380,7 @@
       </article>
 
       <!-- Network Optimization Intern at ENOF (Significant Achievement) -->
-      <article class="tab" style="border-left: 4px solid var(--success); background: linear-gradient(90deg, rgba(129, 178, 154, 0.05), transparent);" itemscope itemtype="https://schema.org/WorkExperience">
+      <article class="tab" style="border-left: 3px solid rgba(4, 120, 87, 0.45);" itemscope itemtype="https://schema.org/WorkExperience">
         <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
           <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Automation & Network Optimization Intern</h3>
           <span style="font-size: 11px; background: rgba(129, 178, 154, 0.2); color: var(--success); padding: 4px 10px; border-radius: 12px; font-weight: 700;">IMPACT</span>

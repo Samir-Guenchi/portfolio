@@ -1,19 +1,17 @@
 /* ============================================
    BUTTONS: Interactive Elements
-   PERFORMANCE: GPU-composited transitions only (transform/opacity)
    ============================================ */
 
-/* Primary CTA Button - GPU-COMPOSITED */
+/* Primary CTA Button */
 .cta-btn {
-  padding: 12px 24px;
+  padding: 11px 22px;
   border-radius: var(--radius);
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
   font-size: 15px;
   cursor: pointer;
   border: none;
@@ -24,15 +22,14 @@
 .cta-primary {
   background: var(--accent);
   color: var(--btn-text);
-  /* Static box-shadow, no transition */
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.25);
 }
 
 .cta-primary:hover,
 .cta-primary:focus {
-  transform: translate(-2px, -2px);
-  /* Instant shadow change, no animation */
-  box-shadow: 4px 4px 0 var(--ink);
+  background: #b03a0a;
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.35);
+  transform: translateY(-1px);
   outline: none;
 }
 
@@ -40,36 +37,17 @@
 .cta-secondary {
   background: white;
   color: var(--ink);
-  border: 2px solid var(--ink);
-  /* Use pseudo-element for background color change */
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.cta-secondary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--ink);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition);
-  z-index: -1;
+  border: 1.5px solid rgba(13, 27, 42, 0.25);
 }
 
 .cta-secondary:hover,
 .cta-secondary:focus {
-  color: var(--btn-text);
+  border-color: var(--ink);
+  background: rgba(13, 27, 42, 0.04);
   outline: none;
 }
 
-.cta-secondary:hover::before,
-.cta-secondary:focus::before {
-  transform: scaleX(1);
-}
-
-/* CV Download Button - GPU-COMPOSITED */
+/* CV Download Button */
 .cv-btn {
   padding: var(--space-sm) var(--space-lg);
   background: var(--accent);
@@ -77,10 +55,8 @@
   border: none;
   border-radius: var(--radius);
   font-weight: 600;
-  /* Static box-shadow */
-  box-shadow: 2px 2px 0 var(--ink);
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform var(--transition);
+  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.2);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
@@ -91,100 +67,58 @@
 
 .cv-btn:hover,
 .cv-btn:focus-visible {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--ink);
+  background: #b03a0a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);
   color: var(--btn-text);
   outline: none;
 }
 
 .cv-btn:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0 var(--ink);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(194, 65, 12, 0.2);
 }
 
-/* Filter Button - GPU-COMPOSITED */
+/* Filter Button */
 .filter-btn {
   padding: var(--space-sm) var(--space-lg);
   background: white;
-  border: 2px solid var(--pencil);
+  border: 1.5px solid rgba(74, 85, 104, 0.3);
   border-radius: var(--radius-full);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
   cursor: pointer;
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform var(--transition);
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
   color: var(--pencil);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scale(0);
-  border-radius: inherit;
-  transition: transform var(--transition);
-  z-index: -1;
 }
 
 .filter-btn:hover,
 .filter-btn:focus,
 .filter-btn.active {
-  color: white;
+  color: var(--accent);
   border-color: var(--accent);
-  transform: translateY(-2px);
+  background: rgba(194, 65, 12, 0.06);
   outline: none;
 }
 
-.filter-btn:hover::before,
-.filter-btn:focus::before,
-.filter-btn.active::before {
-  transform: scale(1);
-}
-
-/* Submit Button - GPU-COMPOSITED */
+/* Submit Button */
 .submit {
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   background: var(--accent);
   color: var(--paper);
   border: none;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   cursor: pointer;
-  /* Static box-shadow */
-  box-shadow: 0 4px 16px rgba(224, 122, 95, 0.35);
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.submit:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: translate(-50%, -50%);
-  /* GPU-COMPOSITED: Use scale instead of width/height */
-  transition: transform 0.6s ease;
+  box-shadow: 0 2px 12px rgba(194, 65, 12, 0.25);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .submit:hover {
-  transform: translateY(-4px) scale(1.02);
-  /* Instant shadow change */
-  box-shadow: 0 12px 32px rgba(224, 122, 95, 0.5);
-}
-
-.submit:hover:before {
-  transform: translate(-50%, -50%) scale(50);
+  background: #b03a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(194, 65, 12, 0.35);
 }
 
 .submit:focus {
@@ -193,12 +127,12 @@
 }
 
 .submit:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.2);
 }
 
-
 /* ============================================
-   FOOTER SOCIAL LINKS: GPU-Composited
+   FOOTER SOCIAL LINKS
    ============================================ */
 .footer-social-link {
   display: flex;
@@ -211,30 +145,12 @@
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid transparent;
-  /* GPU-COMPOSITED: Only transform and opacity */
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-social-link::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(61, 90, 128, 0.1);
-  border-radius: inherit;
-  transform: scale(0);
-  transition: transform 0.3s ease;
-  z-index: -1;
+  transition: background var(--transition), color var(--transition);
 }
 
 .footer-social-link:hover,
 .footer-social-link:focus {
-  transform: translateY(-2px);
+  background: rgba(30, 64, 175, 0.07);
+  border-color: rgba(30, 64, 175, 0.2);
   outline: none;
-}
-
-.footer-social-link:hover::before,
-.footer-social-link:focus::before {
-  transform: scale(1);
 }

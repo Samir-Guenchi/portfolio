@@ -1,6 +1,5 @@
 /* ============================================
    HERO SECTION: Main landing area
-   PERFORMANCE: CLS prevention with reserved heights
    ============================================ */
 
 .hero {
@@ -8,13 +7,10 @@
   margin: 0 auto;
   padding: 80px 20px 60px;
   display: grid;
-  /* CLS FIX: Explicit column sizing prevents layout shift */
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
   gap: 48px;
   align-items: start;
-  /* Reserve minimum height to prevent CLS */
   min-height: 600px;
-  /* Contain layout to prevent cascade shifts */
   contain: layout style;
 }
 
@@ -40,39 +36,24 @@
   background: white;
   padding: 32px;
   border-radius: var(--radius-md);
-  border: 2px dashed var(--pencil);
+  border: 1.5px dashed rgba(74, 85, 104, 0.4);
   position: relative;
   animation: fadeInLeft 0.6s ease;
-  /* Reserve minimum height */
   min-height: 400px;
-  /* CLS FIX: Contain layout */
   contain: layout style;
-  /* GPU-COMPOSITED: Use pseudo-element for box-shadow */
-  box-shadow: none;
-}
-
-/* GPU-composited box-shadow via pseudo-element */
-.sketch::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: var(--shadow);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  pointer-events: none;
+  box-shadow: 0 2px 12px rgba(13, 27, 42, 0.06);
 }
 
 .sketch:before {
   content: '[ lab notes — 2025.10.30 ]';
   position: absolute;
-  top: -14px;
+  top: -13px;
   left: 20px;
-  background: var(--paper);
+  background: white;
   padding: 0 var(--space-sm);
   font: var(--font-size-xs) 'JetBrains Mono', monospace;
   color: var(--pencil);
+  letter-spacing: 0.3px;
 }
 
 /* Hero heading */
@@ -108,52 +89,33 @@
 
 .tag {
   padding: var(--space-xs) var(--space-md);
-  background: var(--highlight);
+  background: rgba(180, 83, 9, 0.1);
   color: var(--ink);
   border-radius: var(--radius);
   font: 500 var(--font-size-sm) 'JetBrains Mono', monospace;
-  border: 1px solid rgba(13, 27, 42, 0.12);
-  transition: transform var(--transition);
+  border: 1px solid rgba(180, 83, 9, 0.18);
+  display: inline-block;
+  transition: background var(--transition);
 }
 
 .tag:hover {
-  transform: translateY(-2px);
+  background: rgba(180, 83, 9, 0.16);
 }
 
 /* Side sketch box */
 .side-sketch {
   background: white;
-  padding: 24px;
+  padding: 26px 24px;
   border-radius: var(--radius-md);
-  border: 2px solid var(--ink);
-  font: 16px / 1.5 'Caveat', cursive;
+  border: 1.5px solid rgba(13, 27, 42, 0.14);
+  font: 16px / 1.6 'Caveat', cursive;
   color: var(--pencil);
   position: relative;
   animation: fadeInRight 0.6s ease;
-  /* CLS FIX: Reserve minimum height + explicit sizing */
   min-height: 200px;
   min-width: 300px;
-  /* Contain layout to prevent shifts */
   contain: layout style;
-  /* GPU-COMPOSITED: Use pseudo-element for box-shadow */
-  box-shadow: none;
-}
-
-/* GPU-composited box-shadow via pseudo-element */
-.side-sketch::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 4px 4px 0 var(--accent);
-  opacity: 1;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.side-sketch:hover::after {
-  transform: translate(2px, 2px);
+  box-shadow: 0 2px 10px rgba(13, 27, 42, 0.07);
 }
 
 .side-sketch:before {

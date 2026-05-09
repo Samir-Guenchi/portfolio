@@ -1,10 +1,9 @@
 /* ============================================
    EXPERIENCE SECTION: Timeline & roles
-   PERFORMANCE: GPU-composited transitions only
    ============================================ */
 
 .exp {
-  background: rgba(129, 178, 154, 0.05);
+  background: #faf9f7;
   padding: 60px var(--space-lg);
 }
 
@@ -23,17 +22,13 @@
 .sec-title:after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -5px;
   left: 0;
   right: 0;
-  height: 4px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--accent),
-    var(--accent) 12px,
-    transparent 12px,
-    transparent 18px
-  );
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.5;
+  border-radius: 2px;
 }
 
 .sec-sub {
@@ -43,45 +38,28 @@
 
 .tab {
   background: white;
-  padding: 28px 28px 28px 44px;
-  margin-bottom: 28px;
-  border-left: 4px solid var(--accent);
+  padding: 26px 26px 24px 42px;
+  margin-bottom: 24px;
+  border-left: 3px solid rgba(194, 65, 12, 0.4);
   border-radius: var(--radius);
   position: relative;
-  /* GPU-COMPOSITED: Only transform and opacity */
-  transition: transform var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
   opacity: 0;
   animation: slideInLeft 0.5s ease forwards;
-  /* Remove direct box-shadow, use pseudo-element */
-  box-shadow: none;
+  box-shadow: 0 1px 4px rgba(13, 27, 42, 0.05);
 }
 
-/* GPU-composited box-shadow via pseudo-element */
-.tab::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: var(--shadow);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Hover shadow pseudo-element */
 .tab::before {
   content: '';
   position: absolute;
-  left: -10px;
+  left: -8px;
   top: 28px;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: var(--accent);
   border-radius: 50%;
-  border: 3px solid var(--paper);
-  transition: transform var(--transition);
-  z-index: 1;
+  border: 2px solid var(--paper);
+  opacity: 0.7;
 }
 
 .tab:nth-child(2) { animation-delay: 0.1s; }
@@ -91,11 +69,8 @@
 
 .tab:hover,
 .tab:focus-within {
-  transform: translateX(8px);
-}
-
-.tab:hover::before {
-  transform: scale(1.3);
+  border-left-color: var(--accent);
+  box-shadow: 0 3px 12px rgba(13, 27, 42, 0.08);
 }
 
 .tab h3 {
@@ -120,6 +95,7 @@
   margin-bottom: var(--space-md);
   font-style: italic;
   font-size: 15px;
+  line-height: 1.6;
 }
 
 .tab ul {

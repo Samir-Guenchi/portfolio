@@ -12,17 +12,13 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--pencil),
-    var(--pencil) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  opacity: 0.3;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--pencil);
+  opacity: 0.2;
+  border-radius: 2px;
 }
 
 .certificates-container {
@@ -32,7 +28,7 @@
 
 /* Category sections */
 .cert-category {
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
 .cert-category:last-child {
@@ -40,7 +36,7 @@
 }
 
 .cert-category-title {
-  font: 700 32px / 1.2 'Caveat', cursive;
+  font: 700 30px / 1.2 'Caveat', cursive;
   color: var(--ink);
   margin-bottom: var(--space-md);
   display: flex;
@@ -48,87 +44,49 @@
   gap: var(--space-md);
 }
 
-/* WCAG AA: #374151 on white = 8.6:1 contrast ratio */
 .cert-category-desc {
-  color: #374151; /* Dark gray - WCAG AAA compliant */
-  font-size: 16px;
-  margin-bottom: 32px;
+  color: #374151;
+  font-size: 15px;
+  margin-bottom: 28px;
   padding-left: 44px;
+  line-height: 1.6;
 }
 
 /* Certificate grid */
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 28px;
+  gap: 22px;
 }
 
 .cert-empty {
   grid-column: 1 / -1;
   text-align: center;
   padding: 40px;
-  color: #374151; /* Dark gray - WCAG AA compliant */
+  color: #374151;
   font-style: italic;
 }
 
-/* Certificate card - GPU-COMPOSITED */
+/* Certificate card */
 .cert-card {
   background: white;
-  border: 2px solid var(--ink);
+  border: 1.5px solid rgba(13, 27, 42, 0.12);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
-  /* GPU-COMPOSITED: Only transform */
-  transition: transform var(--transition);
-  /* Remove direct box-shadow */
-  box-shadow: none;
-}
-
-/* GPU-composited box-shadow via pseudo-element */
-.cert-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: var(--shadow);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.cert-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  pointer-events: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 1px 4px rgba(13, 27, 42, 0.05);
 }
 
 .cert-card:hover {
-  transform: translateY(-4px);
-}
-
-.cert-card:hover::after {
-  opacity: 0;
-}
-
-.cert-card:hover::before {
-  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(13, 27, 42, 0.09);
 }
 
 .cert-card-featured {
-  border-color: var(--accent);
-}
-
-.cert-card-featured::before {
-  box-shadow: 0 8px 24px rgba(224, 122, 95, 0.2);
+  border-color: rgba(194, 65, 12, 0.3);
 }
 
 /* Certificate badge */
@@ -138,11 +96,9 @@
   right: var(--space-md);
   background: var(--success);
   color: white;
-  padding: var(--space-xs) var(--space-md);
+  padding: 3px 10px;
   border-radius: var(--radius-full);
   font: 600 var(--font-size-xs) 'JetBrains Mono', monospace;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* ...existing certificate styles... */

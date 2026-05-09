@@ -1190,6 +1190,14 @@ if ('serviceWorker' in navigator) {
     }
   }
 
+  /* Badge container — always shrink to content width */
+  .badge-container {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    align-self: flex-start !important;
+  }
+
   /* =========================================================
      FIX 6: REMOVE EMOJI & ARROWS FROM "WHAT I'M WORKING ON"
      The CSS adds a 🎯 emoji corner and → arrows to list items.
@@ -1447,7 +1455,7 @@ if ('serviceWorker' in navigator) {
       <!-- Right: Main Content -->
       <div class="hero-content">
         <!-- CLS FIX: Badge container with exact dimensions -->
-        <div class="badge-container" style="margin-bottom: 12px; display: table;">
+        <div class="badge-container" style="margin-bottom: 12px; display: table; align-self: flex-start;">
           <span class="availability-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; background: rgba(194,65,12,0.07); border: 1.5px solid rgba(194,65,12,0.25); border-radius: 9999px; font-size: 13px; font-weight: 600; color: #9a3412; white-space: nowrap; box-shadow: 0 2px 8px rgba(194,65,12,0.08);">
             <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 10px; height: 10px; flex-shrink: 0;">
               <span style="position: absolute; width: 10px; height: 10px; background: var(--accent, #e07a5f); border-radius: 50%; animation: availPulse 2s ease-in-out infinite;"></span>

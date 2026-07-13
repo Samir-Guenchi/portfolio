@@ -1,0 +1,2535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    if (regs.length > 0) {
+      regs.forEach(r => r.unregister());
+      caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => location.reload());
+    }
+  });
+}
+</script>
+<!-- ========================================
+     META: ESSENTIAL IDENTIFICATION
+     ======================================== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#0d1b2a">
+<meta name="color-scheme" content="light dark">
+
+<!-- ========================================
+     SECURITY: Meta-based Security Headers
+     (GitHub Pages doesn't support HTTP headers)
+     ======================================== -->
+<!-- Content Security Policy - allows Google Fonts, Cloudflare CDN, and inline styles -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  img-src 'self' data: https: http: blob:;
+  connect-src 'self' http: https:;
+  manifest-src 'self' data:;
+  base-uri 'self';
+  form-action 'self';
+">
+
+<!-- Referrer Policy - protects user privacy -->
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<!-- Note: frame-ancestors and upgrade-insecure-requests removed from CSP meta tag
+     as they are ignored in meta tags and can cause issues in local development.
+     For production, use HTTP headers via Netlify/Cloudflare configuration. -->
+
+<!-- ========================================
+     META: CONTENT METADATA (SEO)
+     ======================================== -->
+<title>Samir Guenchi — AI Engineer & Arabic NLP Researcher | ENSIA</title>
+<meta name="title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta name="description" content="AI Engineering student at ENSIA specializing in Arabic NLP and RAG systems. Building intelligent solutions for low-resource languages. Open for research collaborations and internships.">
+<meta name="keywords" content="Samir Guenchi, AI Engineer, Arabic NLP, RAG Systems, Machine Learning, ENSIA, Competitive Programming, Algeria">
+<meta name="author" content="Samir Guenchi">
+<meta name="application-name" content="Samir Guenchi Portfolio">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="language" content="English">
+<meta name="revisit-after" content="30 days">
+<meta name="rating" content="General">
+
+<!-- ========================================
+     META: OPEN GRAPH (Social Media)
+     ======================================== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samir-guenchi.netlify.app/">
+<meta property="og:title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta property="og:description" content="Building intelligent systems for Arabic NLP. Research in RAG systems, competitive programming coach, and full-stack developer.">
+<meta property="og:image" content="https://samir-guenchi.netlify.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:site_name" content="Samir Guenchi Portfolio">
+<meta property="og:locale" content="en_US">
+
+<!-- ========================================
+     META: TWITTER (X PLATFORM)
+     ======================================== -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://samir-guenchi.netlify.app/">
+<meta property="twitter:title" content="Samir Guenchi — AI Engineer & Arabic NLP Researcher">
+<meta property="twitter:description" content="Building intelligent systems for Arabic NLP. Research in RAG systems, competitive programming coach, and full-stack developer.">
+<meta property="twitter:image" content="https://samir-guenchi.netlify.app/og-image.jpg">
+<meta property="twitter:creator" content="@SamirGuenchi">
+
+<!-- ========================================
+     META: LINKS & DISCOVERY
+     ======================================== -->
+<link rel="canonical" href="https://samir-guenchi.netlify.app/">
+<link rel="alternate" hreflang="en" href="https://samir-guenchi.netlify.app/">
+
+<!-- ========================================
+     META: ICONS & BRANDING
+     ======================================== -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23f8f6f3' width='180' height='180'/><text x='90' y='95' font-size='140' text-anchor='middle' y='50%' dominant-baseline='middle'>🤖</text></svg>">
+<link rel="manifest" href="manifest.json">
+
+<!-- ========================================
+     STYLESHEET & PERFORMANCE OPTIMIZATION
+     ======================================== -->
+<!-- Critical CSS inlined for fastest FCP + CLS Prevention -->
+<style>
+  /* Critical above-the-fold styles */
+  :root {
+    --ink: #0d1b2a;
+    --paper: #f8f6f3;
+    --accent: #c2410c;
+    --pencil: #4a5568;
+    --highlight: #b45309;
+    --success: #047857;
+    --link: #1e40af;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { 
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* ===== H1 FONT SIZE FIX (Deprecated API Warning) ===== */
+  /* Explicit font-size prevents H1UserAgentFontSizeInSection warning */
+  h1, section h1, article h1, aside h1, nav h1, header h1, footer h1, main h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    line-height: 1.15;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+  }
+  
+  /* ===== MOBILE CLS FIX: Reserve space for header ===== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248, 246, 243, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--ink);
+    min-height: 64px;
+    contain: layout style;
+  }
+  .hdr {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 32px;
+  }
+  .logo {
+    font: 700 24px / 1 'Caveat', cursive;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  
+  /* ===== MOBILE CLS FIX: Lock main content height ===== */
+  #main {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    contain: layout style;
+  }
+  
+  /* ===== CLS FIX: Availability badge EXACT dimensions ===== */
+  /* Prevents layout shift when badge renders */
+  .availability-badge {
+    display: inline-block;
+    height: 32px;
+    min-width: 248px;
+    padding: 6px 16px;
+    line-height: 20px;
+    contain: layout style size;
+  }
+  /* Container also needs fixed height */
+  .badge-container {
+    height: 40px;
+    margin-bottom: 8px;
+    contain: layout style;
+  }
+  
+  /* ===== CLS FIX: Highlights section reserved space ===== */
+  .highlights, #highlights {
+    min-height: 500px;
+    contain: layout style;
+    /* Defer rendering of below-fold content */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+  @media (max-width: 768px) {
+    .highlights, #highlights {
+      min-height: 800px; /* More space for stacked cards on mobile */
+      contain-intrinsic-size: auto 800px;
+    }
+  }
+  
+  /* ===== CLS FIX: Below-fold sections use content-visibility ===== */
+  .exp, #experience, .certificates, #certificates, .contact, #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
+  }
+  
+  /* ===== MOBILE CLS FIX: Hero section with aspect-ratio fallback ===== */
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+    min-height: 600px;
+    contain: layout style;
+    /* CLS FIX: Explicit grid columns prevent layout shift */
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
+    gap: 48px;
+    align-items: start;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+  .hero-media {
+    position: relative;
+  }
+  .hero-content {
+    min-width: 0;
+  }
+  /* CLS FIX: Sketch container reserved space */
+  .sketch {
+    min-height: 500px;
+    contain: layout style;
+    /* Prevent overflow */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  /* CLS FIX: Side-sketch reserved space */
+  .side-sketch {
+    min-height: 200px;
+    min-width: 300px;
+    contain: layout style;
+    /* Prevent overflow */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  @media (max-width: 960px) {
+    .hero {
+      padding: 40px 16px 40px;
+      min-height: auto;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      /* Ensure no overflow on mobile */
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    .side-sketch {
+      min-width: auto;
+      width: 100%;
+    }
+    .sketch {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+  @media (max-width: 640px) {
+    h1 {
+      font-size: clamp(22px, 6vw, 30px);
+      line-height: 1.15;
+    }
+    .hero {
+      padding: 28px 14px;
+    }
+    .sketch {
+      padding: 20px;
+    }
+    .hero-grid {
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .badge-container {
+      height: auto;
+    }
+    .availability-badge {
+      font-size: 11px !important;
+      padding: 5px 10px !important;
+      gap: 5px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      border-radius: 20px !important;
+      width: fit-content !important;
+      max-width: fit-content !important;
+      overflow: hidden !important;
+    }
+    .badge-text-full {
+      display: inline !important;
+    }
+    .badge-text-mobile {
+      display: none !important;
+    }
+    .availability-badge svg {
+      flex-shrink: 0 !important;
+      width: 13px !important;
+      height: 13px !important;
+    }
+    .badge-container {
+      display: inline-block !important;
+      width: fit-content !important;
+      margin-bottom: 12px !important;
+      overflow: visible !important;
+    }
+    .hero-grid {
+      overflow: visible !important;
+    }
+    .sketch {
+      overflow: visible !important;
+    }
+    .hero {
+      overflow: visible !important;
+    }
+    .role-badges {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+      justify-content: flex-start !important;
+    }
+    .role-badge {
+      font-size: 10px !important;
+      padding: 5px 9px !important;
+      flex: 0 0 auto !important;
+    }
+    /* Ensure first two badges stay on same row */
+    .role-badge:nth-child(1),
+    .role-badge:nth-child(2) {
+      max-width: calc(50% - 3px) !important;
+    }
+    .role-badge:nth-child(3) {
+      flex: 0 0 auto !important;
+    }
+  }
+  
+  /* ===== MOBILE CLS FIX: Menu toggle fixed dimensions ===== */
+  .menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--ink);
+    padding: 8px;
+    border-radius: 4px;
+    /* GPU composited transition */
+    transition: transform 0.2s ease;
+  }
+  .menu-toggle:active { transform: scale(0.95); }
+  @media (max-width: 960px) {
+    .menu-toggle { display: flex; align-items: center; justify-content: center; }
+  }
+  
+  /* ===== MOBILE CLS FIX: Nav menu with GPU transitions ===== */
+  .nav-menu {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+      flex-direction: column;
+      gap: 0;
+      padding: 16px 20px;
+      box-shadow: 0 4px 12px rgba(13, 27, 42, 0.1);
+      z-index: 99;
+      /* GPU composited animation */
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .nav-menu.open { 
+      display: flex; 
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* ===== MOBILE CLS FIX: Profile image with skeleton ===== */
+  .profile-img-container {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--accent);
+    /* Skeleton placeholder - solid background */
+    background: #e0e0e0;
+    position: relative;
+  }
+  /* GPU-COMPOSITED skeleton animation using transform */
+  .profile-img-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    /* GPU acceleration */
+    will-change: transform;
+  }
+  .profile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  /* GPU-COMPOSITED: Use transform instead of background-position */
+  @keyframes skeleton-pulse {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @media (max-width: 640px) {
+    .profile-img-container {
+      width: 96px;
+      height: 96px;
+      min-width: 96px;
+      min-height: 96px;
+    }
+  }
+  
+  /* ===== Role Badges ===== */
+  .role-badge {
+    padding: 6px 14px;
+    background: white;
+    border: 1.5px solid rgba(13, 27, 42, 0.2);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .role-badge:hover {
+    border-color: rgba(13, 27, 42, 0.45);
+    background: rgba(13, 27, 42, 0.03);
+  }
+  
+  /* ===== Footer Social Links ===== */
+  .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--link);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.18s ease, border-color 0.18s ease;
+  }
+  .footer-social-link:hover {
+    background: rgba(30, 64, 175, 0.07);
+    border-color: rgba(30, 64, 175, 0.2);
+  }
+  
+  /* ===== HUMAN-CRAFT OVERRIDES (always fresh) ===== */
+  /* Remove mechanical offset shadows from cards */
+  .card::before { display: none !important; }
+  .card { box-shadow: 0 1px 4px rgba(13,27,42,0.06), 0 3px 10px rgba(13,27,42,0.05) !important; border: 1.5px solid rgba(13,27,42,0.15) !important; }
+  .card:hover { transform: translateY(-3px) !important; box-shadow: 0 4px 16px rgba(13,27,42,0.1) !important; }
+  /* Remove orange offset drop shadow from side-sketch */
+  .side-sketch::after { display: none !important; }
+  .side-sketch { box-shadow: 0 2px 10px rgba(13,27,42,0.07) !important; border: 1.5px solid rgba(13,27,42,0.14) !important; }
+  /* Remove dashed mechanical underlines from section titles */
+  .sec-title::after { background: var(--accent) !important; opacity: 0.45 !important; height: 3px !important; border-radius: 2px !important; }
+  /* Soften highlights section gradient background */
+  .highlights { background: #f2ede8 !important; }
+  /* Remove gradient from experience tabs */
+  .tab { background: white !important; border-left-width: 3px !important; }
+  /* Remove shimmer from interest badges */
+  .interests-badge::before { display: none !important; }
+  .interests-badge:hover { transform: none !important; }
+  /* Soften tech tags */
+  .tech span { border-radius: 4px !important; background: rgba(30,64,175,0.06) !important; }
+  /* Remove 360deg icon rotation on badges */
+  .interests-badge:hover i { transform: none !important; }
+  /* Highlight card - clean look */
+  .highlight-card { text-align: left !important; box-shadow: 0 1px 4px rgba(13,27,42,0.06) !important; border: 1.5px solid rgba(13,27,42,0.12) !important; }
+  .highlight-card:hover { transform: translateY(-3px) !important; box-shadow: 0 6px 20px rgba(13,27,42,0.09) !important; }
+  .highlight-card::before { display: none !important; }
+  /* Certificate cards */
+  .cert-card { border: 1.5px solid rgba(13,27,42,0.12) !important; box-shadow: 0 1px 4px rgba(13,27,42,0.05) !important; }
+  .cert-card::before { display: none !important; }
+  /* Submit button - clean */
+  .submit::before { display: none !important; }
+
+  /* Hide loading spinner after load */
+  #loading.hide { display: none; }
+  .loading {
+    position: fixed;
+    inset: 0;
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--pencil);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  /* ===== FONT-DISPLAY: OPTIONAL for LCP + Fallback Metrics ===== */
+  /* System font stack that closely matches Inter metrics */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-synthesis: none;
+  }
+  
+  /* Inter fallback with size-adjust to match system fonts */
+  @font-face { 
+    font-family: 'Inter'; 
+    font-display: optional; /* Prevents CLS - uses fallback if font not cached */
+    src: local('Inter'), local('Inter-Regular');
+    /* Size-adjust matches Inter to system font metrics */
+    size-adjust: 100%;
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+  }
+  
+  /* Caveat for headings - swap is OK since it's decorative */
+  @font-face { 
+    font-family: 'Caveat'; 
+    font-display: swap;
+    src: local('Caveat'), local('Caveat-Regular');
+    size-adjust: 105%;
+    ascent-override: 95%;
+    descent-override: 30%;
+  }
+  
+  /* JetBrains Mono for code */
+  @font-face { 
+    font-family: 'JetBrains Mono'; 
+    font-display: optional;
+    src: local('JetBrains Mono'), local('JetBrainsMono-Regular');
+    size-adjust: 100%;
+  }
+  
+  /* FontAwesome - swap since icons need to show */
+  @font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-display: swap;
+    font-weight: 400 900;
+    src: local('Font Awesome 6 Free');
+  }
+  @font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-display: swap;
+    font-weight: 400;
+    src: local('Font Awesome 6 Brands');
+  }
+  
+  /* Reserve space for icons to prevent CLS */
+  .fa, .fas, .far, .fab {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+  }
+</style>
+
+<!-- Minified CSS bundle with version hash for cache busting -->
+<link rel="preload" href="style/styles.min.css?v=3.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="style/styles.min.css"></noscript>
+
+<!-- ========================================
+     LCP OPTIMIZATION: Preload hero image
+     ======================================== -->
+<link rel="preload" href="assetes/profile.jpg" as="image" type="image/jpeg" fetchpriority="high">
+
+<!-- ========================================
+     FONT OPTIMIZATION: Preload + Preconnect
+     ======================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Preload critical fonts for LCP optimization -->
+<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIWpYQ.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Google Fonts with display=swap - load only needed weights -->
+<!-- OPTIMIZED: Reduced from 200KB to ~60KB by limiting weights -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Caveat:wght@700&family=JetBrains+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Caveat:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
+
+<!-- FontAwesome - Load asynchronously after page is interactive -->
+<!-- Using media="print" trick for non-blocking load -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+<!-- FontAwesome font-display fix + icon placeholders -->
+<style>
+  /* Ensure FA uses swap to prevent FOIT */
+  @font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-display: swap;
+    src: local('Font Awesome 6 Free');
+  }
+  @font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-display: swap;
+    src: local('Font Awesome 6 Brands');
+  }
+  /* Reserve space for icons to prevent CLS */
+  .fa, .fas, .far, .fab {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+  }
+</style>
+
+<!-- ========================================
+     STRUCTURED DATA: JSON-LD
+     Markup for semantic understanding
+     ======================================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://samir-guenchi.netlify.app/#person",
+      "name": "Samir Guenchi",
+      "url": "https://samir-guenchi.netlify.app/",
+      "email": "mailto:guenchi.samir@ensia.edu.dz",
+      "image": "https://samir-guenchi.netlify.app/og-image.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/guenchi-samir",
+        "https://github.com/Samir-Guenchi",
+        "https://www.kaggle.com/guenchisamir",
+        "https://codeforces.com/profile/Guenchi_Samir_ia"
+      ],
+      "jobTitle": "AI Engineering Student & Researcher",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "ENSIA (National Higher School of Artificial Intelligence)",
+        "url": "https://www.ensia.edu.dz/"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "ENSIA"
+      },
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Natural Language Processing",
+        "Machine Learning",
+        "Arabic NLP",
+        "RAG Systems",
+        "Retrieval Augmented Generation",
+        "Python",
+        "Competitive Programming",
+        "Full-Stack Development"
+      ],
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "Deep Learning",
+        "NLP",
+        "JavaScript",
+        "React",
+        "SQL",
+        "Git"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Maghnia",
+        "addressRegion": "Tlemcen",
+        "addressCountry": "DZ"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://samir-guenchi.netlify.app/#website",
+      "url": "https://samir-guenchi.netlify.app/",
+      "name": "Samir Guenchi Portfolio",
+      "description": "AI Engineering student at ENSIA specializing in Arabic NLP and RAG systems",
+      "creator": {
+        "@id": "https://samir-guenchi.netlify.app/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://samir-guenchi.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Highlights",
+          "item": "https://samir-guenchi.netlify.app/#highlights"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Experience",
+          "item": "https://samir-guenchi.netlify.app/#experience"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Certificates",
+          "item": "https://samir-guenchi.netlify.app/#certificates"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Contact",
+          "item": "https://samir-guenchi.netlify.app/#contact"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     MOBILE RESPONSIVENESS FIXES
+     1. Disable desktop-only animations on mobile
+     2. Fix card/bubble border-radius on all screen sizes
+     3. Fix terminal input layout on mobile
+     4. Animated hamburger menu (smooth slide + morph icon)
+     5. Fix contact form layout on mobile
+     ============================================================ -->
+<style>
+  /* =========================================================
+     FIX 1: DISABLE ANIMATIONS ON MOBILE (< 960px)
+     Desktop animations (fadeInLeft, fadeInRight, floatGPU,
+     slideInLeft) cause jank and layout issues on phones.
+     We override them to simple fadeInUp or none.
+     ========================================================= */
+  @media (max-width: 960px) {
+    /* Hero sketch: was fadeInLeft — disable on mobile */
+    .sketch {
+      animation: fadeInUp 0.5s ease forwards !important;
+    }
+    /* Side sketch: was fadeInRight — disable on mobile */
+    .side-sketch {
+      animation: fadeInUp 0.5s ease forwards !important;
+    }
+    /* Experience tabs: was slideInLeft — simple fade on mobile */
+    .tab {
+      animation: fadeInUp 0.4s ease forwards !important;
+    }
+    /* Floating project cards: remove float animation on mobile */
+    .project-card-wrapper {
+      animation: none !important;
+      will-change: auto !important;
+    }
+    /* Footer sections: stagger fade */
+    .footer-section {
+      animation: fadeInUp 0.5s ease forwards !important;
+    }
+  }
+
+  /* =========================================================
+     FIX 2: CARD / BUBBLE BORDER-RADIUS ON MOBILE
+     Ensure all card-like elements stay properly rounded on
+     every screen size — no flat/square corners on phones.
+     ========================================================= */
+  @media (max-width: 640px) {
+    /* Project cards */
+    .card {
+      border-radius: 12px !important;
+    }
+    /* Certificate cards */
+    .cert-card {
+      border-radius: 12px !important;
+    }
+    /* Hero sketch container */
+    .sketch {
+      border-radius: 12px !important;
+    }
+    /* Side sketch / "What I'm Working On" panel */
+    .side-sketch {
+      border-radius: 12px !important;
+    }
+    /* Experience timeline tabs */
+    .tab {
+      border-radius: 0 12px 12px 0 !important;
+    }
+    /* Contact note card */
+    .note {
+      border-radius: 12px !important;
+    }
+    /* Contact form */
+    .form {
+      border-radius: 12px !important;
+    }
+    /* Glossary cards */
+    .glossary-card {
+      border-radius: 12px !important;
+    }
+    /* Project articles in highlights section */
+    article {
+      border-radius: 12px !important;
+    }
+    /* Inline article cards with style attribute */
+    article[style*="border-radius"] {
+      border-radius: 12px !important;
+    }
+    /* Role badges */
+    .role-badge {
+      border-radius: 20px !important;
+    }
+    /* Availability badge */
+    .availability-badge {
+      border-radius: 20px !important;
+    }
+    /* Interest badges */
+    .interests-badge {
+      border-radius: 8px !important;
+    }
+    /* Tech tags */
+    .tag {
+      border-radius: 6px !important;
+    }
+    /* Filter buttons */
+    .filter-btn {
+      border-radius: 9999px !important;
+    }
+    /* CTA buttons */
+    .cta-btn {
+      border-radius: 6px !important;
+    }
+    /* Submit button */
+    .submit {
+      border-radius: 8px !important;
+    }
+    /* Terminal */
+    .terminal {
+      border-radius: 12px 12px 0 0 !important;
+    }
+    /* Social links */
+    .social {
+      border-radius: 8px !important;
+    }
+    /* Footer social links */
+    .footer-social-link {
+      border-radius: 8px !important;
+    }
+  }
+
+  /* =========================================================
+     FIX 3: TERMINAL / "ASK ME ANYTHING" INPUT ON MOBILE
+     The prompt text + $ sign + input must all stay on one
+     horizontal line without the prompt wrapping or being cut.
+     ========================================================= */
+  @media (max-width: 640px) {
+    /* Terminal panel: slide up from bottom on mobile */
+    .terminal {
+      bottom: 0 !important;
+      right: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      height: 70vh !important;
+      border-radius: 20px 20px 0 0 !important;
+      border-left: none !important;
+      border-right: none !important;
+      border-bottom: none !important;
+    }
+
+    /* Input wrap: make it a proper flex row that never wraps */
+    .term-input-wrap {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      flex-wrap: nowrap !important;
+      gap: 6px !important;
+      padding: 10px 12px !important;
+      overflow: hidden !important;
+    }
+
+    /* Prompt text: shrink to fit, never wrap */
+    .term-input-wrap .term-prompt {
+      font-size: 11px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 140px !important;
+    }
+
+    /* $ separator: never shrink */
+    .term-input-wrap .term-separator {
+      flex-shrink: 0 !important;
+      font-size: 12px !important;
+    }
+
+    /* Input: take remaining space */
+    .term-input {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      font-size: 13px !important;
+    }
+
+    /* Toggle button: position above the sheet on mobile */
+    .term-toggle {
+      bottom: 16px !important;
+      right: 16px !important;
+      width: 52px !important;
+      height: 52px !important;
+      font-size: 18px !important;
+    }
+  }
+
+  /* =========================================================
+     FIX 4: MOBILE NAV MENU — SMOOTH ANIMATED SLIDE-DOWN
+     The original implementation toggles display:none/flex which
+     prevents CSS transitions from firing. We replace it with
+     a max-height + opacity + transform transition approach.
+     ========================================================= */
+  @media (max-width: 960px) {
+    /* Base state: menu is "hidden" but using visibility + max-height
+       so transitions can animate properly */
+    .nav-menu {
+      display: flex !important;          /* always flex so transitions work */
+      position: absolute !important;
+      top: calc(100% + 2px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: var(--paper) !important;
+      border-bottom: 2px solid var(--ink) !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      padding: 0 20px !important;        /* no padding when closed */
+      box-shadow: 0 8px 24px rgba(13, 27, 42, 0.15) !important;
+      z-index: 99 !important;
+      /* Hidden state */
+      max-height: 0 !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      transform: translateY(-8px) !important;
+      pointer-events: none !important;
+      /* Smooth animation */
+      transition:
+        max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s ease !important;
+      visibility: visible !important;
+    }
+
+    /* Open state: animate in */
+    .nav-menu.open {
+      max-height: 480px !important;     /* tall enough for all links */
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+      padding: 8px 20px 16px !important;
+    }
+
+    /* Individual nav links inside the mobile menu */
+    .nav-menu a {
+      padding: 14px 12px !important;
+      border-bottom: 1px solid rgba(13, 27, 42, 0.08) !important;
+      font-size: 15px !important;
+      font-weight: 500 !important;
+      display: block !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      color: var(--ink) !important;
+      text-decoration: none !important;
+      border-radius: 8px !important;
+      transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:active {
+      background-color: rgba(194, 65, 12, 0.08) !important;
+      color: var(--accent) !important;
+      padding-left: 18px !important;
+      border-bottom-color: transparent !important;
+    }
+
+    /* CV button inside mobile menu — make it stand out */
+    .nav-menu .cv-btn {
+      margin-top: 8px !important;
+      border-radius: 6px !important;
+      width: 100% !important;
+      justify-content: center !important;
+      font-size: 14px !important;
+    }
+  }
+
+  /* =========================================================
+     FIX 4b: ANIMATED HAMBURGER ICON
+     Beautiful 3-bar → X morphing animation
+     ========================================================= */
+  .menu-toggle {
+    position: relative !important;
+    overflow: visible !important;
+    background: none !important;
+    border: 2px solid transparent !important;
+    border-radius: 8px !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus {
+    border-color: rgba(194, 65, 12, 0.3) !important;
+    background: rgba(194, 65, 12, 0.05) !important;
+    outline: none !important;
+  }
+
+  /* Hamburger icon container */
+  .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    position: relative;
+    pointer-events: none;
+  }
+
+  /* Each bar */
+  .hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease,
+      background-color 0.2s ease;
+    transform-origin: center center;
+    position: absolute;
+    left: 0;
+  }
+
+  /* Default positions: top, center, bottom */
+  .hamburger-bar:nth-child(1) { top: 2px; }
+  .hamburger-bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .hamburger-bar:nth-child(3) { bottom: 2px; }
+
+  /* When nav is open: morph bars into X */
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    background: var(--accent);
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    background: var(--accent);
+  }
+
+
+  /* =========================================================
+     FIX 5: CONTACT FORM FULL-WIDTH ON MOBILE
+     The form must not overflow and all inputs should be
+     comfortable to tap.
+     ========================================================= */
+  @media (max-width: 960px) {
+    .contact {
+      padding: 60px 16px !important;
+    }
+    .contact-grid {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    .form {
+      padding: 24px 20px !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .note {
+      padding: 24px 20px !important;
+      max-width: 100% !important;
+    }
+    input, textarea {
+      font-size: 16px !important; /* prevents iOS zoom on focus */
+    }
+    .submit {
+      padding: 16px !important;
+      font-size: 16px !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form {
+      padding: 20px 16px !important;
+    }
+    .note {
+      padding: 20px 16px !important;
+    }
+    /* Make the "Ask Me Anything" link button fully rounded */
+    a[href="#contact"][style*="border-radius"] {
+      border-radius: 12px !important;
+    }
+    /* Socials grid: 2 per row max on small mobile */
+    .socials {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+    }
+    .social {
+      justify-content: center !important;
+      border-radius: 10px !important;
+      padding: 10px 8px !important;
+      font-size: 12px !important;
+    }
+    /* CTA group in contact section */
+    .cta-group {
+      margin-top: 20px !important;
+    }
+    .cta-group .cta-btn {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 14px 20px !important;
+      border-radius: 8px !important;
+    }
+  }
+
+  /* =========================================================
+     BONUS: Highlights section — project cards on mobile
+     Ensure they are nicely rounded and don't overflow
+     ========================================================= */
+  @media (max-width: 640px) {
+    .highlights-container {
+      padding: 0 4px !important;
+    }
+    /* Fix inline-styled project articles */
+    .highlights article,
+    .highlights [style*="border-radius: 12px"] {
+      border-radius: 12px !important;
+      overflow: hidden !important;
+    }
+    /* Other projects grid */
+    [style*="grid-template-columns: repeat(auto-fit, minmax(280px"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* Badge container — always shrink to content width */
+  .badge-container {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    align-self: flex-start !important;
+  }
+  .availability-badge {
+    width: auto !important;
+    max-width: max-content !important;
+  }
+
+  /* =========================================================
+     FIX 6: REMOVE EMOJI & ARROWS FROM "WHAT I'M WORKING ON"
+     The CSS adds a 🎯 emoji corner and → arrows to list items.
+     Both are unprofessional — suppress them.
+     ========================================================= */
+  .side-sketch::before {
+    display: none !important;
+    content: '' !important;
+  }
+  .side-sketch li::before {
+    display: none !important;
+    content: '' !important;
+  }
+  /* Remove padding-left that was reserved for the → arrow */
+  .side-sketch li {
+    padding-left: 0 !important;
+  }
+  /* Clean up the side-sketch card itself */
+  .side-sketch {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    border: 1.5px solid rgba(13, 27, 42, 0.12) !important;
+  }
+  .side-sketch h2 {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    margin-bottom: 16px !important;
+    color: var(--ink) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* =========================================================
+     FIX 7: TOUCH / HOVER STICKING FIX
+     On touch devices (phones/tablets), :hover states stay
+     "stuck" after lifting the finger. We disable hover styles
+     for non-hoverable devices and use :active instead.
+     ========================================================= */
+
+  /* Only apply hover animations on devices that support true hover */
+  @media (hover: none) {
+    /* Nav menu links — remove sticky highlight */
+    .nav-menu a:hover {
+      background-color: transparent !important;
+      color: var(--ink) !important;
+      padding-left: 12px !important;
+    }
+    /* Active state for nav links (finger-down feedback) */
+    .nav-menu a:active {
+      background-color: rgba(194, 65, 12, 0.1) !important;
+      color: var(--accent) !important;
+    }
+
+    /* Primary CTA button — no sticky hover */
+    .cta-primary:hover {
+      transform: none !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+      color: var(--btn-text) !important;
+    }
+    /* Finger-down feedback */
+    .cta-primary:active {
+      transform: translate(1px, 1px) !important;
+      box-shadow: 1px 1px 0 var(--ink) !important;
+    }
+
+    /* Secondary CTA buttons (GitHub, Download CV) — no fill-on-hover */
+    .cta-secondary:hover {
+      color: var(--ink) !important;
+    }
+    .cta-secondary:hover::before {
+      transform: scaleX(0) !important;
+    }
+    /* Finger-down: subtle background flash */
+    .cta-secondary:active {
+      background: rgba(13, 27, 42, 0.06) !important;
+      transform: scale(0.98) !important;
+    }
+
+    /* CV button in nav */
+    .cv-btn:hover {
+      transform: none !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+      color: var(--btn-text) !important;
+    }
+    .cv-btn:active {
+      transform: translate(1px, 1px) !important;
+      box-shadow: 1px 1px 0 var(--ink) !important;
+    }
+
+    /* Glossary / project cards — no translateY on hover */
+    .glossary-card:hover,
+    article:hover {
+      transform: none !important;
+      box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06) !important;
+    }
+
+    /* Timeline tabs — no translateX on hover */
+    .tab:hover,
+    .tab:focus-within {
+      transform: none !important;
+    }
+
+    /* Contact info items */
+    .contact-info-item:hover {
+      transform: none !important;
+      background: rgba(61, 90, 128, 0.03) !important;
+      border-color: transparent !important;
+    }
+    .contact-info-item:active {
+      background: rgba(194, 65, 12, 0.08) !important;
+      transform: translateX(4px) !important;
+    }
+
+    /* Social links */
+    .social:hover {
+      transform: none !important;
+      border-color: transparent !important;
+      color: var(--ink) !important;
+    }
+    .social:hover::before {
+      transform: translateX(-100%) !important;
+    }
+    .social:active {
+      border-color: var(--accent) !important;
+      color: var(--accent) !important;
+    }
+
+    /* Footer social links */
+    .footer-social-link:hover {
+      transform: none !important;
+      color: var(--paper) !important;
+    }
+    .footer-social-link:hover::before {
+      transform: translateX(-100%) !important;
+    }
+    .footer-social-link:active {
+      color: white !important;
+      border-color: var(--accent) !important;
+    }
+    .footer-social-link:active::before {
+      transform: translateX(0) !important;
+    }
+
+    /* Remove note card lift on hover */
+    .note:hover {
+      transform: none !important;
+      border-color: var(--ink) !important;
+    }
+    .note:hover h3 {
+      color: var(--ink) !important;
+    }
+
+    /* Remove form lift on hover */
+    .form:hover {
+      transform: none !important;
+    }
+  }
+
+  /* =========================================================
+     BONUS 2: Smooth pulse on "CURRENT" badge (desktop only)
+     ========================================================= */
+  @media (min-width: 961px) {
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(194, 65, 12, 0); }
+    }
+    span[style*="CURRENT"] {
+      animation: badgePulse 2s ease-in-out infinite !important;
+    }
+  }
+</style>
+
+</head>
+<body>
+<!-- ========================================
+     LOADING SCREEN
+     Initial page load indicator
+     ======================================== -->
+<div class="loading" id="loading" aria-live="polite" aria-label="Page loading">
+  <div class="spinner" role="status" aria-label="Loading content"></div>
+</div>
+
+<!-- ========================================
+     ACCESSIBILITY FEATURE
+     Keyboard navigation shortcut
+     ======================================== -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ========================================
+     HEADER & NAVIGATION
+     Site branding and primary navigation
+     ======================================== -->
+<header role="banner" aria-label="Site header">
+  <div class="hdr">
+    <a class="logo" href="#top" aria-label="Samir Guenchi Home">Samir Guenchi</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+      <span class="hamburger-icon" aria-hidden="true">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </span>
+    </button>
+    <nav id="mainNav" role="navigation" aria-label="Main navigation" class="nav-menu">
+      <a href="#top" class="nav-link">Home</a>
+      <a href="#highlights" class="nav-link">Projects</a>
+      <a href="#glossary" class="nav-link">Tech Guide</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#certificates" class="nav-link">Certificates</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a class="cv-btn" href="https://drive.google.com/file/d/136AQPxzA8IrhQfJhfTLrgamWGWesPhnj/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Download CV - opens in new window">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+        Download CV
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========================================
+     MAIN CONTENT AREA
+     All primary page content
+     ======================================== -->
+<main id="main" role="main">
+
+  <section class="hero" id="top">
+  <div class="sketch">
+    <!-- Modern Split Layout -->
+    <div class="hero-grid">
+      
+      <!-- Left: Profile Picture with decorative element -->
+      <div class="hero-media">
+        <div class="profile-img-container" style="box-shadow: 0 8px 24px rgba(194, 65, 12, 0.3); position: relative; z-index: 2;">
+          <!-- Professional profile image -->
+          <img 
+            src="assetes/profile.jpg" 
+            alt="Samir Guenchi - AI Systems Engineer"
+            width="140"
+            height="140"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
+        </div>
+        <!-- Decorative circle -->
+        <div style="position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border: 3px dashed var(--highlight); border-radius: 50%; z-index: 1;" aria-hidden="true"></div>
+      </div>
+      
+      <!-- Right: Main Content -->
+      <div class="hero-content">
+        <!-- CLS FIX: Badge container with exact dimensions -->
+        <div class="badge-container" style="margin-bottom: 12px; display: table; align-self: flex-start;">
+          <span class="availability-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; background: rgba(194,65,12,0.07); border: 1.5px solid rgba(194,65,12,0.25); border-radius: 9999px; font-size: 13px; font-weight: 600; color: #9a3412; white-space: nowrap; box-shadow: 0 2px 8px rgba(194,65,12,0.08);">
+            <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 10px; height: 10px; flex-shrink: 0;">
+              <span style="position: absolute; width: 10px; height: 10px; background: var(--accent, #e07a5f); border-radius: 50%; animation: availPulse 2s ease-in-out infinite;"></span>
+              <span style="width: 6px; height: 6px; background: #c2410c; border-radius: 50%; position: relative; z-index: 1;"></span>
+            </span>
+            Available for opportunities
+          </span>
+        </div>
+        <style>
+          @keyframes availPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.7); }
+          }
+        </style>
+        
+
+        <!-- Main Heading - Left aligned, modern -->
+        <h1 style="margin-bottom: 12px; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word;">
+          <span class="hi">Hey, I'm Samir</span><br>
+          <span style="background: linear-gradient(135deg, var(--ink), var(--pencil)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; max-width: 100%;">Fifth-Year AI & Data Science<br>Engineering Student @ ENSIA</span>
+        </h1>
+        
+        <!-- Role badges -->
+        <div class="role-badges" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+          <span class="role-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6m-5.196-15.804 4.243 4.243m4.243 4.243 4.242 4.242M1 12h6m6 0h6M2.929 6.929l4.242 4.242m4.243 4.243 4.242 4.242"/>
+            </svg>
+            NLP Research
+          </span>
+          <span class="role-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            Computer Vision
+          </span>
+          <span class="role-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+            Scalable AI Infrastructure
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bio Section - Modern card style -->
+    <div style="position: relative; padding: 24px; background: rgba(13, 27, 42, 0.02); border-radius: 8px; margin-bottom: 28px; border: 1px solid rgba(13, 27, 42, 0.09);">
+      <!-- Quote mark decoration -->
+      <div style="position: absolute; top: 16px; left: 16px; font-size: 48px; color: var(--highlight); opacity: 0.3; font-family: Georgia, serif; line-height: 1;">"</div>
+      
+      <p style="margin: 0; padding-left: 32px; color: var(--ink); line-height: 1.75; font-size: 16px;">
+        Fifth-year AI & Data Science Engineering student at <strong style="color: var(--accent); font-weight: 700;">ENSIA</strong> (National Higher School of Artificial Intelligence). 
+        Building intelligent systems in Natural Language Processing, Computer Vision, and Scalable AI Infrastructure. 
+        Experience in production RAG systems, distributed optimization, and end-to-end ML pipelines.
+        <span style="display: block; margin-top: 12px; font-style: italic; color: var(--pencil);">
+          Open to research collaborations, internships, and challenging projects in AI/ML.
+        </span>
+      </p>
+    </div>
+    
+    <!-- Expertise Tags - Modern grid layout -->
+    <div style="margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="height: 2px; width: 40px; background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        <span style="font-size: 13px; font-weight: 700; color: var(--pencil); text-transform: uppercase; letter-spacing: 1.5px;">Core Expertise</span>
+      </div>
+      <div class="tags" style="gap: 10px;">
+        <span class="tag">Natural Language Processing</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Scalable AI Infrastructure</span>
+        <span class="tag">ML Systems Design</span>
+      </div>
+    </div>
+    
+    <!-- CTA Buttons - Enhanced styling -->
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="#contact" class="cta-btn cta-primary" style="flex: 1; min-width: 180px; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        Schedule a Call
+      </a>
+      <a href="https://github.com/Samir-Guenchi" class="cta-btn cta-secondary" style="flex: 1; min-width: 160px; justify-content: center;" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <a href="https://drive.google.com/file/d/136AQPxzA8IrhQfJhfTLrgamWGWesPhnj/view?usp=sharing" class="cta-btn cta-secondary" style="flex: 1; min-width: 160px; justify-content: center;" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+
+  <aside class="side-sketch" aria-labelledby="current-interests" style="border: 1.5px solid rgba(13,27,42,0.1); border-radius: 12px; padding: 24px; background: white; font-family: 'Inter', sans-serif; position: relative; box-shadow: 0 4px 16px rgba(13,27,42,0.06);">
+    <!-- Section label -->
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+      <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--highlight)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
+      <h2 id="current-interests" style="font: 700 16px/1.2 'Inter', sans-serif; color: var(--ink); margin: 0;">What I'm Working On</h2>
+    </div>
+    <p style="margin: 0 0 18px 0; color: var(--pencil); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Active in 2025</p>
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+
+      <!-- Item 1 -->
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 8px; transition: background 0.2s ease;" class="work-item">
+        <div style="width: 36px; height: 36px; background: rgba(194, 65, 12, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 3px;">Arabic Semantic Search</strong>
+          <span style="font-size: 12px; color: var(--pencil); line-height: 1.5;">Building smarter search for Arabic content</span>
+          <div style="margin-top: 6px;">
+            <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; background: rgba(194,65,12,0.1); color: var(--accent); border-radius: 4px; letter-spacing: 0.5px;">NLP · Research</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 8px;" class="work-item">
+        <div style="width: 36px; height: 36px; background: rgba(4, 120, 87, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/><path d="M20 14h2"/>
+            <path d="M15 13v2"/><path d="M9 13v2"/>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 3px;">RAG Hallucination Detection</strong>
+          <span style="font-size: 12px; color: var(--pencil); line-height: 1.5;">Making AI responses more reliable</span>
+          <div style="margin-top: 6px;">
+            <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; background: rgba(4,120,87,0.1); color: var(--success); border-radius: 4px; letter-spacing: 0.5px;">AI Safety · RAG</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 8px;" class="work-item">
+        <div style="width: 36px; height: 36px; background: rgba(30, 64, 175, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+            <path d="M4 22h16"/>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 3px;">IOI 2026 Coaching</strong>
+          <span style="font-size: 12px; color: var(--pencil); line-height: 1.5;">Training students for international competitions</span>
+          <div style="margin-top: 6px;">
+            <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; background: rgba(30,64,175,0.1); color: var(--link); border-radius: 4px; letter-spacing: 0.5px;">Teaching · Algorithms</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 8px;" class="work-item">
+        <div style="width: 36px; height: 36px; background: rgba(180, 83, 9, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 0;">
+          <strong style="display: block; color: var(--ink); font-size: 14px; font-weight: 600; margin-bottom: 3px;">Open to Collaborations</strong>
+          <span style="font-size: 12px; color: var(--pencil); line-height: 1.5;">Research, internships, or interesting projects</span>
+          <div style="margin-top: 6px;">
+            <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; background: rgba(180,83,9,0.1); color: var(--highlight); border-radius: 4px; letter-spacing: 0.5px;">Internships · Research</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Status footer -->
+    <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(13,27,42,0.08); display: flex; align-items: center; gap: 8px;">
+      <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 2px rgba(34,197,94,0.25); flex-shrink: 0;"></span>
+      <span style="font-size: 12px; color: var(--pencil); font-weight: 500;">Available for opportunities</span>
+    </div>
+
+    <style>
+      .work-item:hover { background: rgba(13,27,42,0.03); }
+      @media (hover: none) { .work-item:hover { background: transparent; } .work-item:active { background: rgba(13,27,42,0.04); } }
+    </style>
+  </aside>
+</section>
+<section class="highlights" id="highlights">
+  <div class="highlights-container">
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 60px;">
+      <p style="font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 12px;">
+        Featured Work
+      </p>
+      <h2 style="font: 700 clamp(28px, 5vw, 44px)/1.1 'Caveat', cursive; color: var(--ink); margin-bottom: 16px;">
+        Projects That Solved Real Problems
+      </h2>
+      <p style="font-size: 15px; color: var(--pencil); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        Real-world projects where I tackled technical challenges and delivered measurable results.
+      </p>
+    </div>
+
+    <!-- Professional Project Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 60px;">
+      
+      <!-- Project 1: Ministry Q&A -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(194, 65, 12, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Ministry Q&A System</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Built an AI-powered Q&A system for Arabic government regulations. Helps citizens find answers quickly using NLP.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Python</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Arabic NLP</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">RAG</span>
+          </div>
+          <div style="padding: 12px; background: rgba(224, 122, 95, 0.05); border-left: 3px solid var(--accent); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--accent); margin: 0; font-weight: 500;">
+              "Speed matters more than perfection"
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Network Redesign -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(4, 120, 87, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1"></circle>
+              <path d="M12 1v6m0 6v6"></path>
+              <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
+              <path d="M1 12h6m6 0h6"></path>
+              <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Enterprise Network Redesign</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Redesigned company network from bus to star topology. Reduced latency by 40% and improved reliability.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Networking</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Automation</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">n8n</span>
+          </div>
+          <div style="padding: 12px; background: rgba(129, 178, 154, 0.05); border-left: 3px solid var(--success); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--success); margin: 0; font-weight: 500;">
+              "Find and remove bottlenecks"
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: QR Scanner -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(30, 64, 175, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"></path>
+              <circle cx="12" cy="16" r="1"></circle>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Secure QR Scanner</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Flutter mobile app that detects malicious QR codes before they cause harm. Simple security for everyone.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Flutter</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Security</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Mobile</span>
+          </div>
+          <div style="padding: 12px; background: rgba(61, 90, 128, 0.05); border-left: 3px solid var(--link); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--link); margin: 0; font-weight: 500;">
+              "Simple solutions are often the best"
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <style>
+      article:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 14px rgba(13, 27, 42, 0.09) !important;
+      }
+    </style>
+
+    <!-- More Projects Section -->
+    <div style="margin-top: 80px; padding-top: 60px; border-top: 2px solid rgba(75, 85, 99, 0.1);">
+      <h3 style="font: 700 22px/1.2 'Caveat', cursive; color: var(--ink); text-align: center; margin-bottom: 40px;">Other Projects</h3>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <!-- Project 1 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Hospital Management System</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">MERN stack with role-based access control, patient records, and real-time notifications.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 600;">React</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 600;">Node.js</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 600;">MongoDB</span>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Liver Disorder Analysis</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">ML pipeline with ensemble methods achieving 95% accuracy on BUPA dataset analysis.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 12px; font-size: 11px; font-weight: 600;">Python</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 12px; font-size: 11px; font-weight: 600;">Scikit-learn</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 12px; font-size: 11px; font-weight: 600;">XGBoost</span>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--link); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Algorithm Visualizer</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Interactive visualization of A*, BFS, DFS. Used by 20+ students in competitive programming.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 12px; font-size: 11px; font-weight: 600;">Python</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 12px; font-size: 11px; font-weight: 600;">Pygame</span>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Healthcare Companion</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Cross-platform app with medication reminders and appointment management. 40% adherence improvement.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 600;">Flutter</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 600;">Firebase</span>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Marketing Campaign Predictor</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Data analysis of 10K+ customer records. Improved ROI by 25% through predictive modeling.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 12px; font-size: 11px; font-weight: 600;">Python</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 12px; font-size: 11px; font-weight: 600;">Pandas</span>
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--link); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08);">
+          <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0 0 8px 0;">Blockchain Lab</h4>
+          <p style="font-size: 12px; color: var(--pencil); line-height: 1.5; margin-bottom: 12px;">Proof-of-work consensus implementation with 5+ smart contracts deployed on testnet.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 12px; font-size: 11px; font-weight: 600;">Solidity</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 12px; font-size: 11px; font-weight: 600;">Web3.js</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Glossary Section for Beginners -->
+<section class="glossary" id="glossary" style="background: #f7f5f2; padding: 60px 20px; margin: 60px 0;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 48px;">
+      <p style="font-size: 11px; color: var(--link); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 12px;">
+        For Everyone
+      </p>
+      <h2 style="font: 700 clamp(28px, 5vw, 40px)/1.1 'Caveat', cursive; color: var(--ink); margin-bottom: 12px;">
+        Tech Terms Explained Simply
+      </h2>
+      <p style="font-size: 15px; color: var(--pencil); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        New to tech? Here's what these terms mean in plain English.
+      </p>
+    </div>
+
+    <!-- Glossary Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      
+      <!-- AI/ML -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(224, 122, 95, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8V4H8"/>
+              <rect width="16" height="12" x="4" y="8" rx="2"/>
+              <path d="M2 14h2"/>
+              <path d="M20 14h2"/>
+              <path d="M15 13v2"/>
+              <path d="M9 13v2"/>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">AI & Machine Learning</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Teaching computers to learn from data and make decisions, like how you learn from experience. Think: Netflix recommendations or voice assistants.
+        </p>
+      </div>
+
+      <!-- RAG -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(129, 178, 154, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">RAG Systems</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          <strong>Retrieval-Augmented Generation:</strong> AI that searches for relevant information before answering, making responses more accurate and reliable.
+        </p>
+      </div>
+
+      <!-- NLP -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--link); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(61, 90, 128, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">NLP (Natural Language Processing)</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Teaching computers to understand and work with human language. Examples: translation apps, chatbots, or text summarization.
+        </p>
+      </div>
+
+      <!-- Backend -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--highlight); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(180, 83, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Backend Development</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          The "behind-the-scenes" part of websites and apps. It handles data storage, security, and business logic that users don't see.
+        </p>
+      </div>
+
+      <!-- Full-Stack -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(224, 122, 95, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Full-Stack Development</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Building both the visible part (frontend) and behind-the-scenes (backend) of websites and apps. A full-stack developer does it all.
+        </p>
+      </div>
+
+      <!-- Competitive Programming -->
+      <div class="glossary-card" style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; background: rgba(129, 178, 154, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+              <path d="M4 22h16"/>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+            </svg>
+          </div>
+          <h3 style="font: 700 16px Inter; color: var(--ink); margin: 0;">Competitive Programming</h3>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin: 0;">
+          Solving coding challenges under time pressure. Like a sport for programmers, testing problem-solving skills and algorithm knowledge.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Call to Action -->
+    <div style="text-align: center; margin-top: 40px; padding: 24px; background: rgba(224, 122, 95, 0.1); border-radius: 12px; border: 2px dashed var(--accent);">
+      <p style="font-size: 15px; color: var(--ink); margin: 0 0 16px 0; font-weight: 600;">
+        Still confused about something? I'm happy to explain!
+      </p>
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: transform 0.3s ease; box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Ask Me Anything
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .glossary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(13, 27, 42, 0.15) !important;
+  }
+  
+  @media (max-width: 640px) {
+    .glossary {
+      padding: 40px 16px !important;
+      margin: 40px 0 !important;
+    }
+    
+    .glossary-card {
+      padding: 16px !important;
+    }
+    
+    .glossary h2 {
+      font-size: clamp(24px, 6vw, 32px) !important;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+<section class="exp" id="experience" aria-labelledby="exp-title">
+  <div class="timeline">
+    <h2 class="sec-title" id="exp-title">Professional Experience</h2>
+    <p class="sec-sub">Progression of work, from current roles to earlier positions</p>
+
+    <!-- CURRENT / MOST IMPORTANT -->
+    <div style="margin-bottom: 60px;">
+      <h3 style="font: 700 14px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Current & Featured</h3>
+
+      <!-- Software Engineering Intern at Algérie Poste (Current) -->
+      <article class="tab" style="border-left: 3px solid rgba(194, 65, 12, 0.5);" itemscope itemtype="https://schema.org/WorkExperience">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+          <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Software Engineering Intern</h3>
+          <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">CURRENT</span>
+        </div>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--accent);">Algérie Poste</span> • 
+          <time datetime="2025-01" itemprop="datePublished">Jan 2025–Present</time> •
+          <span itemprop="location">Algiers, Algeria</span>
+        </div>
+        <ul aria-label="Key responsibilities">
+          <li>Developing secure e-commerce platform using Rust and Lynx framework for high-performance web services</li>
+          <li>Implementing secure payment gateways and advanced user authentication systems</li>
+          <li>Optimizing backend architecture for scalability, security, and performance at enterprise scale</li>
+        </ul>
+      </article>
+
+      <!-- Network Optimization Intern at ENOF (Significant Achievement) -->
+      <article class="tab" style="border-left: 3px solid rgba(4, 120, 87, 0.45);" itemscope itemtype="https://schema.org/WorkExperience">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+          <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Automation & Network Optimization Intern</h3>
+          <span style="font-size: 11px; background: rgba(129, 178, 154, 0.2); color: var(--success); padding: 4px 10px; border-radius: 12px; font-weight: 700;">IMPACT</span>
+        </div>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--success);">ENOF SPA</span> •
+          <time datetime="2025-06" itemprop="datePublished">Summer 2025</time> •
+          <span itemprop="location">Maghnia, Algeria</span>
+        </div>
+        <ul aria-label="Key achievements">
+          <li>Redesigned network topology from bus to star architecture, improving reliability and reducing latency by 40%</li>
+          <li>Automated workflow processes using n8n, eliminating 60% of manual tasks and freeing up team capacity</li>
+          <li>Implemented comprehensive monitoring solutions for real-time network performance tracking and alerting</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- PROFESSIONAL ROLES -->
+    <div style="margin-bottom: 60px;">
+      <h3 style="font: 700 14px Inter; color: var(--link); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Professional Roles</h3>
+
+      <!-- Full-Stack Developer Intern -->
+      <article class="tab" style="border-left: 4px solid var(--link);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Full-Stack Developer Intern</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--link);">HR Technology</span> •
+          <time datetime="2023-06" itemprop="datePublished">Summer 2023</time> •
+          <span itemprop="location">Algiers, Algeria</span>
+        </div>
+        <ul aria-label="Development work">
+          <li>Built project tracking web application using React and Laravel with real-time updates</li>
+          <li>Designed RESTful APIs and optimized MySQL database queries for improved performance</li>
+          <li>Implemented responsive UI/UX following modern design principles and accessibility standards</li>
+        </ul>
+      </article>
+
+      <!-- Freelance Mobile Developer -->
+      <article class="tab" style="border-left: 4px solid var(--link);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Freelance Mobile Developer</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--link);">Self-Employed</span> •
+          <time datetime="2023" itemprop="datePublished">2023–Present</time> •
+          <span itemprop="location">Remote</span>
+        </div>
+        <ul aria-label="Freelance projects">
+          <li>Developed 5+ cross-platform mobile applications using Flutter for diverse clients</li>
+          <li>Delivered projects with focus on performance optimization, user experience, and code quality</li>
+          <li>Managed full development lifecycle from requirements gathering through production deployment</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- EDUCATION & COACHING -->
+    <div style="margin-bottom: 40px;">
+      <h3 style="font: 700 14px Inter; color: var(--highlight); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Education & Coaching</h3>
+
+      <!-- Competitive Programming Coach -->
+      <article class="tab" style="border-left: 4px solid var(--highlight);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Competitive Programming Coach</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--highlight);">Algerian Olympiad in Informatics</span> •
+          <time datetime="2024" itemprop="datePublished">2024</time> •
+          <span itemprop="location">National Program</span>
+        </div>
+        <ul aria-label="Coaching highlights">
+          <li>Coached students in advanced algorithms, graph theory, and dynamic programming</li>
+          <li>Prepared and mentored students for national competitions with personalized strategies</li>
+          <li>Created comprehensive practice problems and structured training modules</li>
+        </ul>
+      </article>
+
+      <!-- Teaching Assistant -->
+      <article class="tab" style="border-left: 4px solid var(--highlight);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Algorithms Teaching Assistant</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--highlight);">El Ijtihad School</span> •
+          <time datetime="2023/2024" itemprop="datePublished">2023–2024</time> •
+          <span itemprop="location">Maghnia, Algeria</span>
+        </div>
+        <ul aria-label="Teaching responsibilities">
+          <li>Instructed students in Algorithms 1 & 2, covering fundamental to advanced concepts</li>
+          <li>Designed curriculum bridging theoretical concepts with hands-on coding challenges</li>
+          <li>Enhanced student engagement and comprehension through interactive teaching methods</li>
+        </ul>
+      </article>
+
+      <!-- IT Manager -->
+      <article class="tab" style="border-left: 4px solid var(--highlight);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">IT Manager</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--highlight);">Scientific Club, ENSIA</span> •
+          <time datetime="2023" itemprop="datePublished">2023</time> •
+          <span itemprop="location">Algiers, Algeria</span>
+        </div>
+        <ul aria-label="Management duties">
+          <li>Managed IT infrastructure and technical operations for student scientific club</li>
+          <li>Coordinated technical workshops and events for 50+ club members</li>
+          <li>Oversaw digital platforms and organization communication systems</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Certificates Section -->
+<section id="certificates" class="certificates">
+  <div class="certificates-container">
+    <!-- Section Header -->
+    <h2 class="sec-title">Certificates & Attestations</h2>
+    <p class="sec-sub">Professional credentials, certifications, and event participations arranged by impact</p>
+
+    <!-- TIER 1: Professional Certifications (Most Important) -->
+    <div class="cert-category" style="margin-bottom: 60px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">
+          Professional Certifications
+        </h3>
+        <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: #9a3412; padding: 4px 10px; border-radius: 12px; font-weight: 700;">KEY</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: #374151; font-size: 14px;">
+        Industry-recognized certifications and professional credentials
+      </p>
+      <div id="skills-grid" class="cert-grid" style="border-left: 3px solid var(--accent); padding-left: 20px;">
+        <!-- Dynamically loaded skill certificates -->
+      </div>
+    </div>
+
+    <!-- TIER 2: Event Participation (Moderate Importance) -->
+    <div class="cert-category" style="margin-bottom: 60px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--success); text-transform: uppercase; letter-spacing: 1px;">
+          Event Attestations
+        </h3>
+        <span style="font-size: 12px; background: rgba(129, 178, 154, 0.25); color: #166534; padding: 4px 10px; border-radius: 12px; font-weight: 700;">PARTICIPATION</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: #374151; font-size: 14px;">
+        Workshops, conferences, competitions, and major events attended
+      </p>
+      <div id="attestations-grid" class="cert-grid" style="border-left: 3px solid var(--success); padding-left: 20px;">
+        <!-- Dynamically loaded attestations -->
+      </div>
+    </div>
+
+    <!-- TIER 3: Learning & Courses (Supporting) -->
+    <div class="cert-category">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <h3 class="cert-category-title" style="margin: 0; font: 700 16px Inter; color: var(--link); text-transform: uppercase; letter-spacing: 1px;">
+          Online Courses & Learning
+        </h3>
+        <span style="font-size: 11px; background: rgba(61, 90, 128, 0.2); color: #1e3a5f; padding: 4px 10px; border-radius: 12px; font-weight: 700;">SELF-STUDY</span>
+      </div>
+      <p class="cert-category-desc" style="margin-bottom: 20px; color: #374151; font-size: 14px;">
+        Completed online courses and self-directed learning accomplishments
+      </p>
+      <div id="courses-grid" class="cert-grid" style="border-left: 3px solid var(--link); padding-left: 20px;">
+        <div style="padding: 16px; background: white; border-radius: 8px; border-left: 2px solid var(--link); color: #374151; text-align: center; font-size: 13px;">
+          <p style="margin: 0;">More courses to showcase coming soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="contact" id="contact">
+  <h2 class="sec-title">Let's Build Something Together</h2>
+  <p class="sec-sub">Research collaborations, internship opportunities, or just geeking out about NLP — I'm all ears. Prefer email or scheduled calls for serious inquiries.</p>
+
+  <div class="contact-grid">
+    <aside class="note">
+      <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -4px; margin-right: 8px;"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>Ready to Connect?</h3>
+      
+      <!-- Email -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L13.03 12.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:samir.guenchi@ensia.edu.dz">samir.guenchi@ensia.edu.dz</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">
+            <a href="tel:+213774066238">+213 774 066 238</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Based in</div>
+          <div class="contact-value">Maghnia, Tlemcen 🇩🇿</div>
+        </div>
+      </div>
+
+      <!-- Looking For -->
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="contact-info-content">
+          <div class="contact-label">Looking for</div>
+          <div class="contact-value">
+            <span class="interests-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M12 10v4"/></svg> Research Internships
+            </span>
+            <span class="interests-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.9 2-2 2h-4c-1.1 0-2-.9-2-2a4 4 0 0 1 4-4z"/><path d="M12 8v4"/><circle cx="12" cy="18" r="4"/></svg> AI Collaborations
+            </span>
+            <span class="interests-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l6 6"/><path d="M4 14l6-6 2 2"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg> Arabic NLP
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="socials-section">
+        <h4>Connect on Social</h4>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/guenchi-samir" class="social social-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/Samir-Guenchi" class="social social-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.kaggle.com/guenchisamir" class="social social-kaggle" target="_blank" rel="noopener noreferrer" aria-label="Kaggle Profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.071.312z"/></svg>
+            <span>Kaggle</span>
+          </a>
+          <a href="https://codeforces.com/profile/Guenchi_Samir_ia" class="social social-codeforces" target="_blank" rel="noopener noreferrer" aria-label="Codeforces Profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="social-icon"><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.672 21 0 20.328 0 19.5V9c0-.828.672-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-15c0-.828.672-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V12c0-.828.672-1.5 1.5-1.5h3z"/></svg>
+            <span>Codeforces</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="cta-group">
+        <a href="https://calendly.com/samir-guenchi" class="cta-btn cta-primary" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+          Schedule 30-min Call
+        </a>
+      </div>
+    </aside>
+
+    <!-- Contact Form (your existing form code goes here) -->
+     
+    <form class="form" id="contactForm">
+      <div class="fg">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="subject">Subject *</label>
+        <input type="text" id="subject" name="subject" required placeholder="Collaboration / Research / Opportunity" aria-required="true">
+      </div>
+      <div class="fg">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" required placeholder="Tell me about your project, idea, or just say hi..." aria-required="true"></textarea>
+      </div>
+      <button type="submit" class="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo" aria-label="Site footer">
+  <div class="footer-content">
+    <!-- Brand Header -->
+    <div class="footer-section" style="border-bottom: 2px solid rgba(0, 0, 0, 0.05); padding-bottom: 28px; margin-bottom: 32px;">
+      <div class="footer-logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true" style="flex-shrink: 0;">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="footer-brand" style="font: 700 18px Inter; color: var(--ink);">Samir Guenchi</span>
+      </div>
+      <p class="footer-tagline" style="color: var(--pencil); font-size: 13px; margin: 0; line-height: 1.5;">Building intelligent systems for Arabic NLP & AI—passionate about solving real-world problems with machine learning</p>
+    </div>
+    
+    <!-- TIER 1: Primary Navigation (MAIN) -->
+    <div class="footer-section" style="border-left: 3px solid var(--accent); padding-left: 20px; margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <h3 style="margin: 0; font: 700 16px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">
+          Navigation
+        </h3>
+        <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">MAIN</span>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <a href="#projects" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Featured Projects
+        </a>
+        <a href="#experience" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Professional Experience
+        </a>
+        <a href="#certificates" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Certificates
+        </a>
+        <a href="#contact" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Get in Touch
+        </a>
+      </nav>
+      
+      <style>
+        .footer-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: var(--accent);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+        .footer-link:hover::after {
+          transform: scaleX(1);
+        }
+      </style>
+    </div>
+    
+    <!-- TIER 2: Social Links (SOCIAL) -->
+    <div class="footer-section" style="border-left: 3px solid var(--success); padding-left: 20px; margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <h3 style="margin: 0; font: 700 16px Inter; color: var(--success); text-transform: uppercase; letter-spacing: 1px;">
+          Connect
+        </h3>
+        <span style="font-size: 11px; background: rgba(129, 178, 154, 0.2); color: var(--success); padding: 4px 10px; border-radius: 12px; font-weight: 700;">SOCIAL</span>
+      </div>
+      <div class="footer-socials" aria-label="Social media links" style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <a href="https://linkedin.com/in/guenchi-samir" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Connect on LinkedIn - Professional Network">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.732-2.004 1.438-.103.249-.129.597-.129.946v5.421h-3.554s.047-8.789 0-9.707h3.554v1.375c.43-.664 1.199-1.61 2.920-1.61 2.135 0 3.733 1.398 3.733 4.403v5.539z M5.337 9.341c-1.144 0-1.915-.759-1.915-1.71 0-.955.77-1.71 1.954-1.71 1.184 0 1.915.755 1.94 1.71 0 .951-.756 1.71-1.979 1.71zm1.581 11.111H3.564V8.584h3.354v11.868zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/Samir-Guenchi" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Check out my GitHub Projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://kaggle.com/guenchisamir" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="See my Kaggle Datasets & Competition Kernels">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.825 23.859c-.027.467-.508.844-1.027.844-.53 0-.972-.382-.972-.848v-.005c0-.503.467-.856.999-.856.519 0 .991.385.991.848.003.014.003.028 0 .017zm-8.567-.003c0 .467-.508.844-1.027.844-.53 0-.972-.382-.972-.848 0-.503.467-.856.999-.856.519 0 .991.386.991.848.003.014.003.028.009.012zm8.134-5.263c-.386-1.121-1.22-2.048-2.268-2.635l-.316-.177-.202.285c-.315.457-.59 1.045-.708 1.566-.214.992-.069 1.927.408 2.701.176.286.408.545.67.773l.188.158.196-.161c.543-.456 1.089-1.138 1.312-1.795.131-.389.149-.929.112-1.35l-.192-.4zm-10.263-1.973c-.318-.188-.588-.532-.67-.916-.165-.789.298-1.583 1.069-1.88.288-.11.634-.139.913-.078.229.048.45.138.649.262l.265.152.113-.269c.157-.369.25-.848.25-1.371 0-1.122-.335-2.167-1.001-2.968l-.165-.201-.201.083c-.888.368-1.554 1.016-1.951 1.824-.369.753-.467 1.588-.276 2.361.115.449.298.864.544 1.226.17.245.346.46.542.645l.127.109.119-.117c.188-.186.462-.457.721-.751zm15.896-4.49c-.529-.617-1.296-1.015-2.134-1.174-.385-.07-.783-.07-1.167 0-.52.101-1.039.327-1.475.667l-.314.247-.115-.333c-.285-.788-.805-1.496-1.457-2.011l-.321-.249-.296.259c-.95.849-1.449 2.1-1.449 3.495 0 1.364.419 2.601 1.225 3.576.387.478.879.864 1.429 1.118l.318.155.313-.161c.621-.324 1.278-.487 1.954-.487.914 0 1.768.28 2.482.81l.284.218.263-.233c1.066-.947 1.736-2.301 1.946-3.833.134-.979.005-2.053-.465-2.916zm-5.983-1.42c.335-.603.837-1.094 1.418-1.403.316-.165.659-.27 1.008-.309.246-.029.497-.025.743.013.525.079 1.031.299 1.463.648.133.111.254.237.363.373-.206-.015-.418-.018-.632.007-.835.093-1.638.436-2.291 1.006-.409.366-.724.819-.919 1.335l-.231.598-.527-.593c-.231-.261-.423-.565-.563-.911l-.066-.165zm.842.896c.151-.39.375-.74.659-1.038.413-.443 1.014-.75 1.652-.823l.355-.037-.254-.268c-.329-.35-.773-.583-1.242-.648l-.338-.043-.259.177c-.45.301-.822.76-1.06 1.296l-.074.179.561.167zm1.96-1.067c-.419.117-.81.342-1.141.656-.382.366-.648.85-.783 1.38-.088.352-.107.725-.058 1.088.048.36.158.706.328 1.028l.097.181.318-.376c.524-.62.928-1.376 1.175-2.19.153-.516.217-1.063.166-1.606l-.102-.161z"/></svg>
+          <span>Kaggle</span>
+        </a>
+        <a href="https://codeforces.com/profile/Guenchi_Samir_ia" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="See my Competitive Programming Solutions">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10-10-4.477-10-10 4.477-10 10-10zm-2.5 9a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm5 0a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>
+          <span>Codeforces</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- TIER 3: Attribution & Details (DETAILS) -->
+    <div class="footer-section" style="border-left: 3px solid var(--link); padding-left: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <h3 style="margin: 0; font: 700 16px Inter; color: var(--link); text-transform: uppercase; letter-spacing: 1px;">
+          About This Site
+        </h3>
+        <span style="font-size: 11px; background: rgba(61, 90, 128, 0.2); color: var(--link); padding: 4px 10px; border-radius: 12px; font-weight: 700;">DETAILS</span>
+      </div>
+      <div style="font-size: 14px; color: var(--pencil); line-height: 1.8;">
+        <p style="margin: 0 0 14px 0;">
+          © 2025 Samir Guenchi · 
+        </p>
+        <p style="margin: 0 0 12px 0;">
+          <strong style="color: var(--ink);">Tech Stack:</strong> HTML5 · CSS3 (Flexbox & Grid) · Vanilla JavaScript · SVG Icons
+        </p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <a href="https://github.com/Samir-Guenchi/portfolio" target="_blank" rel="noopener noreferrer" style="color: var(--link); text-decoration: none; font-weight: 600; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 6px;">
+            View Source Code
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M7 17L17 7M7 7h10v10"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Terminal -->
+<button class="term-toggle" id="termToggle" aria-label="Open Terminal (Ctrl + `)" title="Press Ctrl + ` to toggle">$_</button>
+
+<aside class="terminal" id="terminal" aria-label="Interactive Terminal" role="region">
+  <div class="term-header">
+    <div class="term-header-left">
+      <div class="term-icon-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="term-icon">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <span class="term-title">samir@portfolio:~</span>
+      <span class="term-separator">$</span>
+    </div>
+    <button class="term-close" id="termClose" aria-label="Close terminal" title="Close (Esc)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="term-output" id="termOutput" role="log" aria-live="polite" aria-label="Terminal output">
+    <div class="term-line term-welcome">
+      <span class="term-info"> Welcome to Samir's Portfolio Terminal v2.0</span>
+    </div>
+    <div class="term-line">
+      <span class="term-info"> Type <span class="term-cmd">help</span> for available commands or <span class="term-cmd">Ctrl+</span><span class="term-cmd">`</span> to toggle</span>
+    </div>
+  </div>
+  <div class="term-input-wrap">
+    <span class="term-prompt" aria-hidden="true">samir@portfolio:~</span>
+    <span class="term-separator" aria-hidden="true">$</span>
+    <input 
+      type="text" 
+      class="term-input" 
+      id="termInput" 
+      placeholder="Type a command (try 'help')..." 
+      autocomplete="off" 
+      aria-label="Terminal command input"
+      spellcheck="false"
+    >
+  </div>
+</aside>
+<script src="js/script.min.js?v=2.1" defer></script>
+<script>
+  // Register Service Worker for caching (bypasses GitHub Pages 10-min cache)
+  if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+    window.addEventListener('load', () => {
+      // Use relative path for GitHub Pages compatibility
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- Component Loader - Core System -->
+<script src="js/core/ComponentLoader.js"></script>
+
+<!-- Main JavaScript Bundle -->
+<script src="js/script.min.js?v=2.1" defer></script>
+
+<!-- Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+</script>

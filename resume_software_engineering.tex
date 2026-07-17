@@ -1,0 +1,150 @@
+% ============================================================================
+%  SOFTWARE ENGINEERING CV — SAMIR GUENCHI (One Page)
+% ============================================================================
+\documentclass[8pt, letterpaper]{extarticle}
+
+% ---------- CORE PACKAGES ----------
+\usepackage[left=0.3in, right=0.3in, top=0.25in, bottom=0.25in]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% ---------- COLOUR PALETTE ----------
+\definecolor{accent}{HTML}{1A3A5C}
+\definecolor{linkblue}{HTML}{2563EB}
+\definecolor{rulecolor}{HTML}{3B6FA0}
+
+% ---------- HYPERLINK STYLE ----------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=accent,
+    urlcolor=linkblue,
+    pdfauthor={Samir Guenchi},
+    pdftitle={Software Engineering CV — Samir Guenchi},
+}
+
+% ---------- SECTION FORMATTING ----------
+\titleformat{\section}
+  {\color{accent}\large\bfseries\scshape}
+  {}{0em}{}
+  [\vspace{-4pt}{\color{rulecolor}\rule{\linewidth}{0.8pt}}]
+\titlespacing{\section}{0pt}{6pt}{3pt}
+
+% ---------- GLOBAL SPACING ----------
+\setlength{\columnsep}{0.25in}
+\setlength{\parindent}{0pt}
+\setlist{nosep, leftmargin=1em}
+\pagestyle{empty}
+
+% ========================================================================
+\begin{document}
+
+% ========================= HEADER =========================
+\begin{center}
+    {\fontsize{20}{24}\selectfont\bfseries\color{accent} SAMIR GUENCHI} \\[4pt]
+    {\small
+      \faIcon{envelope}\;\href{mailto:samir.guenchi@ensia.edu.dz}{samir.guenchi@ensia.edu.dz}
+      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
+      \faIcon{phone-alt}\;+213 780066761
+      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
+      \faIcon{map-marker-alt}\;Algiers, Algeria
+    }\\[2pt]
+    {\small
+      \faIcon{linkedin}\;\href{https://linkedin.com/in/guenchi-samir}{linkedin.com/in/guenchi-samir}
+      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
+      \faIcon{github}\;\href{https://github.com/Samir-Guenchi}{github.com/Samir-Guenchi}
+      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
+      \faIcon{code}\;\href{https://codeforces.com/profile/Guenchi_Samir_ia}{codeforces.com/profile/Guenchi\_Samir\_ia}
+    }
+\end{center}
+\vspace{2pt}
+
+% ======================== TWO COLUMN LAYOUT ============================
+\begin{multicols}{2}
+\RaggedRight
+
+% -------------------- SUMMARY --------------------
+\section*{{\color{accent}\faIcon{user-tie}}\; Professional Summary}
+Final-year AI \& Data Science Engineering student at ENSIA with hands-on experience building full-stack web applications, scalable REST APIs, real-time systems, and enterprise data pipelines. Proficient in React, Node.js, TypeScript, Python, and PostgreSQL. Delivered multiple production e-commerce platforms end-to-end as a freelance engineer and contributed to data infrastructure at Djezzy. Seeking a software engineering role to build impactful products at scale.
+
+% -------------------- EDUCATION --------------------
+\section*{{\color{accent}\faIcon{graduation-cap}}\; Education}
+\textbf{Engineering Degree — Artificial Intelligence and Data Science} \\
+National Higher School of Artificial Intelligence (ENSIA), Algeria \\
+\textit{2021 – 2027 (expected)} — Cycle Préparatoire (2021–2024) + Cycle Supérieur (2023–2027) \\
+Currently completing Final Year Project
+
+% -------------------- EXPERIENCE --------------------
+\section*{{\color{accent}\faIcon{briefcase}}\; Work Experience}
+
+\textbf{Data Scientist Intern — Djezzy (DSIP Program)} \textcolor{rulecolor}{$|$} \textit{2026–Present} \\
+\textbf{Project:} Built a natural language-to-SQL BI agent enabling business experts to query revenue and subscriber analytics without writing SQL. \\
+\textbf{Stack:} LLM-based query translation, Kafka event-driven pipelines, SQL generation/execution, agentic result interpretation. \\
+\textbf{Outcome:} Delivered a self-serve analytics pipeline on a horizontally scalable architecture, reducing dependency on manual analyst intervention. \vspace{3pt}
+
+\textbf{Freelance Full-Stack Engineer — El Basma Boutique} \textcolor{rulecolor}{$|$} \textit{2025} \\
+\textbf{Project:} Designed a production backend and multilingual e-commerce storefront for a traditional Algerian fashion brand, with integrated analytics, real-time communication, and business management APIs. \\
+\textbf{Stack:} Node.js, Express, SQLite/Turso, JWT, RBAC, Socket.IO, webhook integrations (Meta, WhatsApp, TikTok), React 18, Vite, i18next, Framer Motion, Meta Pixel. \\
+\textbf{Outcome:} Delivered a centralized backend with multilingual storefront (Arabic, Darija, French, English) and admin dashboard. \\
+{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/el-basma-backend}{Backend} \;\textcolor{rulecolor}{$\cdot$}\; \href{https://github.com/Samir-Guenchi/el-basma-website-front-end}{Frontend} \;\textcolor{rulecolor}{$\cdot$}\; \faIcon{external-link-alt}\;\href{https://el-basma-website-front-end.vercel.app/}{Live Demo}} \vspace{3pt}
+
+\textbf{Freelance Full-Stack Engineer — Dahaoui Boutique} \textcolor{rulecolor}{$|$} \textit{2025} \\
+\textbf{Project:} Built a complete e-commerce platform with customer storefront, inventory management, order processing, analytics, and administrative dashboard. \\
+\textbf{Stack:} React, Node.js, Express, MongoDB, Cloudinary, Tailwind CSS, REST APIs, i18next. \\
+\textbf{Outcome:} Delivered a feature-rich platform supporting multilingual shopping, inventory/order management, and business analytics. \\
+{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/dahaoui_boutique}{Repo} \;\textcolor{rulecolor}{$\cdot$}\; \faIcon{external-link-alt}\;\href{https://dahaoui-boutiquee.vercel.app/}{Live Demo}} \vspace{3pt}
+
+\textbf{Software Engineer Intern — Algérie Poste} \textcolor{rulecolor}{$|$} \textit{Dec 2025 – Feb 2026} \\
+\textbf{Project:} Built a multi-vendor e-commerce platform with an NLP-based seller reputation system (sentiment analysis on reviews) and RBAC across buyer, seller, delivery, and admin roles. \\
+\textbf{Stack:} Node.js, TypeScript, PostgreSQL, NLP sentiment analysis. \\
+\textbf{Outcome:} Delivered a reputation scoring system grounded in review content analysis, across a role-partitioned production platform. \vspace{3pt}
+
+\textbf{Web Development Intern — HR TECHNOLOGY} \textcolor{rulecolor}{$|$} \textit{Aug – Sep 2024} \\
+\textbf{Project:} Developed responsive web applications and enhanced user interfaces and website performance for production web projects. \\
+\textbf{Stack:} React, JavaScript, HTML, CSS, responsive design, performance optimization. \\
+\textbf{Outcome:} Delivered responsive, user-friendly web interfaces with improved application performance.
+
+% -------------------- SKILLS --------------------
+\section*{{\color{accent}\faIcon{cogs}}\; Technical Skills}
+\textbf{Languages:} Python, JavaScript, TypeScript, HTML/CSS, SQL \\
+\textbf{Frontend:} React 18, Vite, Framer Motion, Tailwind CSS, i18next \\
+\textbf{Backend:} Node.js, Express.js, REST APIs, Socket.IO, JWT/RBAC \\
+\textbf{Databases:} PostgreSQL, MongoDB, SQLite/Turso \\
+\textbf{Infrastructure:} Kafka, Cloudinary, n8n, Git/GitHub, Vercel \\
+\textbf{ML/AI:} PyTorch, NLP, Computer Vision, Deep Learning \\
+\textbf{Cloud:} Oracle Cloud Infrastructure (certified) \vspace{3pt} \\
+\textbf{Certifications:} Oracle Certified — Data Science \;\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\; Oracle Certified — Cloud Infrastructure
+
+% -------------------- LANGUAGES --------------------
+\section*{{\color{accent}\faIcon{language}}\; Languages}
+\textbf{Arabic} — Native \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad \textbf{French} — Fluent \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad \textbf{English} — Fluent
+
+% -------------------- TEACHING --------------------
+\section*{{\color{accent}\faIcon{chalkboard-teacher}}\; Teaching Experience}
+\textbf{Competitive Programming Coach — Algerian Olympiad in Informatics (AOI)} \textcolor{rulecolor}{$|$} \textit{Apr – Oct 2025} \\
+Designed and delivered algorithmic problem-solving lessons (A*, graph theory, optimization) to lycée students preparing for national and international olympiads. Helped prepare a student for IOI 2025.
+
+% -------------------- EVENTS --------------------
+\section*{{\color{accent}\faIcon{users}}\; Hackathons \& Events}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AAIET 2025} — International Conference on Applied AI, Djelfa (Dec 2025)
+    \item \textbf{2023 Data Science Datathon} — Industry problems for Yassir \& Société Générale; predictive modeling under time constraints
+    \item \textbf{ETCODE 2023} — Competitive programming hackathon (ENSIA Tech Community)
+    \item \textbf{Mobile Ideathon (Mobai)} — Mobile app prototype for BMS; rapid prototyping and pitching
+\end{itemize}
+
+% -------------------- MEMBERSHIPS --------------------
+\section*{{\color{accent}\faIcon{id-badge}}\; Professional Memberships}
+\textbf{ENSIA Tech Community} — IT Department Member (2023) \\
+\textbf{Club Scientifique EBEC (ENSIA)} — IT Manager (2024 – Sep 2025) — Led website development and technical infrastructure for events
+
+\end{multicols}
+\end{document}

@@ -1409,8 +1409,9 @@ if ('serviceWorker' in navigator) {
     <nav id="mainNav" role="navigation" aria-label="Main navigation" class="nav-menu">
       <a href="#top" class="nav-link">Home</a>
       <a href="#highlights" class="nav-link">Projects</a>
-      <a href="#glossary" class="nav-link">Tech Guide</a>
       <a href="#experience" class="nav-link">Experience</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#hackathons" class="nav-link">Events</a>
       <a href="#certificates" class="nav-link">Certificates</a>
       <a href="#contact" class="nav-link">Contact</a>
       <a class="cv-btn" href="https://drive.google.com/file/d/1IhDSn7Kw4-oGIgnv4VfNoU3zn2zMyDs4/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Download CV - opens in new window">
@@ -1674,6 +1675,103 @@ if ('serviceWorker' in navigator) {
     <!-- Professional Project Cards Grid -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 60px;">
       
+      <!-- Project: Djezzy NL-to-SQL Agent -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(194, 65, 12, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              <path d="M8 10h8"></path>
+              <path d="M8 14h4"></path>
+            </svg>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0;">NL-to-SQL BI Agent</h3>
+            <span style="font-size: 10px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 3px 8px; border-radius: 10px; font-weight: 700;">CURRENT</span>
+          </div>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Built at Djezzy — enables business experts to query revenue and subscriber analytics using natural language instead of SQL.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">LLM</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Kafka</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">SQL</span>
+            <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.1); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Python</span>
+          </div>
+          <div style="padding: 12px; background: rgba(224, 122, 95, 0.05); border-left: 3px solid var(--accent); border-radius: 4px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--accent); margin: 0; font-weight: 500;">
+              "Let data speak through natural language"
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: El Basma Boutique -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(4, 120, 87, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">El Basma Boutique</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Full-stack multilingual e-commerce platform for traditional Algerian fashion. Backend + storefront with real-time comms and social commerce integrations.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">React</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Node.js</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">Socket.IO</span>
+            <span style="padding: 4px 10px; background: rgba(129, 178, 154, 0.1); color: var(--success); border-radius: 6px; font-size: 12px; font-weight: 600;">i18n</span>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://el-basma-website-front-end.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); font-weight: 600; text-decoration: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Samir-Guenchi/el-basma-backend" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--link); font-weight: 600; text-decoration: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project: Dahaoui Boutique -->
+      <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
+        <div style="padding: 28px;">
+          <div style="width: 48px; height: 48px; background: rgba(30, 64, 175, 0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <h3 style="font: 700 18px/1.3 Inter; color: var(--ink); margin: 0 0 12px 0;">Dahaoui Boutique</h3>
+          <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-bottom: 16px;">
+            Complete e-commerce platform with storefront, inventory management, order processing, analytics, and admin dashboard for traditional Algerian fashion.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">React</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">MongoDB</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Express</span>
+            <span style="padding: 4px 10px; background: rgba(61, 90, 128, 0.1); color: var(--link); border-radius: 6px; font-size: 12px; font-weight: 600;">Tailwind</span>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://dahaoui-boutiquee.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); font-weight: 600; text-decoration: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Samir-Guenchi/dahaoui_boutique" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--link); font-weight: 600; text-decoration: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
       <!-- Project 1: Ministry Q&A -->
       <article style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(13, 27, 42, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);">
         <div style="padding: 28px;">
@@ -2013,21 +2111,39 @@ if ('serviceWorker' in navigator) {
     <div style="margin-bottom: 60px;">
       <h3 style="font: 700 14px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Current & Featured</h3>
 
-      <!-- Software Engineering Intern at Algérie Poste (Current) -->
+      <!-- Data Scientist Intern at Djezzy (Current) -->
       <article class="tab" style="border-left: 3px solid rgba(194, 65, 12, 0.5);" itemscope itemtype="https://schema.org/WorkExperience">
         <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
-          <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Software Engineering Intern</h3>
+          <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Data Scientist Intern</h3>
           <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">CURRENT</span>
         </div>
         <div class="meta">
-          <span style="font-weight: 700; color: var(--accent);">Algérie Poste</span> • 
-          <time datetime="2025-01" itemprop="datePublished">Jan 2025–Present</time> •
+          <span style="font-weight: 700; color: var(--accent);">Djezzy (DSIP Program)</span> • 
+          <time datetime="2026-01" itemprop="datePublished">2026–Present</time> •
           <span itemprop="location">Algiers, Algeria</span>
         </div>
         <ul aria-label="Key responsibilities">
-          <li>Developing secure e-commerce platform using Rust and Lynx framework for high-performance web services</li>
-          <li>Implementing secure payment gateways and advanced user authentication systems</li>
-          <li>Optimizing backend architecture for scalability, security, and performance at enterprise scale</li>
+          <li>Designed and built a natural language-to-SQL business intelligence agent enabling business experts to query revenue and subscriber analytics without writing SQL</li>
+          <li>Implemented LLM-based query translation with event-driven pipeline design using Kafka for asynchronous processing</li>
+          <li>Delivered a self-serve analytics pipeline reducing dependency on manual analyst intervention, built on a horizontally scalable architecture</li>
+        </ul>
+      </article>
+
+      <!-- Software Engineering Intern at Algérie Poste -->
+      <article class="tab" style="border-left: 3px solid rgba(4, 120, 87, 0.45);" itemscope itemtype="https://schema.org/WorkExperience">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+          <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Software Engineer Intern</h3>
+          <span style="font-size: 11px; background: rgba(129, 178, 154, 0.2); color: var(--success); padding: 4px 10px; border-radius: 12px; font-weight: 700;">IMPACT</span>
+        </div>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--success);">Algérie Poste</span> •
+          <time datetime="2025-12" itemprop="datePublished">Dec 2025 – Feb 2026</time> •
+          <span itemprop="location">Algiers, Algeria</span>
+        </div>
+        <ul aria-label="Key achievements">
+          <li>Built a multi-vendor e-commerce platform with an NLP-based seller reputation system using sentiment analysis on customer reviews</li>
+          <li>Implemented RBAC across buyer, seller, delivery, and admin roles with full-stack Node.js/TypeScript and PostgreSQL</li>
+          <li>Delivered a reputation scoring system grounded in review content analysis rather than star ratings alone</li>
         </ul>
       </article>
 
@@ -2054,18 +2170,72 @@ if ('serviceWorker' in navigator) {
     <div style="margin-bottom: 60px;">
       <h3 style="font: 700 14px Inter; color: var(--link); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 24px 0;">Professional Roles</h3>
 
-      <!-- Full-Stack Developer Intern -->
+      <!-- Freelance Full-Stack Engineer — El Basma Boutique -->
       <article class="tab" style="border-left: 4px solid var(--link);" itemscope itemtype="https://schema.org/WorkExperience">
-        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Full-Stack Developer Intern</h3>
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Freelance Full-Stack Engineer</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--link);">El Basma Boutique</span> •
+          <time datetime="2025" itemprop="datePublished">2025</time> •
+          <span itemprop="location">Remote</span>
+        </div>
+        <ul aria-label="Development work">
+          <li>Designed and developed a production-ready backend (Node.js, Express, SQLite/Turso, JWT, RBAC, Socket.IO) powering website, mobile app, and social commerce channels</li>
+          <li>Built a multilingual React 18 e-commerce storefront with i18next (Arabic, Darija, French, English), Framer Motion animations, and Meta Pixel integration</li>
+          <li>Integrated webhook systems for Meta, WhatsApp, and TikTok with visitor analytics and multi-role admin dashboard</li>
+        </ul>
+        <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
+          <a href="https://github.com/Samir-Guenchi/el-basma-backend" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--link); font-weight: 600; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Backend Repo
+          </a>
+          <a href="https://github.com/Samir-Guenchi/el-basma-website-front-end" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--link); font-weight: 600; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Frontend Repo
+          </a>
+          <a href="https://el-basma-website-front-end.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); font-weight: 600; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </article>
+
+      <!-- Freelance Full-Stack Engineer — Dahaoui Boutique -->
+      <article class="tab" style="border-left: 4px solid var(--link);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Freelance Full-Stack Engineer</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--link);">Dahaoui Boutique</span> •
+          <time datetime="2025" itemprop="datePublished">2025</time> •
+          <span itemprop="location">Remote</span>
+        </div>
+        <ul aria-label="Development work">
+          <li>Designed and developed a complete e-commerce platform with customer storefront, inventory management, order processing, analytics, and admin dashboard</li>
+          <li>Built with React, Node.js, Express, MongoDB, Cloudinary, Tailwind CSS, JWT authentication, and i18next for multilingual support</li>
+          <li>Delivered feature-rich platform supporting multilingual shopping, inventory/order management, and business analytics</li>
+        </ul>
+        <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
+          <a href="https://github.com/Samir-Guenchi/dahaoui_boutique" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--link); font-weight: 600; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub Repo
+          </a>
+          <a href="https://dahaoui-boutiquee.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); font-weight: 600; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </article>
+
+      <!-- Web Development Intern — HR TECHNOLOGY -->
+      <article class="tab" style="border-left: 4px solid var(--link);" itemscope itemtype="https://schema.org/WorkExperience">
+        <h3 itemprop="name" style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">Web Development Intern</h3>
         <div class="meta">
           <span style="font-weight: 700; color: var(--link);">HR Technology</span> •
-          <time datetime="2023-06" itemprop="datePublished">Summer 2023</time> •
+          <time datetime="2024-08" itemprop="datePublished">Aug – Sep 2024</time> •
           <span itemprop="location">Algiers, Algeria</span>
         </div>
         <ul aria-label="Development work">
-          <li>Built project tracking web application using React and Laravel with real-time updates</li>
-          <li>Designed RESTful APIs and optimized MySQL database queries for improved performance</li>
-          <li>Implemented responsive UI/UX following modern design principles and accessibility standards</li>
+          <li>Developed responsive web applications and enhanced user interfaces and website performance for production projects</li>
+          <li>Built front-end components using React, JavaScript, HTML, CSS with responsive design and performance optimization</li>
+          <li>Delivered responsive, user-friendly web interfaces while strengthening practical front-end engineering experience</li>
         </ul>
       </article>
 
@@ -2137,12 +2307,150 @@ if ('serviceWorker' in navigator) {
   </div>
 </section>
 
+<!-- Education Section -->
+<section class="education" id="education" style="background: white; padding: 60px var(--space-lg);">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <h2 class="sec-title">Education</h2>
+    <p class="sec-sub">Academic background and qualifications</p>
 
+    <article class="tab" style="border-left: 4px solid var(--accent);" itemscope itemtype="https://schema.org/EducationalOrganization">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+        <h3 itemprop="name" style="font: 700 18px Inter; color: var(--ink); margin: 0;">Engineering Degree — Artificial Intelligence and Data Science</h3>
+        <span style="font-size: 11px; background: rgba(224, 122, 95, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-weight: 700;">ONGOING</span>
+      </div>
+      <div class="meta">
+        <span style="font-weight: 700; color: var(--accent);">National Higher School of Artificial Intelligence (ENSIA)</span> •
+        <span>Algeria</span>
+      </div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px;">
+        <div style="flex: 1; min-width: 200px; padding: 16px; background: rgba(224, 122, 95, 0.04); border-radius: 8px; border-left: 3px solid rgba(224, 122, 95, 0.3);">
+          <div style="font: 700 14px Inter; color: var(--ink); margin-bottom: 4px;">Cycle Supérieur</div>
+          <div style="font-size: 13px; color: var(--pencil);">2023 – 2027 (expected)</div>
+          <div style="font-size: 12px; color: var(--pencil); margin-top: 4px;">Final year — completing Final Year Project</div>
+        </div>
+        <div style="flex: 1; min-width: 200px; padding: 16px; background: rgba(129, 178, 154, 0.04); border-radius: 8px; border-left: 3px solid rgba(129, 178, 154, 0.3);">
+          <div style="font: 700 14px Inter; color: var(--ink); margin-bottom: 4px;">Cycle Préparatoire</div>
+          <div style="font-size: 13px; color: var(--pencil);">2021 – 2024</div>
+          <div style="font-size: 12px; color: var(--pencil); margin-top: 4px;">Foundation in mathematics, CS, and AI</div>
+        </div>
+      </div>
+      <div style="margin-top: 16px;">
+        <span style="font: 600 13px Inter; color: var(--pencil);">Core Coursework:</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+          <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.08); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Deep Learning</span>
+          <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.08); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">NLP</span>
+          <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.08); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Computer Vision</span>
+          <span style="padding: 4px 10px; background: rgba(224, 122, 95, 0.08); color: var(--accent); border-radius: 6px; font-size: 12px; font-weight: 600;">Reinforcement Learning</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
+<!-- Hackathons & Events Section -->
+<section class="hackathons" id="hackathons" style="background: #faf9f7; padding: 60px var(--space-lg);">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <h2 class="sec-title">Hackathons & Events</h2>
+    <p class="sec-sub">Conferences, competitions, and community involvement</p>
 
+    <!-- Conference -->
+    <div style="margin-bottom: 40px;">
+      <h3 style="font: 700 14px Inter; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 20px 0;">Conference</h3>
+      <article class="tab" style="border-left: 3px solid rgba(194, 65, 12, 0.4);">
+        <h3 style="font: 700 17px Inter; color: var(--ink); margin: 0 0 8px 0;">AAIET 2025 — International Conference on Applied AI and Emerging Technologies</h3>
+        <div class="meta">
+          <span style="font-weight: 700; color: var(--accent);">Ziane Achour University of Djelfa</span> •
+          <time datetime="2025-12">December 15–16, 2025</time> •
+          <span>Hybrid</span>
+        </div>
+        <p style="font-size: 14px; color: var(--pencil); line-height: 1.6; margin-top: 8px;">Attended sessions on applied AI and emerging technologies research.</p>
+      </article>
+    </div>
 
+    <!-- Hackathons & Datathons -->
+    <div>
+      <h3 style="font: 700 14px Inter; color: var(--success); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 20px 0;">Hackathons & Datathons</h3>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <!-- Datathon 2023 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--success); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 32px; height: 32px; background: rgba(129, 178, 154, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0;">2023 Data Science Datathon</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin: 0;">Solved real-world industry problems for Yassir & Société Générale. Predictive modeling and insight presentation under time constraints.</p>
+        </article>
 
+        <!-- ETCODE 2023 -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--link); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 32px; height: 32px; background: rgba(61, 90, 128, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--link)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0;">ETCODE 2023</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin: 0;">ENSIA Tech Community competitive programming hackathon. Solved algorithmic problems under time pressure in a team setting.</p>
+        </article>
 
+        <!-- Mobile Ideathon -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--accent); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 32px; height: 32px; background: rgba(224, 122, 95, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0;">Mobile Ideathon (Mobai)</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin: 0;">Designed a mobile app prototype for BMS company. Rapid prototyping, design thinking, and pitching to a technical jury.</p>
+        </article>
+
+        <!-- Rapid Prototyping -->
+        <article style="background: white; padding: 20px; border-radius: 12px; border-left: 3px solid var(--highlight); box-shadow: 0 4px 12px rgba(13, 27, 42, 0.08); transition: transform 0.3s ease;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 32px; height: 32px; background: rgba(180, 83, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h4 style="font: 700 15px Inter; color: var(--ink); margin: 0;">Rapid Prototyping Workshop</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--pencil); line-height: 1.5; margin: 0;">COVID-19 prevention prototyping — ENSIA & IPSIL Laboratory (ENP-Oran), December 2021. Functional prototypes in an interdisciplinary team.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Languages Section -->
+<section class="languages" id="languages" style="background: white; padding: 40px var(--space-lg);">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <h2 class="sec-title">Languages</h2>
+    <p class="sec-sub">Communication abilities across multiple languages</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+      <!-- Arabic -->
+      <div style="background: #faf9f7; padding: 24px; border-radius: 12px; border-left: 4px solid var(--accent); text-align: center;">
+        <div style="font-size: 28px; margin-bottom: 8px;">🇩🇿</div>
+        <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 6px 0;">Arabic</h3>
+        <span style="font-size: 13px; font-weight: 600; color: var(--accent); background: rgba(224, 122, 95, 0.1); padding: 4px 12px; border-radius: 12px;">Native</span>
+      </div>
+
+      <!-- French -->
+      <div style="background: #faf9f7; padding: 24px; border-radius: 12px; border-left: 4px solid var(--link); text-align: center;">
+        <div style="font-size: 28px; margin-bottom: 8px;">🇫🇷</div>
+        <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 6px 0;">French</h3>
+        <span style="font-size: 13px; font-weight: 600; color: var(--link); background: rgba(61, 90, 128, 0.1); padding: 4px 12px; border-radius: 12px;">Fluent</span>
+      </div>
+
+      <!-- English -->
+      <div style="background: #faf9f7; padding: 24px; border-radius: 12px; border-left: 4px solid var(--success); text-align: center;">
+        <div style="font-size: 28px; margin-bottom: 8px;">🇬🇧</div>
+        <h3 style="font: 700 18px Inter; color: var(--ink); margin: 0 0 6px 0;">English</h3>
+        <span style="font-size: 13px; font-weight: 600; color: var(--success); background: rgba(129, 178, 154, 0.1); padding: 4px 12px; border-radius: 12px;">Fluent</span>
+        <div style="font-size: 11px; color: var(--pencil); margin-top: 6px;">Professional/academic working proficiency</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Certificates Section -->
 <section id="certificates" class="certificates">
@@ -2370,13 +2678,19 @@ if ('serviceWorker' in navigator) {
           Featured Projects
         </a>
         <a href="#experience" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
-          Professional Experience
+          Experience
+        </a>
+        <a href="#education" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Education
+        </a>
+        <a href="#hackathons" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
+          Events
         </a>
         <a href="#certificates" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
           Certificates
         </a>
         <a href="#contact" class="footer-link" style="color: var(--link); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 4px;">
-          Get in Touch
+          Contact
         </a>
       </nav>
       

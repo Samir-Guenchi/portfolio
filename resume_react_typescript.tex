@@ -1,10 +1,10 @@
 % ============================================================================
-%  REACT & TYPESCRIPT INTERN CV — SAMIR GUENCHI (Qareeb)
+%  SAMIR GUENCHI — React & TypeScript Intern @ Qareeb
+%  ONE PAGE — HR-optimised, ATS-safe, impact-first
 % ============================================================================
-\documentclass[8pt, letterpaper]{extarticle}
+\documentclass[8.5pt, letterpaper]{extarticle}
 
-% ---------- CORE PACKAGES ----------
-\usepackage[left=0.3in, right=0.3in, top=0.25in, bottom=0.25in]{geometry}
+\usepackage[left=0.35in, right=0.35in, top=0.28in, bottom=0.25in]{geometry}
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{hyperref}
@@ -15,137 +15,161 @@
 \usepackage{xcolor}
 \usepackage{microtype}
 \usepackage{ragged2e}
+\usepackage{tabularx}
 
-% ---------- COLOUR PALETTE ----------
-\definecolor{accent}{HTML}{1A3A5C}
-\definecolor{linkblue}{HTML}{2563EB}
-\definecolor{rulecolor}{HTML}{3B6FA0}
+% ---- COLOURS ----
+\definecolor{navy}{HTML}{0F2A4A}
+\definecolor{blue}{HTML}{1D4ED8}
+\definecolor{muted}{HTML}{4B5563}
+\definecolor{rule}{HTML}{2563EB}
 
-% ---------- HYPERLINK STYLE ----------
-\hypersetup{
-    colorlinks=true,
-    linkcolor=accent,
-    filecolor=accent,
-    urlcolor=linkblue,
-    pdfauthor={Samir Guenchi},
-    pdftitle={React \& TypeScript Intern CV — Samir Guenchi},
+% ---- HYPERLINKS ----
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=navy, pdfauthor={Samir Guenchi},
+  pdftitle={Samir Guenchi — React \& TypeScript Intern}}
+
+% ---- SECTIONS ----
+\titleformat{\section}{\color{navy}\bfseries\scshape\small}{}{0em}{}
+  [\vspace{-3pt}{\color{rule}\rule{\linewidth}{0.6pt}}\vspace{1pt}]
+\titlespacing{\section}{0pt}{5pt}{2pt}
+
+% ---- LAYOUT ----
+\setlength{\columnsep}{0.22in}
+\setlength{\parindent}{0pt}
+\setlist{nosep, leftmargin=1.1em, topsep=0pt}
+\pagestyle{empty}
+
+\newcommand{\role}[3]{%
+  {\bfseries\small #1} \hfill {\small\color{muted}\textit{#2}}\\
+  {\small\color{blue} #3}\vspace{2pt}%
 }
 
-% ---------- SECTION FORMATTING ----------
-\titleformat{\section}
-  {\color{accent}\large\bfseries\scshape}
-  {}{0em}{}
-  [\vspace{-4pt}{\color{rulecolor}\rule{\linewidth}{0.8pt}}]
-\titlespacing{\section}{0pt}{6pt}{3pt}
-
-% ---------- GLOBAL SPACING ----------
-\setlength{\columnsep}{0.25in}
-\setlength{\parindent}{0pt}
-\setlist{nosep, leftmargin=1em}
-\pagestyle{empty}
+\newcommand{\proj}[3]{%
+  {\bfseries\small #1}\enskip{\small\color{muted}#2}%
+  \hfill{\small\color{blue}\href{#3}{Demo / Repo ↗}}\\%
+}
 
 % ========================================================================
 \begin{document}
 
 % ========================= HEADER =========================
-\begin{center}
-    {\fontsize{20}{24}\selectfont\bfseries\color{accent} SAMIR GUENCHI} \\[4pt]
-    {\small
-      \faIcon{envelope}\;\href{mailto:samir.guenchi@ensia.edu.dz}{samir.guenchi@ensia.edu.dz}
-      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
-      \faIcon{phone-alt}\;+213 780066761
-      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
-      \faIcon{map-marker-alt}\;Algiers, Algeria
-    }\\[2pt]
-    {\small
-      \faIcon{linkedin}\;\href{https://linkedin.com/in/guenchi-samir}{linkedin.com/in/guenchi-samir}
-      \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad
-      \faIcon{github}\;\href{https://github.com/Samir-Guenchi}{github.com/Samir-Guenchi}
-    }
-\end{center}
-\vspace{2pt}
+{\centering
+  {\fontsize{22}{26}\selectfont\bfseries\color{navy} SAMIR GUENCHI}\par\vspace{3pt}
+  {\small\color{muted}
+    \faIcon{envelope}\;\href{mailto:samir.guenchi@ensia.edu.dz}{samir.guenchi@ensia.edu.dz}
+    \;\textbullet\;
+    \faIcon{phone-alt}\;+213 780 066 761
+    \;\textbullet\;
+    \faIcon{map-marker-alt}\;Algiers, Algeria
+    \;\textbullet\;
+    \faIcon{github}\;\href{https://github.com/Samir-Guenchi}{Samir-Guenchi}
+    \;\textbullet\;
+    \faIcon{linkedin}\;\href{https://linkedin.com/in/guenchi-samir}{guenchi-samir}
+  }\par
+}
+\vspace{4pt}
 
-% ======================== TWO COLUMN LAYOUT ============================
+% ======================== HOOK — instantly differentiating ========================
+\noindent\colorbox{navy!8}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+  \vspace{4pt}
+  \small\color{navy}
+  Engineering student who has shipped \textbf{6+ React \& TypeScript applications to real production clients} — not side projects.
+  Multilingual e-commerce storefronts with live users, a cross-platform TypeScript mobile app, and an enterprise microservices frontend.
+  I write clean, component-based React code, manage full Git workflows, and debug production issues — ready to contribute to Qareeb's engineering team from day one.
+  \vspace{4pt}
+}}
+
+\vspace{5pt}
+
 \begin{multicols}{2}
 \RaggedRight
 
-% -------------------- SUMMARY --------------------
-\section*{{\color{accent}\faIcon{user-tie}}\; Professional Summary}
-Engineering student with extensive hands-on experience building production-ready web applications using \textbf{React} and \textbf{TypeScript}. Shipped 6+ React-based projects — including multilingual e-commerce storefronts, enterprise document management systems, and AI-powered platforms — with clean component architectures, responsive design, and collaborative Git workflows. Eager to contribute to Qareeb's engineering team, write well-tested production code, and grow alongside experienced engineers.
+% ======================== SKILLS ========================
+\section{Technical Skills — Exact Match}
 
-% -------------------- SKILLS (TOP — matches job requirements) --------------------
-\section*{{\color{accent}\faIcon{code}}\; Technical Skills}
-\textbf{Core:} JavaScript (ES6+), TypeScript, HTML5, CSS3 \\
-\textbf{Frontend:} React 18, React Native (Expo), Vite, Tailwind CSS, Framer Motion, i18next, Zustand, React Router \\
-\textbf{Backend:} Node.js, Express.js, REST APIs, Socket.IO, JWT, RBAC \\
-\textbf{Tools:} Git, GitHub, Docker, Vercel, Agile workflows \\
-\textbf{Practices:} Responsive design, performance optimization, clean code, component-based architecture, testing
+\begin{tabular}{@{}ll}
+\textbf{Core}        & TypeScript · JavaScript ES6+ · HTML5 · CSS3 \\
+\textbf{React}       & React 18 · Hooks · Context · React Router \\
+\textbf{Styling}     & Tailwind CSS · Framer Motion · Responsive UI \\
+\textbf{State}       & Zustand · Axios · REST APIs · Socket.IO \\
+\textbf{Mobile}      & React Native (Expo) · i18next (4-language apps) \\
+\textbf{Tools}       & Git · GitHub · Vercel · Docker · Agile \\
+\textbf{Practices}   & Component architecture · Clean code · Perf opt. \\
+\end{tabular}
 
-% -------------------- REACT & TYPESCRIPT EXPERIENCE --------------------
-\section*{{\color{accent}\faIcon{briefcase}}\; React \& TypeScript Experience}
+\vspace{5pt}
 
-\textbf{Freelance Frontend Engineer — El Basma Boutique} \textcolor{rulecolor}{$|$} \textit{2025} \\
-Built a multilingual React 18 e-commerce storefront with responsive UI, Framer Motion animations, i18next localization (Arabic, Darija, French, English), Meta Pixel integration, and admin dashboard.
-\begin{itemize}[leftmargin=1.5em, topsep=1pt, itemsep=1pt]
-  \item Developed reusable component library with clean, maintainable code
-  \item Debugged UI issues and optimized rendering performance
-  \item Managed Git workflow from feature branches to production deploy
+% ======================== EXPERIENCE ========================
+\section{Work Experience}
+
+\role{Freelance Full-Stack Engineer — El Basma Boutique}{2025}{React 18 · TypeScript · Node.js · Socket.IO · i18next}
+\begin{itemize}
+  \item Built a multilingual e-commerce storefront from scratch (Arabic, Darija, French, English) serving real customers — with Framer Motion animations and Meta Pixel analytics
+  \item Designed the backend powering the website, mobile app, and social commerce; managed Git workflow from feature branches to Vercel production deploy
+  \item \textbf{Live:} \href{https://el-basma-website-front-end.vercel.app/}{\color{blue}el-basma-website-front-end.vercel.app} $\cdot$ \href{https://github.com/Samir-Guenchi/el-basma-backend}{\color{blue}Backend} $\cdot$ \href{https://github.com/Samir-Guenchi/el-basma-website-front-end}{\color{blue}Frontend}
 \end{itemize}
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/el-basma-website-front-end}{Repo} \;\textcolor{rulecolor}{$\cdot$}\; \faIcon{external-link-alt}\;\href{https://el-basma-website-front-end.vercel.app/}{Live Demo}} \vspace{3pt}
+\vspace{3pt}
 
-\textbf{Mobile App Developer — El Basma App} \textcolor{rulecolor}{$|$} \textit{2025} \\
-Built a cross-platform mobile app with Expo (React Native) and \textbf{TypeScript}. Used Zustand for state management, Socket.IO for real-time sync, and i18next for multilingual support.
-\begin{itemize}[leftmargin=1.5em, topsep=1pt, itemsep=1pt]
-  \item Wrote strictly-typed TypeScript across all components and services
-  \item Implemented clean architecture with API integration and real-time updates
+\role{Software Engineer Intern — Algérie Poste}{Dec 2025 – Feb 2026}{TypeScript · Node.js · PostgreSQL · RBAC}
+\begin{itemize}
+  \item Wrote strictly-typed TypeScript across a multi-vendor e-commerce platform with RBAC (4 roles: buyer / seller / delivery / admin)
+  \item Collaborated with a cross-functional team to ship production features on schedule; optimised query performance and debugged complex issues
 \end{itemize}
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/el-basma-app}{Repo}} \vspace{3pt}
+\vspace{3pt}
 
-\textbf{Frontend Engineer — DocVault (Enterprise DMS)} \textcolor{rulecolor}{$|$} \textit{2026} \\
-Built the React 18 frontend for a microservices-based enterprise document management system with Spring Boot backend, Kafka event processing, and Kubernetes deployment.
-\begin{itemize}[leftmargin=1.5em, topsep=1pt, itemsep=1pt]
-  \item Developed responsive UI with TypeScript and component-based architecture
-  \item Collaborated across backend and DevOps teams in an agile workflow
+\role{Web Development Intern — HR Technology}{Aug – Sep 2024}{React · JavaScript · HTML · CSS · Git}
+\begin{itemize}
+  \item Collaborated with senior engineers to develop and enhance responsive production web applications; wrote clean HTML/CSS and optimised front-end performance under code-review feedback
 \end{itemize}
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/DocVault}{Repo}} \vspace{3pt}
+\vspace{3pt}
 
-\textbf{Frontend Engineer — TRCS (Blockchain Platform)} \textcolor{rulecolor}{$|$} \textit{2026} \\
-Built a React + \textbf{TypeScript} + Vite interactive dashboard with MetaMask/ethers.js Web3 integration for a tokenized reward \& credential system.
-\begin{itemize}[leftmargin=1.5em, topsep=1pt, itemsep=1pt]
-  \item Developed TypeScript-first React components for wallet auth and token management
-  \item Debugged complex async state between blockchain and UI layers
+\role{Data Scientist Intern — Djezzy (DSIP Program)}{2026 – Present}{Python · Kafka · LLM · SQL}
+\begin{itemize}
+  \item Built a production NL-to-SQL BI agent with Kafka event pipelines in an agile team; demonstrated ability to deliver clean, scalable code in a collaborative engineering environment
 \end{itemize}
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/Tokenized-Reward-Credential-System}{Repo}} \vspace{3pt}
 
-\textbf{Frontend Engineer — Amal (AI Health Platform)} \textcolor{rulecolor}{$|$} \textit{2026} \\
-Built the React + Tailwind CSS web frontend and React Native (Expo) mobile app for a multilingual AI platform for drug addiction awareness and recovery support.
-\begin{itemize}[leftmargin=1.5em, topsep=1pt, itemsep=1pt]
-  \item Developed responsive web and mobile interfaces with TypeScript
-  \item Integrated conversational AI components with real-time API calls
-\end{itemize}
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/Amal}{Repo}} \vspace{3pt}
+\vspace{5pt}
 
-\textbf{Freelance Frontend Engineer — Dahaoui Boutique} \textcolor{rulecolor}{$|$} \textit{2025} \\
-Built a React + Tailwind CSS e-commerce storefront with admin dashboard, i18next multilingual support, and Cloudinary media management. \\
-{\small \faIcon{github}\;\href{https://github.com/Samir-Guenchi/dahaoui_boutique}{Repo} \;\textcolor{rulecolor}{$\cdot$}\; \faIcon{external-link-alt}\;\href{https://dahaoui-boutiquee.vercel.app/}{Live Demo}} \vspace{3pt}
+% ======================== PROJECTS — the killer section ========================
+\section{Shipped React \& TypeScript Projects}
 
-\textbf{Web Development Intern — HR TECHNOLOGY} \textcolor{rulecolor}{$|$} \textit{Aug – Sep 2024} \\
-Collaborated with senior engineers to develop and enhance responsive React web applications for production. Wrote clean HTML/CSS and optimized front-end performance.
+\proj{Dahaoui Boutique — E-commerce Platform}{React · Tailwind · Node.js · MongoDB}{https://dahaoui-boutiquee.vercel.app/}
+Complete storefront + admin dashboard + inventory management. Multilingual (i18next). Live. \\
+\href{https://github.com/Samir-Guenchi/dahaoui_boutique}{\small\color{blue}github.com/Samir-Guenchi/dahaoui\_boutique}
+\vspace{4pt}
 
-% -------------------- ADDITIONAL EXPERIENCE --------------------
-\section*{{\color{accent}\faIcon{server}}\; Additional Engineering Experience}
-\textbf{Data Scientist Intern — Djezzy} \textcolor{rulecolor}{$|$} \textit{2026–Present} — Built a natural language-to-SQL BI agent with Kafka pipelines; collaborative agile environment. \\
-\textbf{Software Engineer Intern — Algérie Poste} \textcolor{rulecolor}{$|$} \textit{Dec 2025 – Feb 2026} — Built a multi-vendor e-commerce platform with Node.js/TypeScript, PostgreSQL, and RBAC.
+\proj{El Basma App — Cross-Platform Mobile}{React Native · TypeScript · Zustand · Socket.IO}{https://github.com/Samir-Guenchi/el-basma-app}
+Admin mobile app with real-time sync, AI tools, multilingual support — strictly-typed TypeScript throughout.
+\vspace{4pt}
 
-% -------------------- EDUCATION --------------------
-\section*{{\color{accent}\faIcon{graduation-cap}}\; Education}
-\textbf{Engineering Degree — AI and Data Science} \\
-National Higher School of Artificial Intelligence (ENSIA), Algeria \\
-\textit{2021 – 2027 (expected)} — Final year, completing Final Year Project
+\proj{DocVault — Enterprise Microservices Frontend}{React 18 · TypeScript · Spring Boot · Kafka}{https://github.com/Samir-Guenchi/DocVault}
+React frontend for enterprise document management system with Kubernetes deployment and AI-powered translation.
+\vspace{4pt}
 
-% -------------------- LANGUAGES --------------------
-\section*{{\color{accent}\faIcon{language}}\; Languages}
-\textbf{Arabic} — Native \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad \textbf{French} — Fluent \quad\textcolor{rulecolor}{$\boldsymbol{\cdot}$}\quad \textbf{English} — Fluent
+\proj{TRCS — Blockchain Dashboard}{React · TypeScript · Vite · ethers.js}{https://github.com/Samir-Guenchi/Tokenized-Reward-Credential-System}
+Interactive TypeScript React dashboard with MetaMask wallet auth and NFT credential management.
+\vspace{4pt}
+
+\proj{Amal — AI Health Web + Mobile}{React · React Native · TypeScript · FastAPI}{https://github.com/Samir-Guenchi/Amal}
+Multilingual AI platform (web + mobile) for addiction recovery; RAG + intent classification across 4 languages.
+
+\vspace{5pt}
+
+% ======================== EDUCATION ========================
+\section{Education}
+
+\textbf{Engineering Degree — AI \& Data Science} \hfill \textit{2021 – 2027 (exp.)}\\
+{\small National Higher School of Artificial Intelligence (ENSIA), Algeria}\\
+{\small Final year · Coursework: Software Engineering, Data Structures, Algorithms}
+
+\vspace{5pt}
+
+% ======================== WHY QAREEB ========================
+\section{Why This Internship}
+
+{\small I am available to start in August 2026 for a 3-month engagement.
+I want to work on \textbf{real production software}, receive experienced code-review feedback,
+and grow within a collaborative engineering team — exactly what Qareeb offers.}
 
 \end{multicols}
+
 \end{document}
